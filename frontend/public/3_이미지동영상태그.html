@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 
+		<img src="" />
+		
+		<audio controls>
+				<source src="">
+	 	</audio>
+		 
+			절대경로 : 모든 경로
+			상대경로 : 현재 문서 (위치) 기준으로 상대적인 경로
+				./  : 현재경로
+				../ : 상위 이동
+				
+				1. 만약에 같은 폴더에 존재하면			: ./파일명	또는 파일명
+				2. 만약에 상위 폴더에 존재하면			: ../파일명
+				3. 만약에 상상위 폴더에 존재하면 			: ../../파일명
+				4. 만약에 상위 폴더내 하위 폴더에 존재하면 	: ../폴더명/파일명
+	 -->
+	 <h6> 절대경로 </h6>
+	 <img src="C:\Users\504-t\eclipse-workspace\frontend\public\강아지.jpg" />
+	 
+	 <h6> 상대경로 : 현재문서와 사진이 같은폴더일때 </h6>
+	 <img src="강아지.jpg" />
+	 
+	 <h6> 상대경로 : 현재문서와 같은 폴더내 사진일때 </h6>
+	 <img src="./이미지/강아지.jpg" />
+	
+	 <h6> 상대경로 : 현재문서의 상위 폴더내 사진일때 </h6>
+	 <img src="../img/강아지.jpg" />
+	 
+	 <audio controls>
+	 	<source src="소리.mp3">
+	 </audio>
+	 
+	 <video controls>
+	 	<source src="비디오.mp4">
+	 </video>
+	 
+	 <iframe width="560" height="315" src="https://www.youtube.com/embed/_87QvW_Sc80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	 
+	 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1586.7002647936204!2d126.85254372754214!3d37.30933913586429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b6f26eca4e801%3A0xcc760a7a473e93bf!2z7ZWc64yA7JWe7Jet!5e0!3m2!1sko!2skr!4v1686127391094!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	 
+	 
+</body>
+</html>
