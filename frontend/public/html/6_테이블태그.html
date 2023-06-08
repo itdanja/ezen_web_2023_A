@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 
+		<table> : 테이블 
+			속성
+			1. border=""	: 테두리
+			2. style="border-collapse: collapse;" :  테두리 합치기
+			3. 행병합 : rowspan="병합개수"
+			4. 열병합 : colspan="병합개수"
+		<tr> : 행 추가
+		<th> : 제목 데이터 추가
+		<td> : 데이터 추가 
+	 -->
+	 <table border="1" style="border-collapse: collapse;">
+	 	<tr>	<!-- 1행 -->
+	 		<th> 지역 </th> 	<th> 최저기온 </th>	<th> 최고기온 </th>
+	 	</tr>
+	 	<tr>	<!-- 2행 -->
+	 		<td> 서울 </td>	<td> 20 </td>		<td> 30 </td>
+	 	</tr>
+	 	<tr>	<!-- 3행 -->
+	 		<td> 대구 </td>	<td> 10 </td>		<td> 30 </td>
+	 	</tr>
+	 	<tr>	<!-- 4행 -->
+	 		<td> 광주 </td>	<td> 50 </td>		<td> 40 </td>
+	 	</tr>
+	 	<tr>	<!-- 5행 -->
+	 		<td rowspan="2" colspan="2"> 비고 </td>	
+	 		<td><input type="button" value="확인"> </td>
+	 	</tr>
+	 	<tr>	<!-- 6행 -->
+	 		<td><input type="button" value="예약"> </td>
+	 	</tr>
+	 </table>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
