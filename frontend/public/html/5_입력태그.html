@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 
+		<form>  : 데이터 입력 양식 폼 [ *추후에 전송 가능 ]
+		<input> : 입력상자
+	 		속성[ 속성명 = 값 ]
+	 		1. type
+	 			type="text" 	: 텍스트
+	 			type="password"	: 패스워드
+	 			type="email"	: 이메일
+	 			type="radio"	: 원형 체크상자 [ name 속성이 동일할경우 단일선택 가능 ]
+	 			type="checkbox"	: 네모 체크상자
+	 			type="file"		: 첨부파일 [ multiple="multiple" 속성 사용시 여러개 첨부파일 가능 ]
+	 			type="color"	: 색상
+	 			type="date"		: 날짜
+	 			type="datetime-local" : 날짜/시간
+	 			type="month" type="time" type="week"
+	 			type="range"	: 범위 스크롤
+	 			type="number"	: 숫자
+	 			type="button"	: 버튼상자 [ 추후에 이벤트 추가할 예정 ]
+	 			type="submit"	: 폼 전송 [ 추후에 java에게 전송할 예정 ]
+	 			type="reset"	: 폼에 포함된 input 입력내용 초기화
+ 			2. value : input 값 대입 
+ 			3. readonly="readonly" 	: 읽기모드[수정불가]
+			4. disabled="disabled"	: 사용금지모드
+			5. autofocus="autofocus" : 포커스[커서] 이동
+			6. maxlength="최대문자길이"
+		<select> 	: 목록 상자
+		<option>	: 목록 상자의 항목[아이템]
+		<textarea> 	: 긴글 텍스트 상자
+			rows : 행 글자수	cols : 열 글자수
+	 -->
+	<form>
+		입력상자 : <input value="유재석" readonly="readonly">					<br/>
+		텍스트:<input type="text" value="인사과" disabled="disabled">			<br/>
+		패스워드:<input type="password" autofocus="autofocus"> 				<br/>
+		이메일:<input type="email" maxlength="5">								<br/>
+		
+		원형체크버튼[단일선택]:
+			<input type="radio" name="confirm">예
+			<input type="radio" name="confirm">아니요
+											<br/>
+		
+		네모체크버튼[복수선택]:
+			<input type="checkbox" name="confirm2">뉴스
+			<input type="checkbox" name="confirm2">드라마
+											<br/>
+		
+		첨부파일:
+				<input type="file">			
+				<input type="file" multiple="multiple">
+											<br/>
+		색상:<input type="color">			<br/>
+		날짜:<input type="date">				<br/>
+		날짜/시간:<input type="datetime-local">	<br/>
+		월:<input type="month">				<br/>
+		시간:<input type="time">				<br/>
+		주:<input type="week">				<br/>
+		범위:<input type="range">			<br/>
+		숫자:<input type="number">			<br/>
+		<input type="button" value="이벤트버튼"> <br/>
+		<input type="submit" value="전송버튼">	<br/>
+		<input type="reset" value="입력초기화버튼"> <br/>
+		
+		<select>
+			<option> 네이버 </option>
+			<option> 카카오 </option>
+			<option> 네이트 </option>
+		</select>
+		
+		<textarea rows="5" cols="20"></textarea>
+		
+	</form>
+</html>
+
+
