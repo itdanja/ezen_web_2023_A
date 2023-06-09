@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+*{ padding: 0; margin: 0; } /*모든곳에 기본여백 제거*/
+
+.content{
+	width: 400px;			/* 가로사이즈 */
+	border: solid 1px #e8e8e8; /* 테두리 */
+}
+.fimg{ width: 350px;}					/* 사진 사이즈 */
+
+.row2{
+	border-top: solid 1px #e8e8e8;		/* 위쪽 테두리 */
+	font-weight: bold;					/* 굵기 */
+	font-size: 18px;					/* 글꼴크기 */
+	padding-top: 20px;					/* 위쪽 여백 */
+}
+.row3{ font-weight: bold; }				/* 굵기 */
+.row4{ margin-top: 10px; line-height: 150%; } /* 위쪽 바깥여백 , 줄간격 */
+.row5{ margin-top: 10px; line-height: 150%; } /* 위쪽 바깥여백 , 줄간격 */
+.no{ color: orange; } /* 글꼴색상 */
+
+/* 모든 li에 스타일 적용 */
+li{ padding: 5px 20px; list-style-type: none; } /* 안쪽여백 , 글머리 제거 */
