@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/*
+	선택자
+		1. *{}
+		2. 태그명{}
+		3. .class명{}
+		4. #id명{}
+		- 우선순위 id>class>태그>*
+		- 복수선택 : , 구분	[ 선택자명 , 선택자명 , 선택자명 ]
+		- 하위선택 : 띄어쓰기 구분 [ 상위선택자명 하위선택자명 ]
+*/
+
+.fee_table , .fee_table th , .fee_table td { 
+	border: solid 2px black;	/* 테이블,헤더,셀 에 테두리 적용*/
+}
+.fee_table{
+	border-collapse: collapse;	/* 테두리 병합 */
+}
+.fee_table th{ /* 해당 class명 의 th요소 선택 */
+	padding: 10px 20px;
+	background-color: #eeeeee;
+}
+.fee_table td{ /* 해당 class명 의 td요소 선택 */
+	padding: 10px;	
+	text-align: center;
+}
+.fee_table .col1{ width: 50px; }
+.fee_table .col2 , .fee_table .col3 { width: 100px; }
+.fee_table .col4 { width: 200px; }
+
+
+.login_table{
+	width: 300px;
+	margin: 30px;
+}
+
+.login_table .id , .login_table .password{
+	width: 200px; height: 30px;
+	font-size: 13px;
+	border: solid 1px #eeeeee;
+	border-radius:10px;
+	padding-left: 10px; 
+}
+.login_table .btn{
+	width: 100px; height: 70px;
+	background-color: black;
+	color: white; font-weight:bold;
+	border: none;
+	border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
