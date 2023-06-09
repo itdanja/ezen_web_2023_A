@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<!-- css 호출 -->
+	<link href="1_선택자.css" rel="stylesheet" >
+	
+</head>
+<body>
+
+	<!-- 
+		CSS 주석 : /* 주석 */
+		CSS 선택자 : 꾸미기 대상 선택 
+			1. *{ }			: 모든 곳에 적용 	[와일드카드] *기본 스타일 적용
+			2. 태그명{ } 		: 해당 태그에 적용 
+			3. .class명{ } 	: class속성 이용  [ 복수형 ]
+			4. #id명{ }		: id속성 이용 	[ 단일형 ]
+			
+			-우선순위 : 속성이 중복일 경우 
+			style > id > class > 태그명 > *
+	 -->
+	 
+	 <p> 유재석 </p>
+	 <p> 강호동 </p>
+	 <h4> 신동엽 </h4>
+	 <p class="text1"> 김희철 </p>
+	 <p class="text1"> 김희철 </p>
+	 <p class="text1"> 김희철 </p>
+	 <p class="text1"> 김희철 </p>
+	 
+	 <p id="text2"> 서장훈 </p>
+	 
+	 <h4 class="text1" id="text2" style="color: purple;" > 중복 </h4>
+	
+
+
+</body>
+</html>
