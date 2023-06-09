@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+div{
+	border: solid 1px red;
+	margin: 20px;
+	background-color: gray;
+}
+span{
+	border: solid 1px orange;
+}
+.s1{display: inline; width: 200px; height: 200px;}
+.s2{display: block; width: 200px; height: 200px;}
+.s3{display: inline-block; width: 200px; height: 200px;}
+.s4{display: none; }
+
+.d1{display: inline; width: 200px; height: 200px; }
+.d2{display: block; width: 200px; height: 200px; }
+.d3{display: inline-block; width: 200px; height: 200px; }
+.d4{display: none; width: 200px; height: 200px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
