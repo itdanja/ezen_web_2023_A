@@ -29,8 +29,8 @@
 	/* 2. 헥사[16진수] */
 	color: #FFEB33;
 	
-	/* 3. RGB vs raba */
-	color: raba( 251 , 247 , 17 );
+	/* 3. RGB vs rgba */
+	color: rgba( 251 , 247 , 17 );
 }
 
 
