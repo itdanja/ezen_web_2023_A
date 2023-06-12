@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#wrap{
+	width: 1200px;	/* 가로사이즈 */
+	margin: 0 auto;	/* 구역/박스 가로 가운데정렬*/
+}
+#header{
+	background-color: skyblue;
+	height: 200px;	/* 높이사이즈 */
+}
+#content{
+	background-color: orange;
+	height: 600px;
+	display: flex;	/* 하위요소의 배치방법 */
+}
+#left_menu{
+	background-color: gray;
+	width: 800px;
+}
+#right_menu{
+	background-color: purple;
+	width: 400px;
+}
+#footer{
+	background-color: black;
+	height: 200px;
+}
+
+
+
+
