@@ -11,7 +11,7 @@
 .flexbox2{ align-items: center; }						/* 가운데 정렬 */
 .flexbox3{ align-items: flex-end; }						/* 밑변 정렬 */
 .flexbox4{ align-items: stretch; } /*기본값*/				/* 높이 생략시 최소높이 자동할당*/
-.flexbox5{ flex-wrap: wrap; align-items: baseline; }	/* 모든 요소들중 밑변 기준으로 정렬
+.flexbox5{ flex-wrap: wrap; align-items: baseline; }	/* 모든 요소들중 밑변 기준으로 정렬*/
 
 /* 선택자1 , 선택자2{ } */
 .box1 , .box2 , .box3 , .box4 , .box5 , .box6{
