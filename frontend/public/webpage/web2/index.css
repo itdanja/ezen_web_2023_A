@@ -102,7 +102,16 @@ li{ list-style-type: none; } /* 글머리 제거 */
 	padding: 7px 0px;
 }
 
-
+/* 오른쪽 내용 */
+.right_content{ width: 460px; }
+.proudct_list{
+	display: flex;
+	flex-wrap: wrap; /* 자식요소들의 자동 줄바꿈 */
+}
+.product{
+	width: 200px;
+	margin: 20px 15px;
+}
 
 
 
