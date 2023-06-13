@@ -81,7 +81,26 @@ li{ list-style-type: none; } /* 글머리 제거 */
 	padding: 10px 15px;;
 }
 
-
+/* 메인본문 */
+.main_content{
+	width: 930px; /* 1200px-250px => 950px 내 */
+	display: flex;
+	justify-content: space-between;
+}
+/* 왼쪽내용 */
+.left_content{
+	width: 460px; /* 930/2 =>460px */
+}
+.main_content h3{
+	border-bottom: solid 2px black;
+	padding-bottom: 10px;
+}
+.board{ margin: 10px 0px 50px 0px; }
+.item{ 
+	display: flex;
+	justify-content: space-between;
+	padding: 7px 0px;
+}
 
 
 
