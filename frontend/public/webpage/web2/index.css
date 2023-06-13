@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* css 기본값 제거 */
+*{ margin: 0px; padding: 0px; } /* 여백 제거 */
+li{ list-style-type: none; } /* 글머리 제거 */
+
+/* 웹 폰트 가져오기 : 눈누 */
+@font-face {
+    font-family: 'KimjungchulGothic-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulGothic-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* 헤더 구역 */
+#header{
+	width: 1200px;		/* pc웹 표준 권장사이즈 1100~1300px */
+	margin: 0 auto;		/* 구역 가운데정렬 */
+	display: flex;		/* 하위 요소 배치 방법 */
+	justify-content: space-between;	/* 가로 정렬 */
+	margin-top:20px;	/* 위쪽 바깥여백 */
+}
+/* 상단 로고 사이즈변경 */
+.h_logo img{ width: 100%; } 
+
+/* 상단 메뉴 */
+.top_menu{
+	font-size: 14px;
+	text-align: right;	/* 텍스트 정렬 */
+	margin-bottom: 15px;
+}
+/* 본 메뉴 */
+.main_menu li{
+	display: inline-block;	/* 가로 배치 */
+	margin-left: 100px;		/* 왼쪽 여백 */
+	font-family: 'KimjungchulGothic-Bold';
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
