@@ -1,0 +1,17 @@
+팀과제3(2인과제)
+	주제 : The스튜디오 3페이지 구현
+	1. index.html
+	2. intro.html
+	3. reservation.html
+	조건 : 
+		1. 메뉴에 링크 걸기 
+			1. 메뉴에서 'The 스튜디오' 클릭시 index.html 페이지로 이동
+			2. 메뉴에서 '스튜디오소개' 클릭시 intro.html 페이지로 이동
+			3. 메뉴에서 '스튜디오예약' 클릭시 reservation.html 페이지로 이동
+
+		2. 헤더 와 푸터 는 index.html 에서 구현후
+			코드를 복사해서  intro.html / reservation.html 붙여넣기후 사용
+
+		3. 제출 / 기한
+			- 한명이 대표로 카카오톡 ip주소로 제출
+			- 6/15 일 까지
