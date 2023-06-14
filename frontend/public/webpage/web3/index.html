@@ -24,10 +24,50 @@
 		
 			<div>
 				<h5>아이디</h5>
-				
 				<span class="signup_input">
-					<input class="input_id" type="text">
+					<input class="input_id" type="text" maxlength="30">
 					<span class="signup_at">@naver.com</span>
+				</span>
+				
+				<h5>비밀번호</h5>
+				<span class="signup_input">
+					<input class="input_id" type="password" maxlength="30">
+					<span class="signup_icon"> </span>
+				</span>
+				
+				<h5>비밀번호 확인</h5>
+				<span class="signup_input">
+					<input class="input_id" type="password" maxlength="30">
+					<span class="signup_icon"> </span>
+				</span>
+				
+				<h5>이름</h5>
+				<span class="signup_input">
+					<input class="input_id" type="text" maxlength="30">
+				</span>
+				
+				<!-- 생년월일 -->
+				<h5>생년월일</h5>
+				<span class="birthbox"> <!-- 생년월일 입력창 3개 -->
+					
+					<span class="signup_input birthY">	<!-- 연도 -->
+						<input class="input_id" type="text" maxlength="4" placeholder="년(4자)">
+					</span>
+						
+					<span class="signup_input birthM">	<!-- 월 -->
+						<select class="input_id">
+							<option>월</option> <option>1</option> <option>2</option>
+							<option>3</option>  <option>4</option>	<option>5</option>
+							<option>6</option>	<option>7</option>	<option>8</option>
+							<option>9</option>	<option>10</option>	<option>11</option>
+							<option>12</option>
+						</select>
+					</span>
+					
+					<span class="signup_input birthD">	<!-- 일 -->
+						<input class="input_id" type="text" maxlength="2" placeholder="일">
+					</span>
+					
 				</span>
 				
 			</div>
