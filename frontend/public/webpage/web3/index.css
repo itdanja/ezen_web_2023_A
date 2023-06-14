@@ -48,6 +48,24 @@ a{ color: black; text-decoration: none; }
 
 .info{ font-size: 10px; color: #B3C5BF; }
 
+/*  휴대전화입력,버튼 구역 */
+.phonebox{
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0px;
+}
+/* 인증버튼 */
+.btn_auth{
+	background-color: #03C75A;
+	border: none; color: white;
+	width: 120px; 
+	font-weight: bold;
+	margin: 8px;
+}
+.input_phone{ width:  300px; }
+.auth_input{ background-color:#F5F6F7;  }
+
+
 
 
 
