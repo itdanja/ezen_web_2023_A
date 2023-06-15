@@ -127,7 +127,49 @@ li{ list-style-type: none; }
 	text-decoration: line-through; /* 취소선 */
 	color: #8e8d8d;
 }
-.item_icon img{	width: 40px; }
+.item_icon img{	width: 40px; } /*주문폭주 아이콘 사이즈 */
+
+/* ----------------- 푸터 -------------- */
+.top_ft{ 	background-color: #f7f7f7; } /* 상단 푸터 배경색 */
+.content_ft{
+	width: 1400px; margin: 0 auto;
+	display: flex; justify-content: space-between;
+	padding: 50px;
+}
+.content_ft h3{
+	margin : 10px 0px;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
