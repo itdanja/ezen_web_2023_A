@@ -82,6 +82,74 @@ li{ list-style-type: none; }
 }
 /* -------------------------- 대표 이미지 ----------------- */
 #main_img{ width: 100%; }
+/* ----------------------------- 본문 제품 ---------------- */
+#content{ /* 본문 구역 */
+	width: 1600px; margin: 0 auto;
+	padding : 50px 0px;
+}
+#content .title{ /* 본문 제목 */ 
+	font-size: 17px;
+	text-align: center;
+	font-weight: bold;
+}
+#content .comment{ /* 본문 문단 */
+	font-size: 12px;
+	text-align: center;
+	color : #999999;
+	margin: 20px 0px;
+}
+/* ----------------- 제품 1개 -------------- */
+.items{ display: flex; flex-wrap: wrap; justify-content: space-between; }
+.item{ width: 380px; margin: 30px 0px; }  /* 1600/4 => 400px 여백포함 */
+.item img{ width: 100%; } /* 부모요소 사이즈에서 100% */
+/* 칼라 요소의 구역 */
+.color span{ /* span 요소의 display:inline = w,h 사용불가 */
+	display:inline-block;
+	width: 10px; height: 10px;
+	border: 1px solid #DBDBDB; 
+}
+.color_review{ /* 칼라 와 리뷰수 가로 배치 */ 
+	display: flex; justify-content: space-between;
+}
+.review{ color: #808080; } /* 리뷰 수 색상 */
+
+/* 제품명 , 사이즈 */
+.item_name{ margin: 5px 0px 10px 0px; }
+.item_name .size{ font-size: 11px; color: #595959; }
+/* 제품 가격 */
+.item_price { position: relative; margin-bottom: 10px; }
+.item_price .discount{
+	position : absolute;
+	right: 0px; top:0px; /* 오른쪽 상단 배치 */
+	font-size: 14px; color: red; font-weight: bold;
+}
+.price{
+	text-decoration: line-through; /* 취소선 */
+	color: #8e8d8d;
+}
+.item_icon img{	width: 40px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
