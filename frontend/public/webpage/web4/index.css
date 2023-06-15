@@ -29,6 +29,11 @@ li{ list-style-type: none; }
 	justify-content: space-between; /* 양끝 정렬 */
 	align-items: center;
 	margin: 0px 50px 0px 30px;
+	position: sticky; /* 스크롤 내릴경우 고정 */
+	top:0px; /* 상단 위에 고정 */
+	z-index: 1; /* 겹쳤을때 순서 */
+	background-color: white; /* 배경 */
+	opacity: 0.8; /* 요소 투명도 1:100%[투명도없음] , 0.5:50% */
 }
 /* 메뉴 */
 .main_menu ul{
@@ -47,8 +52,28 @@ li{ list-style-type: none; }
 .searchbox img{ height: 15px;}
 /* 검색 input */
 .searchbox input{  border: none; padding: 5px; }
-.new{ color: red; }
-.logo{ width: 150px; }
+.new{ color: red; } /* 특정 메뉴 글꼴 색상 */
+.logo{ width: 150px; } /*로고 사이즈 */
+/* -------------------------- 드랍메뉴 ------------------------------ */
+/* */
+.drop_menu{ position: relative; } /* 상대위치 */
+/* */
+.drop_menu .sub_menu{
+	position: absolute; /* 절대위치 */
+	left:-40px; top:15px; /* drop_menu 요소 기준으로 왼쪽으로 40px 이동 , 위에 15px */
+	display: none; /* 숨김 */ 
+	width: 110px; /* 드랍메뉴 사이즈 */ 
+	background-color: white; /* 드랍메뉴 배경색 */ 
+	padding: 25px 0px 20px 0px; /* 여백 */ 
+	text-align: center; /* 텍스트 정렬 */
+}
+.sub_menu li{ margin-bottom: 5px;	}
+/* */
+.drop_menu:hover .sub_menu{
+	display: block; /* 보이기 */
+}
+/* -------------------------- 대표 이미지 ----------------- */
+#main_img{ width: 100%; }
 
 
 
