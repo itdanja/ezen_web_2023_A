@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/* 공통 부문 */
+*{ padding: 0px; margin: 0px; font-size: 12px; }
+/* a 기본값 제거 */
+a{ color: black; text-decoration: none; }
+/* 글머리 */
+li{ list-style-type: none; }
+/* 웹폰트 */
+
+/* 상단 메뉴 */
+/* li 가로 배치하는 방법 1 */
+.top_menu{ 
+	display: flex; 	/* 하위 요소 배치 방법 */
+	justify-content: flex-end; /* 하위 요소들 가로 정렬 */
+	align-items : center; /* 하위 요소들 세로 정렬 */
+	border-bottom: 1px solid #dbdbdb; /* 아래 테두리 */
+	padding:  10px; /* 안쪽여백 */
+	font-size: 10px; /* 부모요소에 폰트적용시 하위요소 적용 */
+}
+/* li 가로 배치하는 방법 2 */
+/* .top_menu li { display: inline-block; } */
+
+.line{ padding: 0px 10px; } /* | 사이 여백 */
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<link href="index.css" rel="stylesheet">
+</head>
+<body>
+	<!--
+		- CSS선택자 											- JS
+			*{}			: 모든 요소 공통
+			태그{} 		: 동일한 태그간 공통 [ x ]
+			class{}		: 특정 요소들의 간의 공통	[ 복수형 ]
+				- input , div , ul , li 
+			id{} 		: 특정 요소 1개 [ 단일형 ] *페이지당 1개
+				- 레이아웃 [ 헤더 , 본문 , 푸터 , 사이드바 ]
+	-->
+	<div id="wrap">	<!-- 전체 레이아웃  -->
+		<div id="header"> <!-- 헤더  -->
+			
+			<ul class="top_menu">  <!-- 상단메뉴 -->
+				<li> <a href="#">LOGIN</a> <span class="line"> | </span> </li>
+				<li> <a href="#">JOIN</a> <span class="line"> | </span> </li>
+				<li> <a href="#">MYPAGE</a> <span class="line"> | </span> </li>
+				<li> <a href="#">ORDER</a> <span class="line"> | </span> </li>
+				<li> <a href="#">CART(0)</a> <span class="line"> | </span> </li>
+				<li> <a href="#">COMMUNITY</a> <span class="line"> | </span> </li>
+				<li> <a href="#"><img src="img/top_menu_icon.png"></a> </li>
+			</ul>  <!-- 상단메뉴 end  -->
+			
+			<div class="main_menu"></div> <!-- 메인메뉴 -->
+			
+		</div> <!-- 헤더 end  -->
+		<img id="main_img"/> <!--  대표 이미지  -->
+		<div id="content"> <!-- 본문 -->
+			
+		</div> <!-- 본문 end  -->
+		<div id="footer"> <!-- 푸터  -->
+			
+		</div> <!--  푸터 end  -->
+	</div><!-- 전체 레이아웃  end  -->
+
+</body>
+</html>
+
