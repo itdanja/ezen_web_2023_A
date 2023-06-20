@@ -77,6 +77,39 @@ console.log( '원넓이 : ' + 원넓이 )
 console.log( 10*3 )
 console.log( '10'*3 ) //????
 
+// 문제3
+let 실수1 = prompt('실수1 : ')
+let 실수2 = prompt('실수2 : ')
+let 백분율 = ( 실수1/실수2 ) * 100 
+console.log( '두 실수간의 비율 : ' + 백분율 +"%")
+
+// 2. 비교연산자 
+console.log( '초과 : ' + ( 10>3 ) ) // true
+console.log( '미만 : ' + ( 10<3) ) // false
+console.log( '이상 : ' + ( 10>=3 ) ) // true 
+console.log( '이하 : ' + ( 10<=3 ) ) // false
+console.log( '같다 : ' + ( 10==3) ) // false
+console.log( '같지않다 : ' + ( 10!=3 ) ) // true 
+
+// 3. 관계연산자 
+console.log( '이면서 : ' + ( 10>3 && 20>15 ) ) // 10은 3보다 크면서 20은 15보다 크다. // true and true => true 
+console.log( '이면서 : ' + ( 10>3 && 20>30 ) ) // true and false => false 
+console.log( '이거나 : ' + ( 10>3 || 20>15 ) ) // true or true => true 
+console.log( '이거나 : ' + ( 10>3 || 20>30 ) ) // true or false => true
+console.log( '부정 : ' + !(10>3) )	// true => false 
+
+/*
+	-문제4 : prompt 함수 로 정수를 입력받아 홀수[true] / 짝수[false] 여부 출력
+	-문제5 : prompt 함수 로 정수를 입력받아 7배수이면 true / 아니면 false 출력
+	-문제6 : prompt 함수 로 십만원 단위의 금액을 입력받아 지폐 개수 세기 
+			356789		결과 : 십만원3장 만원5장 천원6장 
+	-문제7 : prompt 함수 로 아이디와 비밀번호를 입력받아 아이디가 admin 이고 비밀번호가 1234 와 일치하면 
+			결과 : true 출력 아니면 false 출력 
+	-문제8 : prompt 함수로 정수를 입력받아 홀수 이면서 7배수이면 true 아니면 false 출력
+*/
+ 
+ 
+
 
 
 
