@@ -193,15 +193,15 @@ console.log( ' 점수의 등급 : ' + 등급 )
 
 */
 // 문제9 
-let value1 = prompt( '정수1 : ')
-let value2 = prompt( '정수2 : ')
+let value1 = Number( prompt( '정수1 : ') ) 
+let value2 = Number( prompt( '정수2 : ') ) 
 console.log(' 두 정수중 더 큰수 : ' + ( value1>value2 ? value1 : value2 ) );
 console.log(' 두 정수중 더 큰수 : ' + ( value1>value2 ? value1 : value1<value2 ? value2 : '두 수는 같다'));
 
 // 문제10
-let value3 	= prompt( '정수1 : ' ) 
-let value4	= prompt( '정수2 : ' )
-let value5	= prompt( '정수3 : ' )
+let value3 	= Number( prompt( '정수1 : ' ) )
+let value4	= Number( prompt( '정수2 : ' ) )
+let value5	= Number( prompt( '정수3 : ' ) )
 	// 변수활용
 let max = value3	// 1.max 변수에 첫번째 입력값 저장한다.
 max = max < value4 ? value4 : max // 2. 만약에 max보다 두번째 입력값이 더 크면 max변수에 두번째 값을 저장/아니면 그대로
