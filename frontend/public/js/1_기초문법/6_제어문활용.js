@@ -71,6 +71,42 @@ if( int2 < int3 ){ // 조건3
 }
 console.log( int1 +'  '+int2 + '  ' + int3 )
 
+// 문제 5 : 4개의 정수 를 입력받아서 오름차순 / 내림차순 출력 [ 생략 ]
+// 문제 6 : 점수를 입력받아 점수 90점이상 합격 출력 아니면 탈락 출력 
+let score = Number( prompt('점수 : ') ) // 1.입력받은 값을 변수에 저장 
+if( score >= 90 ){ console.log('합격') }
+else{ console.log('탈락') }
+
+// 문제 7 : 점수를 입력받아 점수 90점이상 A등급 출력  80점이상 B등급 출력  70점이상 C등급 출력   그외 재시험
+	// 문제6 입력값 그대로 사용 
+if( score >= 90 ){ console.log('A등급'); }
+else if( score >= 80 ){ console.log('B등급'); }
+else if( score >= 70 ){ console.log('C등급'); }
+else{ console.log('재시험'); }
+
+//문제 8 : 아이디와 비밀번호 입력받기 
+	// 회원아이디가 admin 이고 비밀번호가 1234 이면 로그인 성공 출력 아니면 로그인실패 출력
+let id = prompt('아이디 : ')
+let pw = prompt('비밀번호 : ')
+// 만약에 입력받은 id가 저장된 변수가 'admin' 문자열과 같으면
+// ctrl + shift + f : 코드 탭 간격 자동맞춤( 이클립스 )
+if (id == 'admin') { // 아이디 일치하면
+	if (pw == '1234') {  // 비밀번호가 일치하면
+		console.log('로그인성공')
+	} // if 2 end 
+	else { // 비밀번호가 일치하지 않으면
+		console.log('로그인실패:비밀번호가 일치하지 않습니다.')
+	} // else end 
+} // if 1 end 
+else{ // 아이디가 다르면 
+	console.log('로그인실패:없는아이디')
+} // else end 
+
+
+
+
+
+
 
 
  
