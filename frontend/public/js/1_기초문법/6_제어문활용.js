@@ -64,14 +64,10 @@ if( int1 < int2 ){  // 조건1	:	> 오름차순  < 내림차순
 	int2 = temp;	// 3. 	5있던 변수에 3 저장 
 }
 if( int1 < int3 ){  // 조건2
-	let temp = int1;
-	int1 = int3;
-	int3 = temp;
+	let temp = int1; int1 = int3; int3 = temp;
 }
 if( int2 < int3 ){ // 조건3 
-	let temp = int2;
-	int2 = int3;
-	int3 = temp;
+	let temp = int2; int2 = int3; int3 = temp;
 }
 console.log( int1 +'  '+int2 + '  ' + int3 )
 
