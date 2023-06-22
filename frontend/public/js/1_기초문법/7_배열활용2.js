@@ -23,31 +23,18 @@ let 방문록배열2 = []; // 작성자배열
 
 // 1. 이벤트 함수 만들기 
 function 등록( ){ // s end 
-	// let 방문록배열 = []; // 2. 
-	// 1. 함수가 잘 작동하는지 체크~
-	console.log(' 등록함수 실행 ');	
-
+	console.log(' 등록함수 실행 ');	 // 1. 함수가 잘 작동하는지 체크~
 	// 2. <input> 태그 호출 
-	let contentInput = document.querySelector('.content')
-	console.log( contentInput ); // 호출 잘 되었는지 체크~~
-	
+	let contentInput = document.querySelector('.content');		console.log( contentInput ); // 호출 잘 되었는지 체크~~
 	// 3. 입력받은 값 호출 
-	let value = contentInput.value;
-	console.log( value );		// 입력값 들어왔는지 체크~~
-	
+	let value = contentInput.value;								console.log( value );		// 입력값 들어왔는지 체크~~
 	// 4. 배열 등록
-	방문록배열.push( value );
-	console.log( 방문록배열 );	
-	
+	방문록배열.push( value );										console.log( 방문록배열 );	
 	방문록배열2.push( document.querySelector('.writer').value )
-	
-	
 	// 5. HTML에 배열 출력
 		// 1. <table> 호출 
-	let contentTable = document.querySelector('.contentTable')
-	console.log( contentTable )
-	
-	// 1. 반복문 이용한 출력 
+	let contentTable = document.querySelector('.contentTable'); console.log( contentTable )
+		// 1. 반복문 이용한 출력 
 	let tableHTML = `<tr><th>내용</th><th>작성자</th></tr>`
 	for( let i = 0 ; i < 방문록배열.length ; i++ ){ // for s
 		tableHTML += 	`<tr>
@@ -55,15 +42,11 @@ function 등록( ){ // s end
 							<td>${방문록배열2[i]}</td>
 						</tr>`
 	} // for end 
-	
-	// 2. 마지막인덱스[최근 등록된 요소] = 배열.length-1 
-	/*let tableHTML = contentTable.innerHTML
+		// 2. 마지막인덱스[최근 등록된 요소] = 배열.length-1 
+		/*let tableHTML = contentTable.innerHTML
 	tableHTML += 	`<tr><td>${방문록배열[ 방문록배열.length-1 ]}</td><td></td></tr>`*/
-
-	console.log( tableHTML )	
 		// 4. 추가된 HTML 내용 ( = ) 대입 
-	contentTable.innerHTML = tableHTML
-	
+	console.log( tableHTML );	 contentTable.innerHTML = tableHTML
 } // f end 
 
 
