@@ -112,6 +112,19 @@ for( let i = 1 ; i<=line3 ; i++ ){
 	output += `\n` // i마다 줄바꿈 => 줄마다 줄바꿈
 }
 console.log( output )
+// 문제6) 입력받은 줄 수 만큼 * 출력  [ ex) 5 ]
+output = ``;
+let line4 = prompt( '문제6:')
+for( let i = 1 ; i<=line4 ; i++ ){
+	// [공백 출력]
+	for( let b = 1 ; b<= i-1 ; b++ ){ output += ` `}
+	// [별 출력 ]
+	for( let s = 1 ; s<= line4-i+1 ; s++ ){ output += `*` }
+	// [줄바꿈 출력]
+	output += `\n`
+}
+console.log( output )
+
 
 
 
