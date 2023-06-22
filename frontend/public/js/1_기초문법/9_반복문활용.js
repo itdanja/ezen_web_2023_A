@@ -89,8 +89,17 @@ for( let i = 1 ; i<=line1 ; i++ ){
 	output +=`\n`;
 }
 console.log( output )
-
-
+// ---------------------------------------------------------- //
+// 문제4) 입력받은 줄 수 만큼 * 출력  [ ex) 5 ]
+output = ``;
+let line2 = prompt( '문제4:')
+for( let i = 1 ; i<=line2 ; i++ ){
+	// [별찍기]
+	for( let s = 1 ; s<=line2-i+1 ; s++ ){ output += `*`}
+	// [줄바꿈]
+	output += `\n`
+} // for end 
+console.log( output )
 
 
 
