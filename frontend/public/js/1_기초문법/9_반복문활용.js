@@ -100,9 +100,18 @@ for( let i = 1 ; i<=line2 ; i++ ){
 	output += `\n`
 } // for end 
 console.log( output )
-
-
-
+// 문제5) 입력받은 줄 수 만큼 * 출력  [ ex) 5 ]
+output = ``;
+let line3 = prompt( '문제5:')
+for( let i = 1 ; i<=line3 ; i++ ){
+	// 2. [공백 출력]
+	for( let b = 1 ; b<=line3-i ; b++ ){ output += ` ` } // 스페이스바 한번 = 공백1개 
+	// 3. [별 출력 ]
+	for( let s = 1 ; s<=i ; s++ ){ output += `*`}
+	// 1. [줄바꿈]
+	output += `\n` // i마다 줄바꿈 => 줄마다 줄바꿈
+}
+console.log( output )
 
 
 
