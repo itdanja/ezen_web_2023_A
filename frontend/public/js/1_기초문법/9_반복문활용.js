@@ -124,19 +124,3 @@ for( let i = 1 ; i<=line4 ; i++ ){
 	output += `\n`
 }
 console.log( output )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
