@@ -49,6 +49,19 @@ function 숫자버튼( 선택된번호 ){
 // 3. 선택된 번호들을 출력 하는 함수 [ 실행조건 : 배열에 변화가 있으면( 1.추가 / 2.삭제 / 3.수정)  ]
 function 선택번호출력(){
 	document.querySelector('.선택번호출력구역').innerHTML = 선택번호목록;
+	
+	// 만약에 모두 선택했으면 
+	if( 선택번호목록.length == 6 ){
+		document.querySelector('.추첨결과버튼구역').innerHTML = 
+				`<button onclick="추첨결과()"> 추첨결과보기 </button>`
+	}// 모두 선택 안했으면 
+	else{ document.querySelector('.추첨결과버튼구역').innerHTML = `` }
+	
+} // f end 
+
+// 4. 추첨 결과 함수 [ 실행조건 : 배열내 6개 숫자존재하고 추첨결과보기 버튼을 클릭했을때 ]
+function 추첨결과(){
+	alert('로또 추첨 진행 합니다. [ 잠시 대기 ]');
 }
 
 
