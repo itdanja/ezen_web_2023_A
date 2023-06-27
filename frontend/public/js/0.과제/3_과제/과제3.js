@@ -81,6 +81,7 @@ ex) 출력 예시 [ table 사용 ]
 		2. 출력 이벤트 ???? 
 			1.입장했을때 -> JS 열렸을때 
 			2.등록했을때 -> JS 등록함수 안에 push 했을때 밑에
+			3.삭제했을때 -> JS 삭제함수 안에 splice 했을때 밑에
 			
 		3. 함수 정의 
 			* 배열에 있는 값을 테이블에 출력 
@@ -94,7 +95,23 @@ ex) 출력 예시 [ table 사용 ]
 				- innerHTML
 		
 	< 주요기능3 - 삭제 >
-	
+		1. HTML 작성 button
+		
+		2. 삭제 이벤트 ????   삭제 버튼을 클릭했을때 삭제함수 실행 
+			<button onclick="삭제()"> 삭제 </button>
+		
+		3. 삭제함수 정의
+			* 무엇을 삭제할껀지????[ 배열에서 주로 식별자역할 = 인덱스(절대중복x) ] 
+				인수로 삭제할 인덱스번호 전달 받는다.
+			<button onclick="삭제( 삭제할인덱스번호 )"> 삭제 </button>
+			function 삭제( 삭제할인덱스번호 ){ }
+			
+			1. 삭제할 인덱스번호를 인수로 받는다 .
+			
+			2. 인수로 받은 인덱스번호에 해당하는 배열내 인덱스 삭제 =  splice
+			
+		
+			
 */
 
 /* 입력받은 데이터 여러개를 저장하기 위한 배열 3개 선언 */
@@ -142,23 +159,20 @@ function 출력(){ console.log('가계부목록 출력합니다.');
 	// 1. 어디에 출력할껀지??? table 가져오기 
 	let outputTalbe = document.querySelector('.outputTalbe')
 	// 2. 무엇을???? 
-	let html = `<tr>
-					<th> 날짜 </th>
-					<th> 항목 </th>
-					<th> 가격 </th>
-					<th> 비고 </th>
-				</tr>`
+	let html = `<tr> <th> 날짜 </th> <th> 항목 </th> <th> 가격 </th> <th> 비고 </th> </tr>`
 				
 	for( let 인덱스 = 0 ; 인덱스<날짜배열.length ; 인덱스++ ){ // for start 
 		html += `<tr>
 					<td> ${ 날짜배열[인덱스] } </td>
 					<td> ${ 항목배열[인덱스] } </td>
-					<td> ${ 금액배열[인덱스].toLocaleString() }원 </td>
-					<td> <button> 삭제 </button> </td>
-				</tr>`
+					<td>  ${Number(금액배열[인덱스]).toLocaleString() }원 </td>
+					<td> <button onclick="삭제( ${인덱스} )"> 삭제 </button> </td>
+					
+				</tr>`	// 삭제할 인덱스번호를 삭제()함수에 인수로 전달
 	} // for end 
-	// * 요구사항 : 총합계 계산 ( 금액배열에 있는 데이터 모두 더하기 )
-		// 0번 인덱스의 데이터부터 마지막 인덱스의 데이터까지를 누적합계 
+	// undefined : 정의된게 없다 / 데이터가 없다 / 등록안했는데 먼저 출력했으니까 오류 발생
+	
+	// * 요구사항 : 총합계 계산 ( 금액배열에 있는 데이터 모두 더하기 ) // 0번 인덱스의 데이터부터 마지막 인덱스의 데이터까지를 누적합계 
 	let 총합계 = 0;
 	for( let 인덱스 = 0 ; 인덱스<금액배열.length ; 인덱스++ ){
 		console.log( 인덱스 );			// 배열에 저장된 순서번호 
@@ -171,10 +185,18 @@ function 출력(){ console.log('가계부목록 출력합니다.');
 				<td colspan="2" >총합계</td>
 				<td colspan="2" > ${ 총합계.toLocaleString() }원</td>
 			<tr>`
-	// undefined : 정의된게 없다 / 데이터가 없다 / 등록안했는데 먼저 출력했으니까 오류 발생
-			
 	// 3. table 에 HTML  넣어주기  <table> inner </table>
 	outputTalbe.innerHTML = html ;
+} // f end 
+
+// 3. 
+function 삭제( 삭제할인덱스번호 ){
+	console.log( '삭제할인덱스번호 : ' + 삭제할인덱스번호 )
+	날짜배열.splice( 삭제할인덱스번호 , 1 )
+	항목배열.splice( 삭제할인덱스번호 , 1 )
+	금액배열.splice( 삭제할인덱스번호 , 1 )
+	// 화면/테이블 업데이트/새로고침
+	출력()
 }
  
  
