@@ -136,7 +136,7 @@ function 등록(){ 	console.log('등록함수 클릭');
 	let money = moneyInput.value;	console.log( money )
 	
 	// * 유효성검사 : 만약에 3가지중에 하나라도 공백이면 
-	if( date == '' || name == '' || money == ''  ){
+	if( date == '' || name == '' || money == ''  ){ 
 		alert(' 미입력이 존재합니다. [등록불가] ');
 		return; // 함수 강제종료 // return 실행되면 아래 코드는 실행x
 	}
