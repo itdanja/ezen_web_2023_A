@@ -21,7 +21,7 @@ function 등록(){ console.log('등록()함수실행')
 	// 밖에 전역변수 만들어서 거기에 저장하자!! 객체 여러개(배열) = 전역변수
 	// * {} 안에서 선언된 객체를 전역 배열에 저장하자 
 	회원리스트.push( member );								console.log( 회원리스트 )
-	
+	alert('회원가입성공');
 	// ------------------------------ 입력상자 초기화 ------
 	document.querySelector('#mid').value = ``
 	document.querySelector('#mpwd').value = ``
