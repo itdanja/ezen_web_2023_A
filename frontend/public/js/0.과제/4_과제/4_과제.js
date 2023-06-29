@@ -39,30 +39,47 @@ function onWrite(){ console.log('onWrite()함수')
 
 // 2. 출력 함수 [ 실행조건 : 1.JS열렸을때 2.등록했을때 3.삭제했을때 4.수정했을때 5.조회수증가했을때]
 function onPrint(){ console.log('onPrint()함수');
-	
 	// 1. 어디에 출력할껀지 ????  테이블 
 	let boardTable = document.querySelector('#boardTable')
-	
 	// 2. 테이블 무엇을 대입/출력 할껀지 ??? 객체에 정보들을 객체 1개당 한줄씩<tr> 출력
 	let html = `<tr> <th> 번호 </th> <th>제목</th> <th>작성일 </th> <th>조회수</th> </tr>`
-	
 		// 배열내 순차적으로 하나씩 열어보자 
 		for( let i = 0 ; i<boardlist.length ; i++ ){
 			
 			let board = boardlist[i];	// i번째 배열 인덱스의 객체 호출 
 			// 로그인=비교=if		// HTML출력 => HTML 구성 
-			
 			html += `<tr>
 						<td> ${ i+1 } </td> 
-						<th> ${ board.title } </th> 
-						<th> ${ board.date } </th> 
-						<th> ${ board.view } </th>
+						<td onclick="onView( ${ i } )"> ${ board.title } </td> 
+						<td> ${ board.date } </td> 
+						<td> ${ board.view } </td>
 					</tr>`
 		} // for end 
-		
 	// 3. 대입 
 	boardTable.innerHTML = html 
+} // f end 
+
+// 3. 
+function onView( index ){ console.log('onView() 함수' + index); 
+	// 1. 어디에 ~~~
+	let viewbox = document.querySelector('#viewbox')
+	// 2. 무엇을 ~~~ 
+	
+	let board = boardlist[index] // 인수로 전달받은 인덱스의 객체를 1개 꺼내기 
+	
+	let html = `<div> 제목 : ${ board.title } </div>
+				<div> 내용 : ${ board.content } </div>
+				<div> 작성자 : ${ board.writer } </div>
+				<button>삭제</button>
+				<button>수정</button>`
+	// 3. 대입
+	viewbox.innerHTML = html 
+	
+	// 조회수 증가(JS변경) 하고 화면 새로고침(HTML변경)  
+	board.view++; onPrint();
+	
 }
+
 
 
 
