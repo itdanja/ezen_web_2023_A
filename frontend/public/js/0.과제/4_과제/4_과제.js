@@ -15,18 +15,30 @@ function onWrite(){ console.log('onWrite()함수')
 	let titleValue = document.querySelector('#title').value;
 	let contentValue = document.querySelector('#content').value;
 	
+		// 날짜 모양으로 출력 
+		let now = new Date(); // 1. 현재 시스템(pc)의 날짜/시간 호출 
+		let year = now.getFullYear(); 	console.log('year : ' + year )		// 현재 연도 
+		let month = now.getMonth()+1;	console.log('month : ' + month )	// 현재 월 0~11 [ 0:1월 / 1:2월 / 5:6월 / 11:12월 ]
+		let week = now.getDay();		console.log('week : ' + week )		// 현재 요일 [ 0:일 1:월 ~~ 4:목요일 6:토요일 ]
+		let day = now.getDate();		console.log('day : ' + day)			// 현재 일 
+		let hour = now.getHours();	 	console.log('hour : ' + hour )		// 현재 시 
+		let minute = now.getMinutes(); 	console.log('minute : ' + minute )	// 현재 분 
+		let second = now.getSeconds(); 	console.log('second : ' + second )	// 현재 초
+	
 	// 2. 게시물1개당 = 객체1개 선언/만들기  = 각 input로 입력받은 값들을 각 속성명별로 대입해서 객체 생성 
 	let board = { 
 					writer : writerValue ,
 				 	password : passwordValue ,
 				  	title : titleValue ,
 				   	content : contentValue  ,
-				   	date : new Date() ,
+				   	date : `${ now.getFullYear() }년 ${ now.getMonth()+1 }월 ${ now.getDate() }일 
+				   			${ now.getHours() }:${ now.getMinutes() }:${ now.getSeconds()}
+				   			` ,
 				   	view : 0 
    				}
 	console.log( board ) ;	// board 생성 확인 
 	// --------- 등록전에 유효성검사 --------------------//
-		
+		// 생략~~~~
 	// ---------------------------------------------//
 	
 	// 3. 현재 { } 안에서 선언된 board 는 } 끝나면 사라짐[지역변수] --> 전역변수/배열에 저장하자.
