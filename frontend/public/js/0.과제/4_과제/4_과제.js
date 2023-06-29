@@ -64,20 +64,40 @@ function onView( index ){ console.log('onView() 함수' + index);
 	// 1. 어디에 ~~~
 	let viewbox = document.querySelector('#viewbox')
 	// 2. 무엇을 ~~~ 
-	
 	let board = boardlist[index] // 인수로 전달받은 인덱스의 객체를 1개 꺼내기 
 	
 	let html = `<div> 제목 : ${ board.title } </div>
 				<div> 내용 : ${ board.content } </div>
 				<div> 작성자 : ${ board.writer } </div>
-				<button>삭제</button>
+				<button onclick="onDelete( ${ index } )">삭제</button>
 				<button>수정</button>`
 	// 3. 대입
 	viewbox.innerHTML = html 
-	
 	// 조회수 증가(JS변경) 하고 화면 새로고침(HTML변경)  
 	board.view++; onPrint();
 	
+} // f end 
+
+// 4. 삭제함수 
+function onDelete( index ){ console.log('onDelete()함수' + index )
+	
+	// 1. 배열내 삭제할 인덱스의 해당하는 객체 호출 
+	let board = boardlist[index];
+	
+	// 2. prompt() 함수로 입력받은 값을 password 변수 에 저장 
+	let passowrd = prompt('비밀번호 : ')
+	
+	// 3. 비교 [ 삭제할 객체내 비밀번호와 입력받은 비밀번호와 일치하면 삭제 성공 ] 
+	if( board.password == passowrd ){
+		// 4. 배열내 해당 객체 삭제 
+		boardlist.splice( index , 1 ); // 삭제할 인덱스번호부터 1개 삭제 
+		// 5. 화면 새로고침 
+		onPrint(); // 전체 게시물 출력 화면 새로고침 
+		document.querySelector('#viewbox').innerHTML = `` // 현재 삭제된 개별 게시물 출력 화면 없애기 
+		alert('[삭제성공] 게시물이 삭제 되었습니다.')
+	}else{ // 일치하지 않으면 
+		alert('[삭제실패] 비밀번호가 틀렸습니다. ')
+	}
 }
 
 
