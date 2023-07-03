@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.wrap{ /* class 'wrap' 꾸미기 */
+	width: 1000px; height: 600px; /*가로세로 사이즈 */
+	background-image: url("img/게임배경.jfif"); /* 구역 사이즈(width,height) 필수 */
+	background-repeat: no-repeat; /* 만일 배경이미지보다 구역사이즈가 더 크면 채우기기능 */
+	margin: 0 auto;	/* 구역 가로 가운데 정렬 */
+	background-size: 100%;	/* 배경이미지 사이즈를 구역 사이즈에 맞춤 */	
+	position: relative;	/* 하위요소들 위치 기준 */
+}
+/*유저 구역 */
+.userbox{
+	width: 100px; height: 100px;	
+	background-image: url("img/캐릭터1.png");
+	background-repeat: no-repeat; 
+	background-size: 90%; 
+	/* 위치변경 = top , left , right , bottom [ position 요소 필수 ] */
+	position: absolute; /* 절대위치 = 부모기준 */
+	top : 380px;	left: 50px;
+}
