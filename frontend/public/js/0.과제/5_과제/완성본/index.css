@@ -1,0 +1,113 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'CWDangamAsac-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.wrap{
+	width: 1000px;
+	height: 600px;
+	margin: 0 auto;
+	border: 1px solid black;
+	position: relative;
+	background-image: url("img/배경.webp");
+	background-repeat: no-repeat;
+}
+.userbox{
+	width: 100px;
+	height: 134px;
+	position: absolute; /* 절대위치 : 상위요소의 relative 기준 */
+	left : 10px;
+	top: 320px;
+	background-image: url("img/스폰지밥4.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.monbox1, .monbox2,.monbox3{
+	width: 100px;
+	height: 134px;
+	position: absolute;
+	top: 320px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	transition : all 1s;/*애니메이션*/
+	background-position: center bottom;
+}
+.monbox1{background-image: url("img/버섯1.gif");}
+.monbox2{background-image: url("img/버섯2.png");}
+.monbox3{background-image: url("img/버섯3.gif");}
+
+.hpbars{
+	width: 900px;
+	margin: 0 auto;
+	padding-top : 10px;
+	display: flex;
+	justify-content: space-around;
+}
+.hpbar , .m_hpbar{
+	height: 50px;
+	width: 45%;
+}
+.m_hp1{
+	height: 30px;
+	width: 100%;
+	background-color: #ec0000;
+	border-radius: 10px;
+	border: 2px double #7c7c7c;
+}
+ .m_hp2{
+	height: 30px;
+	width: 100%;
+	background-color: #ec0000;
+	border-radius: 10px;
+	border: 2px double #7c7c7c;
+}
+.m_hp3{
+	height: 30px;
+	width: 100%;
+	background-color: #ec0000;
+	border-radius: 10px;
+	border: 2px double #7c7c7c;
+}
+.u_hp{
+	height: 30px;
+	width: 100%;
+	background-color: #ec0000;
+	border-radius: 10px;
+	border: 2px double #7c7c7c;
+}
+
+.gameover{
+	font-family: 'CWDangamAsac-Bold';
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 30px;
+	text-align: center;;
+	font-size: 60px;
+	color: #ec0000;
+}
+
+.character{
+	width : 250px;
+	position: absolute;
+	top : 470px;
+	vertical-align: middle;
+	background-color: #89a9cd;
+	border: 2px double #6791be;
+	border-radius: 5px;
+	padding: 5px;
+	padding-right: 15px;
+	margin-left: 20px;
+}
+.expbar{
+	width: 0%;
+	height : 20px;
+	background-color: yellow;
+}
+.lev ,.power , .exp , .expbar{
+	margin: 5px;
+	font-size: 12px;
+}
