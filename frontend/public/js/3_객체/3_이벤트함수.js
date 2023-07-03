@@ -57,6 +57,51 @@ let html = '<p> 변수 로 작성한 HTML형식의 문자열 데이터</p>'; // 
 // 자료형/타입 : 숫자형,문자형,논리형,배열,객체,함수
 document.body.innerHTML = html;
 
+	// 3. style 속성 : <태그 style="CSS작성"> </태그>
+document.body.style = `background-color : blue ; color : white `;
+
+	// 4. addEventListener( '이벤트명' , 함수 );
+	/*
+		1. 
+			function 함수명(){} 
+			addEventListener( '이벤트명' , 함수명 );
+		
+		2.  - 익명함수[ 함수명 이 없는 함수 (인수)=>{실행코드} ]를 이용한 이벤트 추가
+			addEventListener( '이벤트명' , ()=>{ } );
+	*/
+	/*
+		이벤트명
+			1. DOMContentLoaded : HTML이 완전히 열렸을때[모두 로드되었을때] 실행되는 이벤트
+			2. window.onload	: 해당 객체가 호출 되었을때
+	*/
+// 1. HTML이 완전히 열렸을때 
+document.addEventListener( 'DOMContentLoaded' , () => {
+	console.log('JS에서 이벤트 실행');
+});
+
+// 2. 해당 객체가 호출 되었을때
+window.onload = () => { console.log( 'JS에서 이벤트 실행2'); }
+
+// 3. JS 열렸을때 이벤트 1번 실행 
+console.log('JS에서 이벤트 실행3');
+
+// 4. 
+let p = document.querySelector('p'); console.log( p );
+
+// 5. 
+p.addEventListener( 'click' , () => {
+	console.log(' p 태그 클릭했다. ');
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
