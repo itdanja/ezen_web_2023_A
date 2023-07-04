@@ -30,7 +30,7 @@
 /* 제품들 출력 구역 */
 .productbox{
 	height: 450px;  /* height 생략시 기본값 auto : 내용물 크기만 자동으로 늘어감 */
-	display: flex; flex-wrap: wrap;
+	display: flex; flex-wrap: wrap; /*자동 줄바꿈 */
 	overflow-y: scroll; /* 만약에 자식요소들이 현재 구역보다 사이즈가 더 커지면 세로 스크롤생성 */
 }
 /* 제품 1개 */
@@ -40,7 +40,44 @@
 .product .pprice{ color : red; }
 
 /* 카트 출력 구역 */
-.cartbox{ height: 250px; } 
+.cartbox{
+	height: 250px; background-color: #eeeeee;
+} 
+/* 카트 상단 부분 */
+.carttop{
+	display: flex; justify-content: space-between;
+	padding: 10px 50px;
+}
+/* 카트내 제품수 원형 */
+.ccount{
+	background-color: red;
+	width: 30px; /* 사이즈가 적용 ????  span inline 기본값이므로 width , heigth */
+	display : inline-block;
+	/* inline : 한줄 차지x 사이즈적용x , block : 한줄 차지o 사이즈적용o , inline-block : 한줄차지x 사이즈적용o */
+	border-radius: 30px; /* 둥근모서리 */
+	font-size: 12px; color: white; text-align: center; padding: 4px;
+}
+/* 카트내 제품 총가격 */
+.ctotal{ color: red; }
+/* 카트내 제품 출력 구역  flex는 자식 요소들이 만약에 사이즈가 더크면 자동으로 자식요소들의 사이즈를 줄임=>방지[ 최소사이즈 고정 ] */
+.cartbottom{ 
+	display: flex; 
+	overflow-x: scroll;   	/* 가로 스크롤 : overflow-x: scroll; */
+}
+/* 카트내 제품 1개 */
+.citem{
+	min-width: 20%; /* 한줄에 4개씩 : 최소 가로사이즈 */	/* max-width , min-width , max-height , min-height */
+	background-color: white;
+	padding: 10px;
+	margin: 5px 10px;
+	position: relative; /* x 버튼의 기준점 */
+}
+/* 카트 개별 취소 버튼 */
+.icencel{ position: absolute; right: 10px; top: 10px; } 
+/* 카트 제품명 */
+.iname{ width: 80%; height: 70px; }
+.iprice{ color: red; }
+
 
 
 
