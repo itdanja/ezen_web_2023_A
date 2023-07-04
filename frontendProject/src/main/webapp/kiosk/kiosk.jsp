@@ -64,7 +64,8 @@
 				</div>
 				
 				<div class="cartbtn">	<!-- 버튼 구역 --> 
-					
+					<button class="cancelbtn">취소하기</button>
+					<button class="orderbtn">주문하기</button>
 				</div> 
 				
 			</div> <!-- 카트구역  end  -->

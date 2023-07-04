@@ -42,6 +42,7 @@
 /* 카트 출력 구역 */
 .cartbox{
 	height: 250px; background-color: #eeeeee;
+	position: relative; /* 버튼들의 구역 위치 잡기 */
 } 
 /* 카트 상단 부분 */
 .carttop{
@@ -78,21 +79,23 @@
 .iname{ width: 80%; height: 70px; }
 .iprice{ color: red; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 버튼들의 구역 */
+.cartbtn{
+	display: flex;
+	position: absolute;
+	/* 가장 가까운 상위 요소의 position: relative; 기준점 / 만일 상위요소내 relative 존재하지 않으면 body 기준점 */
+	width : 100%;
+	bottom: 0px; /* 최하단에 배치 */
+}
+.cartbtn button{ /* 버튼들의 공통 */
+	width: 50%;
+	font-size: 20px;
+	color: white;
+	border: none;
+	padding: 20px;
+}
+.cancelbtn{ background-color: black; }
+.orderbtn{ background-color: red; }
 
 
 
