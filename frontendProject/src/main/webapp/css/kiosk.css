@@ -4,12 +4,58 @@
 .kioskwrap{
 	font-family: 'GoryeongStrawberry'; /* 눈누 폰트*/
 	width: 700px;	/* 구역 가로사이즈 */
-	margin: 0 auto;	/* 구역 가로가운데 정렬 */
-	border: 1px solid red; height : 1000px; /* 구역 확인용 */
+	margin: 50px auto;	/* 구역 가로가운데 정렬 */
 }
 /* 헤더 구역 이미지 */
 .himg{
 	width: 100%; 
-	/* height: 200px; */
-	object-fit : cover; /* 비율 맞추기 : 이미지 짤림 */
+	/* height: 200px;  */ /* 가로/세로 사이즈를 모두 고정으로 사용시 비율 깨질수 있음 */
+	object-fit : cover; /* 비율 맞추기 : 구역보다 이미지크기가 더 크면 이미지 짤림 */
 }
+/* 카테고리 */
+.categorymenu{
+	display: flex; /* 하위 요소들의 가로배치 */
+	justify-content: space-around; /* 가로 배치 방법 */
+	padding-top: 2px;
+}
+/* 선택/클릭 안된 카테고리 */
+.categorymenu li{ color: #8e8e8e; }
+/* 선택/클릭 된 카테고리 */
+.categoryselect{
+	color: red !important;	/* 위에서 이미 color 속성 사용했으므로 중복!! */
+	/* 1. id 별도로 해서 속성적용 2.style속성 3. !important */
+	border-bottom: 3px solid red;
+	padding-bottom: 3px;
+}
+/* 제품들 출력 구역 */
+.productbox{
+	height: 450px;  /* height 생략시 기본값 auto : 내용물 크기만 자동으로 늘어감 */
+	display: flex; flex-wrap: wrap;
+	overflow-y: scroll; /* 만약에 자식요소들이 현재 구역보다 사이즈가 더 커지면 세로 스크롤생성 */
+}
+/* 제품 1개 */
+	/* 전체 가로사이즈 : width: 700px; / 가로당 제품수 */
+.product{ width: 30%; text-align: center; margin: 5px 10px 30px 10px }
+.product img { width: 100%; }
+.product .pprice{ color : red; }
+
+/* 카트 출력 구역 */
+.cartbox{ height: 250px; } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
