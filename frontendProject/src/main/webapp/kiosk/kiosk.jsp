@@ -16,16 +16,11 @@
 	<div class="kioskwrap"> <!-- 키오스크 전체 -->
 		<div class="kioskheader">   <!-- 헤더 : 광고이미지/카테고리출력 표시되는 구역 -->
 			
-			<!-- 광고이미지 -->
 			<img class="himg" src="../img/himg1.png" >
 			
 			<!-- 카테고리 -->
 			<ul class="categorymenu">
-				<li class="categoryselect">신제품(NEW)</li>
-				<li>프리미엄</li>
-				<li>와퍼&주니어</li>
-				<li>치킨&슈림프버거</li>
-				<li>올데이킹&킹모닝</li>
+				<!-- categoryPrint함수가 html 넣어주는 위치  -->
 			</ul>
 			
 		</div>  <!-- 헤더 end  -->
@@ -58,7 +53,7 @@
 						<div class="citem"> <!-- 카트내 제품 1개 -->
 							<div class="iname">더블비프불고기버거</div> <!-- 제품명 -->
 							<div class="iprice">12,000원</div>	<!-- 제품가격 -->
-							<span class="icencel"> X </span>	<!-- 제품 개별 취소 -->
+							<span class="icancel"> X </span>	<!-- 제품 개별 취소 -->
 						</div>
 					</div> 
 				</div>

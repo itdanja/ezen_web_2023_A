@@ -1,0 +1,28 @@
+프로젝트명[ frontendProject ]
+	src
+	--main
+	---webapp ( 이 안에 있는 JSP/CSS/JS/HTML )
+
+		footer.jsp		: 푸터페이지 [ 모든페이지 사용됨 ] <%@include file ="header.jsp" %> 
+		header.jsp	: 헤더페이지 [ 모든페이지 사용됨 ] <%@include file ="footer.jsp" %> 
+		index.jsp		: 메인페이지
+
+		*기능[jsp]별 폴더생성 / css폴더생성 / js폴더생성
+		board폴더		: 게시판 관련 페이지 폴더
+			list.jsp		: 게시판 전체보기 페이지
+			write.jsp		: 게시판 쓰기페이지 
+			view.jsp		: 게시물 상세페이지
+		calendar폴더		: 캘린더 관련 페이지 폴더 
+			calendar.jsp	
+		kiosk폴더			: 키오스크 관련 페이지 폴더 
+			kiosk.jsp
+		css 폴더
+			index.css		: 기본css
+			kiosk.css		: 키오스크 관련 css
+		js 폴더 
+			js.css		: 기본js
+			kiosk.js		:  키오스크 관련 js
+		img 폴더			: 웹 사용중인 이미지 폴더
+			각종 이미지
+
+			

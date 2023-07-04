@@ -74,7 +74,7 @@
 	position: relative; /* x 버튼의 기준점 */
 }
 /* 카트 개별 취소 버튼 */
-.icencel{ position: absolute; right: 10px; top: 10px; } 
+.icancel{ position: absolute; right: 10px; top: 10px; } 
 /* 카트 제품명 */
 .iname{ width: 80%; height: 70px; }
 .iprice{ color: red; }
