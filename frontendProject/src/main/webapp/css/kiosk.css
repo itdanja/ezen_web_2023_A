@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+/* 키오스크 전체구역 */
+.kioskwrap{
+	font-family: 'GoryeongStrawberry'; /* 눈누 폰트*/
+	width: 700px;	/* 구역 가로사이즈 */
+	margin: 0 auto;	/* 구역 가로가운데 정렬 */
+	border: 1px solid red; height : 1000px; /* 구역 확인용 */
+}
+/* 헤더 구역 이미지 */
+.himg{
+	width: 100%; 
+	/* height: 200px; */
+	object-fit : cover; /* 비율 맞추기 : 이미지 짤림 */
+}
