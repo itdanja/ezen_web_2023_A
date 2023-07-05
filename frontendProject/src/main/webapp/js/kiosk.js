@@ -89,6 +89,7 @@ function productPrint( categoryNo ){  // 어떤 카테고리의 제품 출력한
 		for( let i = 0 ; i<burgerList.length ; i++ ){ // 모든 버거배열/리스트[서랍장] 열어서[하나씩] 확인 
 			// i번째 버거의 카테고리 와 선택한 카테고리와 같으면 html 구성 / 아니면 구성x
 			if( burgerList[i].category == categoryNo ){
+				 			/*  이미지출력시:   ${} 앞뒤로 띄어쓰기 주의    */
 				html += `	<div onclick="productSelect( ${ i } )" class="product">
 								<img src="../img/${ burgerList[i].img }"/>
 								<div class="pinfo">
@@ -106,16 +107,48 @@ function productSelect( productNo ){  // 어떤 제품을 카트에 담을껀지
 	console.log( burgerList[productNo].name  );
 	// 1. 선택된 버거의 인덱스를 배열에 저장 [ 버거 모든 정보를 저장할 필요가 없음 ]
 	cartList.push( productNo ); console.log( cartList );
-}
-
-
-
-
-
-
-
-
-
+	// 2. 카트에 저장했으면 카트화면 출력
+	cartPrint();
+} // f end 
+// 6. 카트내 버거들을 출력 함수 [ 실행조건 : 1.카트내 제품이 등록되면( 5번 함수 하단 호출  ) 2.카트내 제품 취소되면( 7,8번 함수 하단 호출) ]
+function cartPrint(){  // 인수판단 :: 모든 카트내 제품출력 
+	// 1. 어디에
+	let cartbottom = document.querySelector('.cartbottom')
+	// 2. 무엇을?? 카트내[배열내] 모든 제품( for문 ) 출력 
+	let html = ``;
+		let totalPrice = 0;	// 카트내 버거들의 가격을 모두 더한 값을 저장 변수 
+		for( let i = 0 ; i<cartList.length ; i++ ){
+			// 1. 카트내 버거의 인덱스 
+			let burgerIndex = cartList[i]; console.log( burgerList );
+			// 2. i번째 제품을 HTML 구성 
+			html += `<div class="citem">
+							<div class="iname">${ burgerList[burgerIndex].name }</div> 
+							<div class="iprice">${ burgerList[burgerIndex].price.toLocaleString() }원</div>
+							<span onclick="productCancel( ${i} )" class="icancel"> X </span>	
+						</div>`
+			// 3. i번째 가격을 누적합계 
+			totalPrice += burgerList[burgerIndex].price
+		} // for end 
+	// 3. 출력/대입 
+	cartbottom.innerHTML = html;
+	// * 카트내 제품 수 출력 [ 제품수 : 배열길이 ]
+	document.querySelector('.ccount').innerHTML = `${ cartList.length }`;
+	// * 카트내 제품 총가격 출력  [ 총가격 : 배열내 버거요소의 가격을 모두 더한 값 ]
+	document.querySelector('.ctotal').innerHTML = `${ totalPrice.toLocaleString() }원`;
+	// * 만약에 카트내 제품이 많아서 가로 스크롤 생성 되었을때 자동으로 가장 오른쪽 으로 이동
+	cartbottom.scrollLeft = 10000;
+} // f end 
+// 7. 카트내 버거 부분 취소 함수 [ 실행 조건 : X버튼을 클릭했을떄 ]
+function productCancel( cartIndex ){ // 전체취소:인수X 부분취소:인수O 
+	cartList.splice( cartIndex , 1 );  alert(' 버거 취소 했습니다.') // 1. 선택된 카트 배열내 인덱스 삭제 
+	cartPrint(); // 2. 카트 화면 업데이트
+} // f end 
+// 8. 카트내 버거 전체 취소 함수 [ 실행 조건 : 취소하기 버튼을 클릭했을때 ]
+function cartCancel(){ // 전체취소 : 모두취소 : 인수x 
+	cartList.splice( 0 ); // 배열내 모든 요소 삭제 
+	alert(' 카트 초기화 했습니다. ');
+	cartPrint(); // 2. 카트 화면 업데이트
+} 
 
 
 
