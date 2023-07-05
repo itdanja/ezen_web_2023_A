@@ -28,15 +28,7 @@
 		<div class="kioskcontent">   <!-- 본문 : 제품출력/카트출력 구역-->
 		
 			<div class="productbox">   <!-- 제품구역 -->
-				
-				<div class="product"> <!-- 제품 1개 기준 -->
-					<img src="../img/헬로디아블로와퍼.png"/>	<!-- 제품이미지 -->
-					<div class="pinfo">
-						<div class="pname">헬로 디아블로 와퍼</div> <!-- 제품이름 -->
-						<div class="pprice">15,000원</div> <!-- 제품가격 -->
-					</div> 
-				</div> <!-- 제품1개 end  -->
-				
+					<!-- productPrint 함수가 html 넣어주는 위치  -->
 			</div> <!-- 제품구역 end  -->
 			
 			<div class="cartbox">   <!-- 카트구역 -->
