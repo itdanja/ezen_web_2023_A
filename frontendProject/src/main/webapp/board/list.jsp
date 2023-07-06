@@ -44,7 +44,7 @@
 	<div class="container">	<!-- 현재 게시물출력 페이지 전체 구역  -->
 	
 		<!-- 버튼 -->
-		<a href="write.jsp"> <button type="button" class="btn btn-outline-info">글쓰기</button> </a>
+		<a href="write.jsp"> <button type="button" class="btn btn-outline-info my-3">글쓰기</button> </a>
 		
 		<table class="table table-striped table-hover table-bordered text-center"> <!-- 테이블  -->
 		
