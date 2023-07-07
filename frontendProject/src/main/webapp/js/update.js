@@ -48,7 +48,7 @@ function onUpdate(){
 			// * 쿠키/세션 사용중이라면.... 쿠키/세션 업데이트/새롭게대입 [ setItem/JSON.stringify ,  JSON.parse/getItem ]
 			localStorage.setItem( 'boardList' , JSON.stringify( boardList ) );
 			// * 알림 , 페이지 전환
-			alert('수정 했습니다.'); 
+			alert('수정 했습니다.');  
 			location.href="view.jsp"; 
 			break;
 		}
