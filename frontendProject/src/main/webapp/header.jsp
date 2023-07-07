@@ -6,8 +6,6 @@
    		<link href="/frontendProject/css/index.css" rel="stylesheet">
    	</head>	<!-- 링크 확인 : ctrl+클릭 -->
     
-
-	<h4> 헤더입니다. </h4>
 	<ul class="head_menu"> <!-- 메뉴 -->
 		<li> <a href="/frontendProject/index.jsp"> home </a> </li> <!-- a 태그 이용한 링크(다른페이지 이동) -->
 		<li> <a href="/frontendProject/kiosk/kiosk.jsp"> 키오스크 </a> </li> <!-- a 태그 이용한 링크(다른페이지 이동) -->

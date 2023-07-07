@@ -45,6 +45,7 @@
 			<div class="col-1"> <input class="form-control" type="button" value="다시쓰기"> </div>
 			<div class="col-1"> <input class="form-control" type="button" value="목록보기"> </div>
 		</div>
+		
 	</div>
 	<%@include file ="../footer.jsp" %>
 
