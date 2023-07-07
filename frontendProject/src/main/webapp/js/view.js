@@ -8,7 +8,7 @@ onView()
 function onView(){
 	// 식별자 : 인덱스 , 게시물번호=인덱스찾기
 	
-	// 1. 어디에
+	// 1. 어디에 [ h , p , div ]
 	let title = document.querySelector('.title')
 	let writerdate = document.querySelector('.writerdate')
 	let content = document.querySelector('.content')
@@ -48,8 +48,7 @@ function onDelete(  ){ // 인수?? 삭제할식별자x 전역변수 no 에 있�
 			break;
 		} 
 	}
-	
-}
+} // f end 
 
 
 
