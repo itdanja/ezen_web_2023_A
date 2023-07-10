@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* 캘린더 전체구역 */
+.calwrap{
+	width: 1200px;
+	margin: 50px auto;
+}
+/* 캘린더 상단 메뉴 */
+.caltop{
+	display:  flex; 
+	justify-content:center; 
+}
+/* 캘린더 상단 메뉴 버튼 들 */
+.caltop button{
+	background-color: white;
+	border: none;
+	font-size: 25px; color: red;
+	cursor: pointer; /* 커서(마우스) 모양 */
+}
+/* 캘린더 상단 연도/월 표시 */
+.caltop h3{ margin: 0 15px; }
+/* 캘린더(달력) 구역 */
+.calendar{
+	display:  flex;
+	flex-wrap: wrap; /* 하위 요소의 사이즈가 부족할때 자동 줄바꿈 */
+}
+/* 캘린더(달력) 1개 구역 */
+.calendar div{
+	width: 14%; /* 100%/7  = 14.2~% */
+	border: 1px solid #eeeeee;
+	height: 100px;
+}
+/* 월~토 */
+.week{
+	height: 30px !important; /* css 충돌/중복속성일경우 최우선 */
+	background-color: #e8e8e8;
+	font-size: 18px; text-align: center;
+}
+/* 일요일 */
+.sunday{ background-color: red; color: white; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
