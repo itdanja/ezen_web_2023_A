@@ -51,6 +51,7 @@
 	display: none; justify-content: center; align-items: center;
 	/* display 이용한 모달 끄기( none ) / 켜기( flex ) */
 }
+
 /* 모달 내용 박스 구역 */
 .modal{
 	background-color: white;

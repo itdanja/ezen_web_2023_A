@@ -12,6 +12,10 @@ let year = new Date().getFullYear();	// 현재 연도
 let month = new Date().getMonth()+1;	// 현재 월[ 0~11 ] +1
 console.log( year ); console.log( month );
 
+// * 전역 배열
+let contents = [ ] // 여러개 일정객체를 저장하는 배열
+
+
 // 1. 현재 연도/월 기준으로 달력 출력 하는 함수 
 calPrint();
 function calPrint(){ 
@@ -40,9 +44,8 @@ function calPrint(){
 		
 		// 2. **** 현재 달력 마지막 일 까지 일수 출력  
 		for( let day = 1 ; day<=eDay ; day++ ){
-			html += `<div onclick="openModal()"> ${ day } </div>`
+			html += `<div onclick="openModal( ${ day } )"> ${ day } </div>`
 		} // f end
-		
 	calendar.innerHTML = html;
 } // f end 
 // 2. 버튼을 클릭했을때 현재 월 변화해주는 함수 [ 인수 : 이전달(0)vs다음달(1)]
@@ -61,13 +64,57 @@ function onNext( check ){ console.log( check );
 } // f end 
 
 // 3. 모달 열기 // 날짜 구역 클릭했을때
-function openModal(){
+function openModal( day ){
 	document.querySelector('.modalwrap').style.display = 'flex';
+	// * 현재 클릭한 일수의 날짜 출력 [ !!! : year/month : 전역변수  / day : 인수 ]
+	document.querySelector('.date').innerHTML = `${ year }-${ month }-${day}`;
 }
 // 4. 모달 닫기 // 닫기 버튼 클릭했을때
-function closeModal(){
+function closeModal(  ){
 	document.querySelector('.modalwrap').style.display = 'none';
 }
+// 5. 일정 등록 버튼 클릭했을떄 [ 실행조건 : 등록버튼을 클릭했을때 ]
+function onWrite(){
+	// 1. 입력받은 값 호출 
+	let color = document.querySelector('.color');
+	let content = document.querySelector('.content');
+	let date = document.querySelector('.date');
+	// 2. 가공 [ 1.유효성검사 , 2.객체화 ] 
+	let object = {
+		color : color.value,
+		content : content.value ,
+		date : date.innerHTML
+	}
+	// 3. 저장 
+	contents.push( object );		console.log( contents );
+	// 4. 비워주기
+	color.value= ''; content.value=''; 
+	// 5. 모달닫기
+	closeModal()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
