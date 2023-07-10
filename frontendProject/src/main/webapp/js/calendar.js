@@ -15,9 +15,8 @@ console.log( year ); console.log( month );
 // * 전역 배열
 let contents = [ ] // 여러개 일정객체를 저장하는 배열
 
-
 // 1. 현재 연도/월 기준으로 달력 출력 하는 함수 
-// calPrint();
+calPrint();
 function calPrint(){ 
 	// 1. 현재 연도와 월 을 해당 구역에 출력하기 
 	document.querySelector('.caldate').innerHTML = `${ year }년 ${ month }월`;
@@ -44,10 +43,31 @@ function calPrint(){
 		
 		// 2. **** 현재 달력 마지막 일 까지 일수 출력  
 		for( let day = 1 ; day<=eDay ; day++ ){
-			html += `<div onclick="openModal( ${ day } )"> ${ day } </div>`
+			html += `<div onclick="openModal( ${ day } )"> 
+						${ day } 
+						${ contentPrint( `${year}-${month}-${day}`) }	
+					</div>`
+					// 현재 for문에서 반복되고 있는 날짜[연도-월-일]를 인수로 전달
 		} // f end
 	calendar.innerHTML = html;
 } // f end 
+
+// 6. 일정 출력함수 [ 실행조건 : 만약에 현재 날짜와 동일한 일정 날짜 찾아서 출력  ]
+	// 인수 : 함수 안으로 들어오는 수/값/데이터	= 날짜
+	// 반환 : 함수{} 끝나고 함수 호출 했던곳으로 수/값/데이터 보내기 = 해당날짜의 일정 내용 HTML
+function contentPrint( date ){ console.log( date ); // 31
+	
+	let html = ``;
+	for( let i = 0 ; i<contents.length ; i++ ){
+		if( date == contents[i].date ){ // 인수로 들어온 날짜와 같은 i번째 일정의 날짜와 같으면
+			html += `<span class="content" style="background-color:${ contents[i].color  }"> 
+						${ contents[i].content } 
+					</span>`
+		}
+	}
+	return html;
+}
+
 // 2. 버튼을 클릭했을때 현재 월 변화해주는 함수 [ 인수 : 이전달(0)vs다음달(1)]
 function onNext( check ){ console.log( check );
 	// 1. 버튼 식별후 월 증감
@@ -77,20 +97,20 @@ function closeModal(  ){
 function onWrite(){
 	// 1. 입력받은 값 호출 
 	let color = document.querySelector('.color');
-	let content = document.querySelector('.content');
+	let contentInput = document.querySelector('.contentInput');
 	let date = document.querySelector('.date');
 	// 2. 가공 [ 1.유효성검사 , 2.객체화 ] 
 	let object = {
 		color : color.value,
-		content : content.value ,
+		content : contentInput.value ,
 		date : date.innerHTML
 	}
 	// 3. 저장 
 	contents.push( object );		console.log( contents );
 	// 4. 비워주기
-	color.value= ''; content.value=''; 
-	// 5. 모달닫기
-	closeModal()
+	color.value= ''; contentInput.value=''; 
+	// 5. 모달닫기 / 새로고침 
+	closeModal( ); calPrint();
 }
 
 
