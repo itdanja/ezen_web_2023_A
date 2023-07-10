@@ -26,8 +26,34 @@
 		</div>
 		
 	</div> <!--  ----------------------------------  -->
+	
+	<div class="modalwrap"> <!-- 모달 전체 구역  -->
+		<div class="modal"> <!-- 모달 상자 -->
+			
+			<h3> 일정추가 </h3>
+			<textarea rows="5" cols="10"></textarea>
+			
+			<div class="modalbtns">
+				<button> 일정등록 </button>
+				<button onclick="closeModal()" type="button"> 닫기 </button>
+			</div>
+			
+		</div>
+	</div>
+	
 	<%@include file="../footer.jsp" %>
 	<script src="../js/calendar.js" type="text/javascript"></script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

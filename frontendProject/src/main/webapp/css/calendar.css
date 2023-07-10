@@ -40,6 +40,31 @@
 .sunday{ background-color: red; color: white; }
 
 
+/* 모달 전체 구역 */
+.modalwrap{
+	position: fixed; /* 화면 고정 */
+	width: 100%; height: 100%; /* 전체 구역 */
+	top: 0px; 
+	background-color: rgba( 0 , 0 , 0 , 0.3  );
+	/* rgb : 0~255 색상조합  / rgba : 투명도 포함  */
+	/* 자식요소 -> 내용 박스 가운데로 */
+	display: none; justify-content: center; align-items: center;
+	/* display 이용한 모달 끄기( none ) / 켜기( flex ) */
+}
+/* 모달 내용 박스 구역 */
+.modal{
+	background-color: white;
+	width: 500px; height: 300px;
+	padding: 15px; border-radius: 30px;
+}
+
+
+
+
+
+
+
+
 
 
 

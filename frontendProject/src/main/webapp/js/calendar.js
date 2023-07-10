@@ -37,10 +37,12 @@ function calPrint(){
 		for( let b = 1 ; b<=sWeek ; b++ ){ // 1부터 1일의요일까지 공백 구역 출력 
 			html += `<div></div>`
 		} // f end 
+		
 		// 2. **** 현재 달력 마지막 일 까지 일수 출력  
 		for( let day = 1 ; day<=eDay ; day++ ){
-			html += `<div> ${ day } </div>`
+			html += `<div onclick="openModal()"> ${ day } </div>`
 		} // f end
+		
 	calendar.innerHTML = html;
 } // f end 
 // 2. 버튼을 클릭했을때 현재 월 변화해주는 함수 [ 인수 : 이전달(0)vs다음달(1)]
@@ -56,6 +58,15 @@ function onNext( check ){ console.log( check );
 	}
 	// 2. 월 증감후 새로고침 ** 
 	calPrint();
+} // f end 
+
+// 3. 모달 열기 // 날짜 구역 클릭했을때
+function openModal(){
+	document.querySelector('.modalwrap').style.display = 'flex';
+}
+// 4. 모달 닫기 // 닫기 버튼 클릭했을때
+function closeModal(){
+	document.querySelector('.modalwrap').style.display = 'none';
 }
 
 
