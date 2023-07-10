@@ -22,7 +22,10 @@
 			<!-- 상단 요일 표기 일~토 -->
 			
 			<!-- 일 표기 1 ~ 31/30/29 -->
-			
+			<div> 1 
+				<span class="content"> 밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기밥먹기 </span>
+				<span class="content"> 중간평가 </span>
+			</div>
 		</div>
 		
 	</div> <!--  ----------------------------------  -->
@@ -33,7 +36,7 @@
 			<h3> 일정추가 </h3>
 			<input class="color" type="color">
 			<div class="date">2023-7-10</div>
-			<textarea class="content" rows="5" cols="10"></textarea>
+			<textarea class="contentInput" rows="5" cols="10"></textarea>
 			
 			<div class="modalbtns">
 				<button onclick="onWrite()" type="button"> 일정등록 </button>

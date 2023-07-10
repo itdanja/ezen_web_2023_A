@@ -17,7 +17,7 @@ let contents = [ ] // 여러개 일정객체를 저장하는 배열
 
 
 // 1. 현재 연도/월 기준으로 달력 출력 하는 함수 
-calPrint();
+// calPrint();
 function calPrint(){ 
 	// 1. 현재 연도와 월 을 해당 구역에 출력하기 
 	document.querySelector('.caldate').innerHTML = `${ year }년 ${ month }월`;
