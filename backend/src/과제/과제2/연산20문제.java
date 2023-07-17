@@ -8,7 +8,7 @@ public class 연산20문제 {
 	public static void main(String[] args) {
 		
 		// 1. 입력객체 생성 { } 마다 하나의 객체 필요
-			Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		
 		//------ 문제1 여기에 풀이-------//
 		/*
@@ -42,47 +42,90 @@ public class 연산20문제 {
 			System.out.printf("--------------------------------\n");
 		*/
 		//------ 문제3 여기에 풀이-------//
-		System.out.println(" ----------- 문제3 ------------- ");
-		
-		// 1. 입력
-			// 1. 입력객체 : 상단에 
-			// 2. 입력값 호출 
-		System.out.print("기본급 : "); int 기본급 = scanner.nextInt();
-		System.out.print("수당 : "); int 수당 = scanner.nextInt();
-		// 2. 계산								// % 퍼센트[x] 나머지연산자[o]
-		long 실수령액 = 기본급 + 수당 - (int)(기본급*0.1);	// 10:1000% 1:100%   0.5:50%   0.05:5%
-			// 리터럴(직접입력한)의 기본타입 : int(정수) , double(실수)
-			// int * double 연산시 => 결과 double
-			// double은 long에 대입 x => 강제형변환(캐스팅)
-		// 3. 출력 
-		System.out.println(" 실수령액 : " + 실수령액 );
-		
+		/*
+			System.out.println(" ----------- 문제3 ------------- ");
+			
+			// 1. 입력
+				// 1. 입력객체 : 상단에 
+				// 2. 입력값 호출 
+			System.out.print("기본급 : "); int 기본급 = scanner.nextInt();
+			System.out.print("수당 : "); int 수당 = scanner.nextInt();
+			// 2. 계산								// % 퍼센트[x] 나머지연산자[o]
+			long 실수령액 = 기본급 + 수당 - (int)(기본급*0.1);	// 10:1000% 1:100%   0.5:50%   0.05:5%
+				// 리터럴(직접입력한)의 기본타입 : int(정수) , double(실수)
+				// int * double 연산시 => 결과 double
+				// double은 long에 대입 x => 강제형변환(캐스팅)
+			// 3. 출력 
+			System.out.println(" 실수령액 : " + 실수령액 );
+		*/
 		//------ 문제4 여기에 풀이-------//
-		
-		
+		/*
+			System.out.println(" ----------- 문제4 ------------- ");
+			// 1. 입력 
+				// 1. 입력객체 : 상단 	// 2. 입력값 호출 / 저장 
+			System.out.print("금액 : "); int 금액 = scanner.nextInt();
+			// 2. 계산 // 3. 출력 
+				// 십만원
+			System.out.println("십만원 : " + (금액/100000) + " 장");
+				// 금액에서 십만원을 제외한 금액에서 만원 계산
+			금액 -= (금액/100000) * 100000; // 원금에서 3십만원 제외
+			System.out.println("만원 : " + (금액/10000) + " 장");
+				// 천원 : 금액에서 만원을 제외한 금액에서 천원 계산 
+			금액 -= (금액/10000) * 10000;	// 원금에서 5만원 제외
+			System.out.println("천원 : " + (금액/1000) + " 장");
+				// 백원 : 금액에서 천원을 제외한 금액에서 백원 계산
+			금액 -= (금액/1000) * 1000;
+			System.out.println("백원 : " + (금액/100) + " 장");
+		*/	
 		//------ 문제5 여기에 풀이-------//
-		
-		
-		//------ 문제6 여기에 풀이-------//
-		
-		
-		//------ 문제7 여기에 풀이-------//
-		
-		
-		//------ 문제8 여기에 풀이-------//
-		
+			/* 
+			// 배수공식 : 값 % 수 = 0      		*만약에 나머지가 0 이면 수는 그 값의 배수 
+			// 홀짝공식 : 값 % 2 = 1 or 0		*만약에 나머지가 1이면 값은 홀수 / 0이면 값은 짝수
+			System.out.println(" ----------- 문제5 ------------- ");
+			System.out.print("정수5 : ");		int 정수5 = scanner.nextInt();
+			char result  = (정수5 % 7 == 0 ) ? 'O' : 'X';
+			System.out.println( "문제5 결과 : " + result  );
+			
+			//------ 문제6 여기에 풀이-------//
+			System.out.println(" ----------- 문제6 ------------- ");
+			System.out.print("정수6 : "); 	int 정수6 = scanner.nextInt();
+			System.out.println("문제6 결과 : " + ( (정수6 % 2 == 1) ? "O" : "X" ) );
+			
+			//------ 문제7 여기에 풀이-------//
+			System.out.println(" ----------- 문제7 ------------- ");
+			System.out.print("정수7 : "); 	int 정수7 = scanner.nextInt();
+			System.out.println("문제7 결과 : "+ ( 정수7 % 7 == 0 && 정수7 % 2 == 0 ? "O" : "X") );
+			
+			//------ 문제8 여기에 풀이-------//
+			System.out.println(" ----------- 문제8 ------------- ");
+			System.out.print("정수8 : "); 	int 정수8 = scanner.nextInt();
+			System.out.println("문제8 결과 : " + ( 정수8 % 7 == 0 || 정수8 % 2 == 1 ? "O" : "X" ) );
+		*/
 		
 		//------ 문제9 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제9 ------------- ");
+		System.out.print("정수9_1 : "); int 정수9_1 = scanner.nextInt();
+		System.out.print("정수9_2 : "); int 정수9_2 = scanner.nextInt();
+		// 삼항연산자 :  조건? 참 : 거짓		// 중첩 : 조건1 ? 참1 : 조건2 ? 참2 : 조건3 ? 참3 : 거짓  // 읽기 어렵다-> if문
+		System.out.println(" 더 큰수 : " + ( 정수9_1 > 정수9_2 ? 정수9_1 : 정수9_1 < 정수9_2 ? 정수9_2 : "같다" ) );
 		
 		//------ 문제10 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제10 ------------- ");
+		System.out.print("반지름 : "); 		double 반지름 = scanner.nextDouble();
+		System.out.println(" 원 넓이 : " + ( 반지름*반지름*3.14 ) );
 		
 		//------ 문제11 여기에 풀이-------//
-		
-		
+		System.out.println(" ----------- 문제11 ------------- ");
+		System.out.print("실수1 : ");		double 실수1 = scanner.nextDouble();
+		System.out.print("실수2 : ");		double 실수2 = scanner.nextDouble();
+		System.out.printf("실수2 에서 실수1 비율 계산 : %.6f % \n" , ( 실수1/실수2  )*100.0  );
+								// %f : 실수형식    %.6f : 실수 소수점6자리형식	// 0.64~~  * 100.0   =>  64.~~
 		//------ 문제12 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제12 ------------- ");
+		System.out.print("윗변 : ");		double 윗변 = scanner.nextDouble();
+		System.out.print("밑변 : ");		double 밑변 = scanner.nextDouble();
+		System.out.print("높이 : ");		double 높이 = scanner.nextDouble();
+		System.out.println("사다리꼴 계산 : " + ( 윗변 + 밑변 )*높이 / 2 );
 		
 		//------ 문제13 여기에 풀이-------//
 		
