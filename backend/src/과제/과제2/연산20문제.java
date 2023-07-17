@@ -1,17 +1,61 @@
 package 과제.과제2;
 
+// java.lang 패키지 : System클래스 , Math클래스 , Integer 클래스 등등 import 생략 
+import java.util.Scanner; // Scanner 클래스를 사용하기 위한 클래스호출
+
 public class 연산20문제 {
 	
 	public static void main(String[] args) {
 		
-		//------ 문제1 여기에 풀이-------//
+		// 1. 입력객체 생성 { } 마다 하나의 객체 필요
+			Scanner scanner = new Scanner(System.in);
 		
+		//------ 문제1 여기에 풀이-------//
+		/*
+		 	System.out.println(" ----------- 문제1 ------------- ");
+			System.out.print("출력2"); // 출력만 System.out.println("출력1"); // 출력후 줄바꿈
+		  	System.out.printf("%s \n" , "출력3");// 형식 출력
+		  
+		  	System.out.print("|\\_/| \n|q p|   /}\n( 0 )\"\"\"\\ \n|\"^\"`    | \n||_/=\\\\__| \n");
+		  
+		 */
 		
 		//------ 문제2 여기에 풀이-------//
-		
-		
+		/*
+		System.out.println(" ----------- 문제2 ------------- ");
+		// 입력
+			// 1. 입력객체 생성 { } 마다 하나의 객체 필요
+			Scanner scanner = new Scanner(System.in);
+			// 2. 입력객체으로부터 입력받은 데이터를 호출하기 / 저장 
+			System.out.print("작성자 : " );String 작성자 = scanner.next();
+			System.out.print("내용 : " );String 내용 = scanner.next();
+			System.out.print("날짜 : " );String 날짜 = scanner.next();
+		// 출력1
+			System.out.println("------------방문록----------------");
+			System.out.println("| 순번 | 작성자 | 내용 | 날짜 |");
+			System.out.println("| "+1+" | "+작성자+" | "+내용+" | "+날짜+" |");
+			System.out.println("--------------------------------");
+		// 출력2
+			System.out.printf("------------방문록----------------\n");
+			System.out.printf("|%4s|%5s|%10s|%4s|\n" , "순번 " ,"작성자 ","내용","날짜 ");
+			System.out.printf("|%5d|%5s|%10s|%4s|\n" , 1 ,작성자 ,내용 ,날짜 );
+			System.out.printf("--------------------------------\n");
+		*/
 		//------ 문제3 여기에 풀이-------//
+		System.out.println(" ----------- 문제3 ------------- ");
 		
+		// 1. 입력
+			// 1. 입력객체 : 상단에 
+			// 2. 입력값 호출 
+		System.out.print("기본급 : "); int 기본급 = scanner.nextInt();
+		System.out.print("수당 : "); int 수당 = scanner.nextInt();
+		// 2. 계산								// % 퍼센트[x] 나머지연산자[o]
+		long 실수령액 = 기본급 + 수당 - (int)(기본급*0.1);	// 10:1000% 1:100%   0.5:50%   0.05:5%
+			// 리터럴(직접입력한)의 기본타입 : int(정수) , double(실수)
+			// int * double 연산시 => 결과 double
+			// double은 long에 대입 x => 강제형변환(캐스팅)
+		// 3. 출력 
+		System.out.println(" 실수령액 : " + 실수령액 );
 		
 		//------ 문제4 여기에 풀이-------//
 		
