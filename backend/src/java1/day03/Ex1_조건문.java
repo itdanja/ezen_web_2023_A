@@ -83,7 +83,7 @@ public class Ex1_조건문 { // class s
 		// 예시) a-z
 		System.out.println( (char)(random.nextInt(26) + 97) );	// 97~122
 		
-		// [ p.116 ] 주사위 예제
+		// [ p.116 ] 주사위 예제 = if 
 		int num = (int)( Math.random()*6 ) +1;  // 1~6
 			int num2 = random.nextInt(6)+1;			// 1~6
 		
@@ -93,6 +93,48 @@ public class Ex1_조건문 { // class s
 		else if( num == 4 ) { System.out.println("4나왔습니다.");}
 		else if( num == 5 ) { System.out.println("5나왔습니다.");}
 		else { System.out.println("6나왔습니다");}
+		// ------------------------------ vs ---------------------------
+		// [ p.119 ] 주사위 예제 = switch
+		switch( num ) { // num 변수를 연결해서 제어
+			case 1 : 	System.out.println("1나왔습니다."); 	break;
+			case 2 :	System.out.println("2나왔습니다.");	break;
+			case 3 : 	System.out.println("3나왔습니다.");	break;
+			case 4 :	System.out.println("4나왔습니다.");	break;
+			case 5 :	System.out.println("5나왔습니다.");	break;
+			default :	System.out.println("6나왔습니다.");
+		}
+		
+		// [ p.117 ] if 중첩 
+		int score3 = (int)( Math.random() * 20 ) +81; // 81~100 난수 생성 
+		
+		String grade; // 등급 저장하는 변수
+		
+		if( score3 >=90 ) { // 점수가 90점 이상이면 
+			
+			if( score3 >= 95 ) { grade = "A+"; } // [100~95] 이면서 95점 이상이면 A+ 대입 
+			else { grade = "A"; }	// [94~90] 이면서 95점 미만이면 A 대입 
+			
+		}else { // 점수가 90점 미만이면 
+			
+			if( score3 >= 85 ) { grade ="B+"; } //  [89~85]  이면서 85점 이상이면 B+
+			else { grade = "B";}	// [84~] 이면서 85점 미만이면 B
+		}
+		
+		// [ p.121 ]
+		char grade2 = 'B';	
+		
+		switch( grade2 ) {  // 값을 제어할 변수를 ( ) 작성
+			case 'A' :
+			case 'a' :
+				System.out.println("A등급 우수회원");
+				break;
+			case 'B' :
+			case 'b' :
+				System.out.println("B등급 우수회원");
+				break;
+			default :
+		}
+		
 		
 	} // main e 
 	
@@ -127,7 +169,20 @@ public class Ex1_조건문 { // class s
 	   			}else{
 	   				if( ) { }
 	   			}
- 
+	
+	
+	switch( 변수 ) {
+		case 값1 : 
+		case 값2 : 
+		case 값3 : 
+		default : 
+	}
+	
+	* if = 조건에 따른 true/false 실행
+	* switch = 변수 값에 따른 실행
+		- 경우의 수 의 값이 정해져 있는 경우 / 범위 논리 X
+		- break; : switch {} 탈출 / 만약에 해당 case 실행후 멈춤
+ 		
  */
 
 
