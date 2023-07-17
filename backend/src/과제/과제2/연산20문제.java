@@ -162,20 +162,39 @@ public class 연산20문제 {
 					// 4. +	: 14+9		23
 					// 5. =	: 23
 					// x = 8 , y = 23
-		*/
+		
 		//------ 문제18 여기에 풀이-------//
-		System.out.println(" ----------- 문제15 ------------- ");
-		System.out.print("나이 : "); int 나이 = scanner.nextInt();
-		System.out.println( 나이 >= 40 ? "중년" : 나이 >= 20 ? "성인" : 나이 >= 10 ? "학생" : "유아"   );
-		
+			System.out.println(" ----------- 문제18 ------------- ");
+			System.out.print("나이 : "); int 나이 = scanner.nextInt();
+			System.out.println( 나이 >= 40 ? "중년" : 나이 >= 20 ? "성인" : 나이 >= 10 ? "학생" : "유아"   );
+		*/
 		//------ 문제19 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제19 ------------- ");
+		System.out.print("국어 : ");int 국어 = scanner.nextInt();
+		System.out.print("영어 : ");int 영어 = scanner.nextInt();
+		System.out.print("수학 : ");int 수학 = scanner.nextInt();
+		System.out.println("총점 : " + ( 국어+영어+수학) );
+		System.out.printf("평균 : %.2f \n" , (국어+영어+수학)/3.0 );
 		
 		//------ 문제20 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제20 ------------- ");
+		System.out.print("아이디 : ");	String 아이디 = scanner.next();
+		System.out.print("비밀번호 : ");	String 비밀번호 = scanner.next();
+		System.out.println( 아이디.equals("admin") && 비밀번호.equals("1234") ? "로그인성공" : "로그인실패" );
+		System.out.println( 아이디=="admin" && 비밀번호=="1234" ? "로그인성공" : "로그인실패" );
+		// * 비교/산술 연산자는 객체에서 사용 불가능[ 기본타입vs객체 메모리구조 다름]
+		// 기본타입 데이터 비교시 == 가능   	// 문자열 데이터 비교시 == 불가능 [ .equals() 메소드 사용 ]
+		//  3 == 3 						// "안녕".equals("안녕")
 		
 		//------ 문제21 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제21 ------------- ");
+		System.out.print("정수1 : ");		int 정수1 = scanner.nextInt();
+		System.out.print("정수2 : ");		int 정수2 = scanner.nextInt();
+		System.out.print("정수3 : ");		int 정수3 = scanner.nextInt();
+		int max = 정수1;	// 임의의 가장 큰수를 저장하는 max변수 [ 첫번째 값을 초기값 대입 ]
+		max = max < 정수2 ? 정수2 : max; 	// 만약에 max보다 정수2가 더 크면 정수2 대입 
+		max = max < 정수3 ? 정수3 : max;	// 만약에 max보다 정수3가 더 크면 정수3 대입 
+		System.out.println(" max : " + max );
 	}
 
 }
