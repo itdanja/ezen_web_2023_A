@@ -129,38 +129,44 @@ public class 연산20문제 {
 			System.out.println("사다리꼴 계산 : " + ( 윗변 + 밑변 )*높이 / 2 );
 		*/
 		//------ 문제13 여기에 풀이-------//
-		System.out.println(" ----------- 문제13 ------------- ");
-		System.out.print(" 키 : "); 	int 키 = scanner.nextInt();
-		System.out.println(" 표준 체중 : " + ( 키-100 ) * 0.9 );
-		//------ 문제14 여기에 풀이-------//
-		System.out.println(" ----------- 문제14(계산식오류) ------------- ");
-		System.out.print(" 키 : "); 		int 키2 = scanner.nextInt();
-		System.out.print(" 몸무게 : "); 	int 몸무게 = scanner.nextInt();  //
-		System.out.println(" BMI 계산 : " + ( 몸무게 / ( (키2/100)*(키2/100) ) ) );
-		//------ 문제15 여기에 풀이-------//
-		System.out.println(" ----------- 문제15 ------------- ");
-		System.out.print(" inch : ");		double 인치 = scanner.nextDouble();
-		System.out.println(" inch --> cm :  " + ( 인치*2.54) + "cm" );
-		//------ 문제16 여기에 풀이-------//
-		System.out.println(" ----------- 문제16 ------------- ");
-		System.out.print("중간고사 : "); 		int 중간고사 = scanner.nextInt();
-		System.out.print("기말고사 : "); 		int 기말고사 = scanner.nextInt();
-		System.out.print("수행평가 : "); 		int 수행평가 = scanner.nextInt();
-		System.out.printf(" 점수 : %.2f" , ( 중간고사*0.3 + 기말고사*0.3 + 수행평가 * 0.4 ) );
-		//------ 문제17( p.105 연산 우선순위) 여기에 풀이-------//
-			// 1. x에 10를 대입한다. [ x = 10 ]
-			// 2. y에 계산식 [ 연산5개 ] = -- + + --    [*만약에 우선선위가 동일할경우 왼쪽부터 ]
-				// 1. x-- : x에 1차감[후위감소] 가장 마지막처리 
-					// [ x = 10 ]
-				// 2. --x : x에 1차감[선위감소] 가장 먼저처리  
-					// [ x = 9 ]
-				// 3. + : 10+5 		15
-				// 4. +	: 15+9		24
-				// 5. =	: 24-1
-				// x = 8 , y = 23
-		
+		/*
+			System.out.println(" ----------- 문제13 ------------- ");
+			System.out.print(" 키 : "); 	int 키 = scanner.nextInt();
+			System.out.println(" 표준 체중 : " + ( 키-100 ) * 0.9 );
+			//------ 문제14 여기에 풀이-------//
+			System.out.println(" ----------- 문제14(계산식오류) ------------- ");
+			System.out.print(" 몸무게 : "); 	int 몸무게 = scanner.nextInt();  //
+			System.out.print(" 키 : "); 		double 키2 = scanner.nextDouble();
+			System.out.println(" BMI 계산 : " + ( 몸무게 / ( 키2*키2 ) ) ); 
+				//  수정된 계산식1 = 체중/ 신장(m) * 신장(m)
+				//  수정된 계산식2 = 체중/ (신장(cm)/100) * (신장(cm)/100)
+			
+			//------ 문제15 여기에 풀이-------//
+			System.out.println(" ----------- 문제15 ------------- ");
+			System.out.print(" inch : ");		double 인치 = scanner.nextDouble();
+			System.out.println(" inch --> cm :  " + ( 인치*2.54) + "cm" );
+			//------ 문제16 여기에 풀이-------//
+			System.out.println(" ----------- 문제16 ------------- ");
+			System.out.print("중간고사 : "); 		int 중간고사 = scanner.nextInt();
+			System.out.print("기말고사 : "); 		int 기말고사 = scanner.nextInt();
+			System.out.print("수행평가 : "); 		int 수행평가 = scanner.nextInt();
+			System.out.printf(" 점수 : %.2f" , ( 중간고사*0.3 + 기말고사*0.3 + 수행평가 * 0.4 ) );
+			//------ 문제17( p.105 연산 우선순위) 여기에 풀이-------//
+				// 1. x에 10를 대입한다. [ x = 10 ]
+				// 2. y에 계산식 [ 연산5개 ] = -- + + --    [*만약에 우선선위가 동일할경우 왼쪽부터 ]
+					// 1. x-- : x에 1차감[후위감소] 가장 마지막처리 
+						// [ x = 10 ]
+					// 2. --x : x에 1차감[선위감소] 가장 먼저처리  
+						// [ x = 9 ]
+					// 3. + : 10+5 		15-1 => 14
+					// 4. +	: 14+9		23
+					// 5. =	: 23
+					// x = 8 , y = 23
+		*/
 		//------ 문제18 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제15 ------------- ");
+		System.out.print("나이 : "); int 나이 = scanner.nextInt();
+		System.out.println( 나이 >= 40 ? "중년" : 나이 >= 20 ? "성인" : 나이 >= 10 ? "학생" : "유아"   );
 		
 		//------ 문제19 여기에 풀이-------//
 		
@@ -169,8 +175,6 @@ public class 연산20문제 {
 		
 		
 		//------ 문제21 여기에 풀이-------//
-		
-		
 		
 	}
 
