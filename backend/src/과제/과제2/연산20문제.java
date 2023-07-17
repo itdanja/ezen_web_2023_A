@@ -103,44 +103,61 @@ public class 연산20문제 {
 		*/
 		
 		//------ 문제9 여기에 풀이-------//
-		System.out.println(" ----------- 문제9 ------------- ");
-		System.out.print("정수9_1 : "); int 정수9_1 = scanner.nextInt();
-		System.out.print("정수9_2 : "); int 정수9_2 = scanner.nextInt();
-		// 삼항연산자 :  조건? 참 : 거짓		// 중첩 : 조건1 ? 참1 : 조건2 ? 참2 : 조건3 ? 참3 : 거짓  // 읽기 어렵다-> if문
-		System.out.println(" 더 큰수 : " + ( 정수9_1 > 정수9_2 ? 정수9_1 : 정수9_1 < 정수9_2 ? 정수9_2 : "같다" ) );
-		
-		//------ 문제10 여기에 풀이-------//
-		System.out.println(" ----------- 문제10 ------------- ");
-		System.out.print("반지름 : "); 		double 반지름 = scanner.nextDouble();
-		System.out.println(" 원 넓이 : " + ( 반지름*반지름*3.14 ) );
-		
-		//------ 문제11 여기에 풀이-------//
-		System.out.println(" ----------- 문제11 ------------- ");
-		System.out.print("실수1 : ");		double 실수1 = scanner.nextDouble();
-		System.out.print("실수2 : ");		double 실수2 = scanner.nextDouble();
-		System.out.printf("실수2 에서 실수1 비율 계산 : %.6f % \n" , ( 실수1/실수2  )*100.0  );
-								// %f : 실수형식    %.6f : 실수 소수점6자리형식	// 0.64~~  * 100.0   =>  64.~~
-		//------ 문제12 여기에 풀이-------//
-		System.out.println(" ----------- 문제12 ------------- ");
-		System.out.print("윗변 : ");		double 윗변 = scanner.nextDouble();
-		System.out.print("밑변 : ");		double 밑변 = scanner.nextDouble();
-		System.out.print("높이 : ");		double 높이 = scanner.nextDouble();
-		System.out.println("사다리꼴 계산 : " + ( 윗변 + 밑변 )*높이 / 2 );
-		
+		/*
+			System.out.println(" ----------- 문제9 ------------- ");
+			System.out.print("정수9_1 : "); int 정수9_1 = scanner.nextInt();
+			System.out.print("정수9_2 : "); int 정수9_2 = scanner.nextInt();
+			// 삼항연산자 :  조건? 참 : 거짓		// 중첩 : 조건1 ? 참1 : 조건2 ? 참2 : 조건3 ? 참3 : 거짓  // 읽기 어렵다-> if문
+			System.out.println(" 더 큰수 : " + ( 정수9_1 > 정수9_2 ? 정수9_1 : 정수9_1 < 정수9_2 ? 정수9_2 : "같다" ) );
+			
+			//------ 문제10 여기에 풀이-------//
+			System.out.println(" ----------- 문제10 ------------- ");
+			System.out.print("반지름 : "); 		double 반지름 = scanner.nextDouble();
+			System.out.println(" 원 넓이 : " + ( 반지름*반지름*3.14 ) );
+			
+			//------ 문제11 여기에 풀이-------//
+			System.out.println(" ----------- 문제11 ------------- ");
+			System.out.print("실수1 : ");		double 실수1 = scanner.nextDouble();
+			System.out.print("실수2 : ");		double 실수2 = scanner.nextDouble();
+			System.out.printf("실수2 에서 실수1 비율 계산 : %.6f %% \n" , ( 실수1/실수2  )*100.0  );
+									// %f : 실수형식    %.6f : 실수 소수점6자리형식	// 0.64~~  * 100.0   =>  64.~~
+			//------ 문제12 여기에 풀이-------//
+			System.out.println(" ----------- 문제12 ------------- ");
+			System.out.print("윗변 : ");		double 윗변 = scanner.nextDouble();
+			System.out.print("밑변 : ");		double 밑변 = scanner.nextDouble();
+			System.out.print("높이 : ");		double 높이 = scanner.nextDouble();
+			System.out.println("사다리꼴 계산 : " + ( 윗변 + 밑변 )*높이 / 2 );
+		*/
 		//------ 문제13 여기에 풀이-------//
-		
-		
+		System.out.println(" ----------- 문제13 ------------- ");
+		System.out.print(" 키 : "); 	int 키 = scanner.nextInt();
+		System.out.println(" 표준 체중 : " + ( 키-100 ) * 0.9 );
 		//------ 문제14 여기에 풀이-------//
-		
-		
+		System.out.println(" ----------- 문제14(계산식오류) ------------- ");
+		System.out.print(" 키 : "); 		int 키2 = scanner.nextInt();
+		System.out.print(" 몸무게 : "); 	int 몸무게 = scanner.nextInt();  //
+		System.out.println(" BMI 계산 : " + ( 몸무게 / ( (키2/100)*(키2/100) ) ) );
 		//------ 문제15 여기에 풀이-------//
-		
-		
+		System.out.println(" ----------- 문제15 ------------- ");
+		System.out.print(" inch : ");		double 인치 = scanner.nextDouble();
+		System.out.println(" inch --> cm :  " + ( 인치*2.54) + "cm" );
 		//------ 문제16 여기에 풀이-------//
-		
-		
-		//------ 문제17 여기에 풀이-------//
-		
+		System.out.println(" ----------- 문제16 ------------- ");
+		System.out.print("중간고사 : "); 		int 중간고사 = scanner.nextInt();
+		System.out.print("기말고사 : "); 		int 기말고사 = scanner.nextInt();
+		System.out.print("수행평가 : "); 		int 수행평가 = scanner.nextInt();
+		System.out.printf(" 점수 : %.2f" , ( 중간고사*0.3 + 기말고사*0.3 + 수행평가 * 0.4 ) );
+		//------ 문제17( p.105 연산 우선순위) 여기에 풀이-------//
+			// 1. x에 10를 대입한다. [ x = 10 ]
+			// 2. y에 계산식 [ 연산5개 ] = -- + + --    [*만약에 우선선위가 동일할경우 왼쪽부터 ]
+				// 1. x-- : x에 1차감[후위감소] 가장 마지막처리 
+					// [ x = 10 ]
+				// 2. --x : x에 1차감[선위감소] 가장 먼저처리  
+					// [ x = 9 ]
+				// 3. + : 10+5 		15
+				// 4. +	: 15+9		24
+				// 5. =	: 24-1
+				// x = 8 , y = 23
 		
 		//------ 문제18 여기에 풀이-------//
 		
