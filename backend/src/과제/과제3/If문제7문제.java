@@ -45,25 +45,55 @@ public class If문제7문제 {
 			System.out.printf("문제3 : %3d %3d %3d \n" , 문제2_1 , 문제2_2 , 문제2_3 );
 		*/
 		/* -------문제4----- */
-		System.out.println("--------- 문제4 -----------");
-		System.out.println("점수 : "); int 점수 = scanner.nextInt();
-		if( 점수 >= 90 ) System.out.println(" 합격 ");
-		else System.out.println(" 불합격 "); 
-		// 조건식에 들어갈수 있는 경우 : 1. true/false 결과를 갖는 비교/논리 계산식
-		//							2. true/false 를 저장하고 있는 변수 
-		//							3. true/false 리터럴(직접 적은 데이터 )
-		
-		System.out.println("--------- 문제5 -----------");
-		if ( 점수 >= 90 ) { System.out.println("A등급"); }
-		else if ( 점수 >= 80 ) { System.out.println("B등급"); }
-		else if ( 점수 >= 70 ) { System.out.println("C등급"); }
-		else { System.out.println("재시험"); } 
-		
+		/* 
+			System.out.println("--------- 문제4 -----------");
+			System.out.println("점수 : "); int 점수 = scanner.nextInt();
+			if( 점수 >= 90 ) System.out.println(" 합격 ");
+			else System.out.println(" 불합격 "); 
+			// 조건식에 들어갈수 있는 경우 : 1. true/false 결과를 갖는 비교/논리 계산식
+			//							2. true/false 를 저장하고 있는 변수 
+			//							3. true/false 리터럴(직접 적은 데이터 )
+			
+			System.out.println("--------- 문제5 -----------");
+			if ( 점수 >= 90 ) { System.out.println("A등급"); }
+			else if ( 점수 >= 80 ) { System.out.println("B등급"); }
+			else if ( 점수 >= 70 ) { System.out.println("C등급"); }
+			else { System.out.println("재시험"); } 
+		*/
 		
 		/* -------문제6----- */
+		System.out.println("--------- 문제6 -----------");
+		System.out.print("국어 : ");	int 국어 = scanner.nextInt();
+		System.out.print("영어 : ");	int 영어 = scanner.nextInt();
+		System.out.print("수학 : ");	int 수학 = scanner.nextInt();
+		double 평균 = (국어+영어+수학)/3.0; //  값/3   vs  값/3.0
+		if( 평균 >= 90 ) {
+			if( 국어 == 100 ) 	System.out.println("국어우수");
+			if( 영어 == 100 )		System.out.println("영어우수");
+			if( 수학 == 100 )		System.out.println("수학우수");
+		}
+		else if( 평균 >= 80 ) {
+			if( 국어 >= 90 )		System.out.println("국어장려");
+			if( 영어 >= 90 )		System.out.println("영어장려");
+			if( 수학 >= 90 )		System.out.println("수학장려");
+		}
+		else { System.out.println("재시험"); } 
 		
 		/* -------문제7----- */
-		
+		System.out.println("--------- 문제7 -----------");
+		System.out.print("아이디 : "); 	String id = scanner.next();
+		System.out.print("비밀번호 : ");	String password = scanner.next();
+			System.out.println( id=="admin");	System.out.println( id.equals("admin") );
+		if( id.equals("admin")  ) { // 만약에 입력받은 아이디가 admin 이면 
+			if( password.equals("1234") ) { // 아이디가 admin 이고 패스워드가 1234 이면 
+				System.out.println("[로그인 성공]");
+			}else { // 아이디가 admin 이고 패스워드가 1234 가 아니면
+				System.out.println("[로그인 실패]패스워드 다릅니다.");
+			}
+		}else { // admin 아니면 
+			System.out.println("[로그인 실패]존재하지 않는 아이디입니다.");
+		}
+			
 	}
 }
 
