@@ -3,7 +3,7 @@ package 과제.과제4;
 import java.util.Random;
 import java.util.Scanner;
 
-public class 과제4_1_가위바위보 {
+public class 과제4_2_가위바위보 {
 	
 	public static void main(String[] args) {
 		
