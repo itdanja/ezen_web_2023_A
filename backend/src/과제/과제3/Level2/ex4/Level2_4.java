@@ -17,7 +17,7 @@ public class Level2_4 {
 		String player = scanner.next();
 		
 		/* 문제풀이 위치 */
-
+		
 		/* ----------- */
 	}
 }
