@@ -58,6 +58,13 @@ public class EX5_학생점수관리 { // class s
 						} // for end 
 					} // for end 
 					
+					/*
+					// 2. 클래스 이용한 정렬  [ 배열 관련 클래스 = Arrays ] 
+					Arrays.sort( 학생점수목록 ); // 오름차순 / 오름차순 반대는 내림차순 
+					Arrays.sort( 학생점수목록, Collections.reverseOrder() );
+							// Collections.reverseOrder() : 순서 뒤집기 [ 기본 자료형은 불가 // 객체만 가능 ]
+					*/
+					
 					// 확인 
 					int rank = 0;
 					for( int value : scores ) {
