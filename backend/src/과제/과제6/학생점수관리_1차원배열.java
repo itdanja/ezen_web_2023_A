@@ -1,8 +1,8 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.util.Scanner;
 
-public class EX5_학생점수관리 { // class s
+public class 학생점수관리_1차원배열 { // class s
 	public static void main(String[] args) { // class s 
 		
 		boolean run = true; 	// 무한루프 제어 변수

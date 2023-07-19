@@ -1,4 +1,4 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -11,7 +11,7 @@ import java.util.Scanner;
  		 	1. 1~45 사이 난수
  		3. 구매번호 와 추첨번호와 동일한 수 의 개수 
  */
-public class EX2_로또 { // class start 
+public class 로또_1차원배열 { // class start 
 	public static void main(String[] args) { // main start 
 		// 0. 메모리[변수/배열] 선언
 		Scanner scanner = new Scanner(System.in);

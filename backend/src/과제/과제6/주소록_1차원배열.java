@@ -1,8 +1,8 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.util.Scanner;
 
-public class Ex1_주소록 { // class s
+public class 주소록_1차원배열 { // class s
 	public static void main(String[] args) { // main s
 		Scanner scanner = new Scanner(System.in); // 입력객체
 		// * 문자열[String] 3개를 저장할수 있는 배열 선언

@@ -1,8 +1,8 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.util.Scanner;
 
-public class 과제4_3_키오스크 {
+public class 키오스크4_1차원배열 {
 	
 	public static void main(String[] args) {
 		

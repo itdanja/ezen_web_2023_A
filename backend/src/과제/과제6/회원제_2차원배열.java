@@ -1,8 +1,8 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.util.Scanner;
 
-public class EX6_회원 { // class s 
+public class 회원제_2차원배열 { // class s 
 
 	public static void main(String[] args) { // main s
 		

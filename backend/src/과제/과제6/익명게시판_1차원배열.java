@@ -1,11 +1,11 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Scanner;
 
-public class Ex3_익명게시판 { // class s // step5 : 문자열 분리[split]해서 출력하기 
+public class 익명게시판_1차원배열 { // class s // step5 : 문자열 분리[split]해서 출력하기 
 	public static void main(String[] args) throws Exception  { // main s  
 		Scanner scanner = new Scanner(System.in); 
 		

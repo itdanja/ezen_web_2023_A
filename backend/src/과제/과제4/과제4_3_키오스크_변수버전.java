@@ -2,7 +2,7 @@ package 과제.과제4;
 
 import java.util.Scanner;
 
-public class 과제4_3_키오스크 {
+public class 과제4_3_키오스크_변수버전 {
 	
 	public static void main(String[] args) {
 		

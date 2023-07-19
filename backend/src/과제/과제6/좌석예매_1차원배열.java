@@ -1,10 +1,10 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Ex6_영화좌석예매 {
+public class 좌석예매_1차원배열 {
 	
 	public static void main(String[] args) {
 		System.out.println(" >> Level3_6 answer >> ");

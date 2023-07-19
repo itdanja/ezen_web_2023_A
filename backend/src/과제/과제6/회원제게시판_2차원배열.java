@@ -1,8 +1,8 @@
-package 과제.과제5;
+package 과제.과제6;
 
 import java.util.Scanner;
 
-public class Day05_2_회원제방문록 {
+public class 회원제게시판_2차원배열 {
 	
 	// 회원제 방문록 프로그램 [ 2차원배열 ] 
 		// 1. 초기메뉴 [ 1. 회원가입 2.로그인 ] 
