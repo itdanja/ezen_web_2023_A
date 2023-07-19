@@ -2,7 +2,7 @@ package 과제.과제4;
 
 import java.util.Scanner;
 
-public class 과제4_1_예출금_2 { 
+public class 과제4_1_예출금 { 
 	public static void main(String[] args) { 
 		
 		Scanner scanner = new Scanner(System.in);
@@ -17,8 +17,9 @@ public class 과제4_1_예출금_2 {
 			int ch = scanner.nextInt(); // 입력받기 
 			
 			/* 문제풀이 위치 */
-			// step2 : 경우의수 true 기능 구현 
+			// step1 : 입력받은 메뉴 번호에 따른 서로 다른 코드/행동 실행
 			if( ch == 1  ) {
+				// step2 : 경우의수 true 기능 구현 
 				// 1. 계좌번호를 입력받아
 				System.out.print("계좌번호:"); 		String inputAccount = scanner.next();
 				// 2.  일치하면 / 일치하지 않으면 => 경우의수 2개 => if
@@ -34,6 +35,7 @@ public class 과제4_1_예출금_2 {
 				}
 			}
 			else if( ch == 2  ) {
+				// step2 : 경우의수 true 기능 구현 
 				System.out.print("계좌번호:"); 		String inputAccount = scanner.next();
 				if( inputAccount.equals( account ) ) {
 					System.out.print("비밀번호:"); 		Short inputPassword = scanner.nextShort();
