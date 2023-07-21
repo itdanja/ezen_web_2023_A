@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class 과제5_키오스크_배열 {
-	
+
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
@@ -27,7 +27,7 @@ public class 과제5_키오스크_배열 {
 		//		int ch = 10
 		
 		/*
-		 		System.out.println("배열의 변수명 호출 : " + 재고관리 );  // @59a6e353
+		 		System.out.println("배열의 변수명 호출 : " + 재고관리 );  					// @59a6e353
 				System.out.println("배열내 데이터 호출 : " + Arrays.toString( 재고관리 ) );
 				System.out.println("배열내 데이터 개수 : " + 재고관리.length );
 				System.out.println("배열내 특정(인덱스)데이터 호출 : " + 재고관리[0] ); 
