@@ -1,61 +1,83 @@
 package java1.day05;
 
-public class Ex1_참조타입 { // class s
-	public static void main(String[] args) { // main s
+public class Ex1_참조타입 {
+	public static void main(String[] args) {
 		
-		// 1. p.148
-		int[] arr1;	// int형 배열 선언 [ 스택영역에 변수 만들기 ] 
-		int[] arr2; // int형 배열 선언 [ 스택영역에 변수 만들기 ] 
-		int[] arr3;	// int형 배열 선언 [ 스택영역에 변수 만들기 ] 
+		// [ p.148 ]
+		int[] arr1 ; // int형으로 타입으로 배열변수 선언 [ 스택영역에 메모리 할당 ]
+		int[] arr2 ; // int형으로 타입으로 배열변수 선언 
+		int[] arr3 ; // int형으로 타입으로 배열변수 선언 
 		
-		arr1 = new int[] { 1,2,3 }; // [ 힙 영역에 '1','2','3' 메모리 3개 ]
-		arr2 = new int[] { 1,2,3 };	// [ 배열은 첫번째 메모리('1')주소를 스택영역에 대입 ]
-		arr3 = arr2;				// arr2가 가지고 있던 메모리주소를 arr3 대입
+		arr1 = new int[] { 1,2,3 }; // 100번지 를 arr1 스택변수에 저장  
+		// 배열 { 1 , 2 , 3  }을 생성[힙영역에 메모리할당]하고 [할당된주소를] 스택영역변수에 대입	
+		arr2 = new int[] { 1,2,3 }; // 101번지 를 arr2 스택변수에 저장 
+		arr3 = arr2;	// arr2 스택변수가 가지고 있던[101번지]를 arr3 스택변수에 대입 
 		
-		System.out.println( arr1 == arr2 );	//  ==  스택영역의 주소 비교 
-		System.out.println( arr2 == arr3 );	//
+		System.out.println( arr1 == arr2 ); // 100번지 == 101번지   false 
+		System.out.println( arr2 == arr3 ); // 101번지 == 101번지  true 
 		
-		// 2. p.151
-		int[] inArray = null;	// int형 배열 선언 [ 스택영역 변수 만들기 ]
-		//inArray[0] = 10;	// 오류 발생 : 힙영역이 없기때문에 저장 불가능 
+		// [p.151] 객체주소를 참조하고 있지않는 상태 = null * 객체( 필드,메소드 ) 사용할수 없는 상태
+		int[] intArray = null; 
+		// int[] intArray 스택영역에 변수가 메모리 할당 , 참조중인 객체번지X // 힙영역 x
+		// intArray[0] = 10; // 배열내 0번째 인덱스에 10대입???? 오류 // 배열은 힙영역해서 생성되는데 아직 배열이 생성X
 		
 		String str = null;
-		//System.out.println( str.length() ); // 오류 발생 : 힙영역이 없기때문에 길이 불가능
+		System.out.println( str.length() );
 		
-		// 3. p.153
-		String hobby = "여행";	// 스택영역에 hobby 이름으로 변수 선언하고 "여행" 힙의 메모리 주소 저장
-		hobby = null;			// hobby 변수의 null 변경하면 힙의 있던 "여행" 메모리 제거 
+		// [p.153]
+		String hobby = "여행";
+			// 1. 스택영역에 hobby 지역변수 선언
+			// 2. 힙영역에 "여행" 문자열객체 생성 
+			// 3. 생성된 힙영역에 "여행"객체의 주소/번지[ 32번지 ] 를 스택영역에 hobby 지역변수에게 대입 ]
+			// * hobby = [ 32번지 ]주소
+		hobby = null;
+			// 4. 스택영역에 hobby 지역변수에 null 대입 [ 대입 : 새로운 값으로 대체 ] 
+			// * hobby = null
+			// 5. 아무도 힙영역에 있는 "여행" 문자열 객체를 참조하지 않으면 GC쓰레기수집기 자동으로 객체 삭제
 		
-		String kind1 = "자동차";	// '자동차'힙 의 메모리 32번지를 스택영영의 kind1 저장 
-		String kind2 = kind1;	// kind1 가지고 있던 32번지 kind2 에게 대입 
-		kind1 = null;			// kind1 번지 지우기 
-		System.out.println( kind2 );
+		String kind1 = "자동차";	// 스택영역 : kind1[32번지]		힙영역 : "자동차"객체  [32번지]
+		String kind2 = kind1;	// 스택영역 : kind2[32번지]
+		
+		kind1 = null;			// 스택영역 : kind1[null]
+								// 스택영역 : kind2[32번지]	// 하나라도 참조중이라면 객체는 삭제가 안된다.
 		
 		
-	} // main e 
-} // class e 
+	}
+}
+
 /*
- 		스택영역					힙영역 
- 		arr1	<---주소대입--- 	new int[] { 1,2,3 }
- 		arr2	<---주소대입---	new int[] { 1,2,3 }
- 		arr3
  
- 	* new : 힙영역에 메모리를 생성하는 연산자
- 	
- 	*	스택영역								힙영역 [ 별도의 제거 없음 ]
- 		유재석 : 안산시 상록구 65번지				안산OO아파트 : 안산시 상록구 65번지
-  				이사							수원OO아파트 : 수원시 구 100번지
-  		유재석 : 수원시 구 100번지					
-  				해외 이사
-  		유재석 : null
+ 	자바 데이터 타입 : 변수 선언할때 사용되는 타입
+ 		- 기본타입	: boolean byte short char int long float double 
+ 			- 변수에 값 자체 저장
+ 			- 8가지 존재 / 소문자 시작 
+ 			int age = 25;
+ 			
+ 		- 참조타입 : 배열 , 열거 , 클래스[ String , Scanner , Random , System 등 ] , 인터페이스
+ 			- 변수에 힙메모리 생성된 메모리를 주소/번지 참조
+ 			- 첫글자가 대문자 시작 
+ 			String name = "신용권"
+ 			
+	JVM 메모리 
+ 		
+ 		스택영역							힙영역 		
+  		- 함수(프레임)마다 별도구역			- 객체가 생성되는 영역
+  			- 지역변수							- 스택/메소드 영역에 참조 할수 있다.
+  			- 함수 호출시 프레임 생성				- 객체,배열,인터페이스 메모리 생성
+  			- 함수(프레임) 종료되면 제거			- new 연산자 : 타입/클래스 기반으로 새로운 메모리생성후 주소/번지 반환
+  			
+  		-------------------------------------------------------------------
+  		
+  		int age = 10;
+  		
+  		String name = 100번지			"신용권" : String 클래스 기반으로 만들어진 객체( 속성/상태, 메소드/행동) 
+  										100번지
+  		-------------------------------------------------------------------
+  		
+  		스택변수에 저장된 기본타입값 또는 (객체)참조 주소 비교
+  		== , != 
+  		
  */
-
-
-
-
-
-
-
 
 
 
