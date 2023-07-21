@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ex1_파일처리 { // class s
@@ -112,7 +113,10 @@ public class Ex1_파일처리 { // class s
 		// String 관광지파일정보 = new String(관광지파일바이트배열); // 5. 바이트배열 --> 문자열 변환 ( 사람은 바이트 못읽음 )
 		// String 관광지파일정보 = new String(관광지파일바이트배열 , "UTF-8");	// 문자열 변환시 한글이 존재하면 UTF-8 방식으로 변환 
 		String 관광지파일정보 = new String(관광지파일바이트배열 , "EUC-KR");		// 문자열 변환시 한글이 존재하면 EUC-KR 방식으로 변환 
-		System.out.println( 관광지파일정보 );	// 한글 인코딩(번역) 방법 대표적으로 2가지 : UTF-8 , EUC-KR
+		// System.out.println( 관광지파일정보 );	// 한글 인코딩(번역) 방법 대표적으로 2가지 : UTF-8 , EUC-KR
+		
+		System.out.println( 관광지파일정보.split("\n")[0] );				// 1번째 줄
+		System.out.println( 관광지파일정보.split("\n")[1].split(",")[0] ); // 2번째 줄 1번째 필드
 		
 	}// main e 
 } // class e 
