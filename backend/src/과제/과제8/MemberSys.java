@@ -35,8 +35,8 @@ public class MemberSys {
 				Member member = new Member(); // 필드에 기본값 들어가 있음 
 				// * 객체내 필드 수정 
 				// * .(도트연산자) : 접근연산자 (스택변수가 알고 있는 객체주소로 가! )
-				member.id = inputId;	member.password = inputPw;
-				member.name = inputName; member.phone = inputPhone;
+				member.id = inputId;		member.password = inputPw;
+				member.name = inputName; 	member.phone = inputPhone;
 				member.age = inputAge;
 				// 3. 여러개의 객체를 저장하기 위해 배열에 저장 
 					// *비어있는인덱스=기본값인덱스 를 찾아서(처음부터끝까지확인) 해당 인덱스에 객체 저장 
