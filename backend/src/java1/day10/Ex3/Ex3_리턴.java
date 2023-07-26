@@ -15,5 +15,6 @@ public class Ex3_리턴 {
 			myCar.run(); 
 		} // if end 
 		System.out.println("gas를 주입하세요.");
+		
 	}
 }
