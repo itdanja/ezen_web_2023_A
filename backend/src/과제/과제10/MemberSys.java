@@ -16,7 +16,7 @@ public class MemberSys { // class s
 			System.out.println("회원배열(리스트) 상태 : " + Arrays.toString( memberList ) );
 			
 			System.out.println("\n\n--------- 회원 시스템 ---------"); // 1. 무한 출력
-			System.out.print("1.회원가입 2.로그인    선택> ");
+			System.out.print("1.회원가입 2.로그인 3.아이디찾기 4.비밀번호찾기    선택> ");
 			
 			// 입력객체의 사용 구역 범위 생각!!!!!! [ 프로그램내 전역구역 = static ]
 			int ch = sc.nextInt();
