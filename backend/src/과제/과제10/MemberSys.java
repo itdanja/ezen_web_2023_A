@@ -50,6 +50,7 @@ public class MemberSys { // class s
 		for( int i = 0 ; i<memberList.length ; i++ ) {
 			if( memberList[i] == null ) { memberList[i] = m; System.out.println("안내)회원가입 성공"); break; }
 		} // for end
+		
 	} // m end 
 	// 2. 로그인 함수 : 입력받아 기존에 데이터와 일치한지 비교 [ Reading ]
 	static void 로그인() { 
