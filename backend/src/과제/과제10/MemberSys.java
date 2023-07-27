@@ -1,7 +1,10 @@
 package 과제.과제10;
-
-import java.util.Arrays;
-import java.util.Scanner;
+							// 현재 클래스에서 같은 패키지에 있는 클래스 호출 = 생략 
+							//java.lang 기본 패키지이므로 생략 	(String , System 등 )
+import java.util.Arrays; 	// 현재 클래스에서 다른 패키지에 있는 클래스 호출 = import 
+import java.util.Scanner;	// 자동완성 이용해서 클래스 작성하면 import 자동
+// vs
+// import java.util.*;			// 해당 패키지내 모든 클래스 호출 
 
 public class MemberSys { // class s 
 	
@@ -16,7 +19,7 @@ public class MemberSys { // class s
 			System.out.println("회원배열(리스트) 상태 : " + Arrays.toString( memberList ) );
 			
 			System.out.println("\n\n--------- 회원 시스템 ---------"); // 1. 무한 출력
-			System.out.print("1.회원가입 2.로그인 3.아이디찾기 4.비밀번호찾기    선택> ");
+			System.out.print("1.회원가입 2.로그인 3.아이디찾기 4.비밀번호찾    선택> ");
 			
 			// 입력객체의 사용 구역 범위 생각!!!!!! [ 프로그램내 전역구역 = static ]
 			int ch = sc.nextInt();
