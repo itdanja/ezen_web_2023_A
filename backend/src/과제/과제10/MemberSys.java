@@ -60,18 +60,41 @@ public class MemberSys { // class s
 					memberList[i].id.equals(id) &&		// 2. i번째 인덱스의 회원객체 의 id가 입력한 id와 같고
 						memberList[i].pw.equals(pw) ) {	// 3. i번째 인덱스의 회원객체 의 pw가 입력한 pw와 같으면  
 				loginIndex = i; // 정적 멤버 변수에 로그인 성공한 인덱스를 넣어두기 -> 추후에 사용할 목적
+				break;
 			} // if end  
 		} // for end 
 		// 3. 유효성검사
 		if( loginIndex >= 0 ) { System.out.println("안내) 로그인 성공"); }
 		else {System.out.println("안내) 로그인 실패 : 아이디 혹은 비밀번호가 일치 하지 않습니다.");}
 	} // f end 
-	// 3. 아이디찾기 함수 
-	static void 아이디찾기() { }
-	// 4. 비밀번호찾기 함수 
-	static void 비밀번호찾기() {}
-	
-	
+	// 3. 아이디찾기 함수 : 입력받아 기존에 데이터와 일치한지 비교 [ Reading ]
+	static void 아이디찾기() { 
+		System.out.println("--------- 아이디찾기 ---------");
+		System.out.print("이름 : "); 		String name = sc.next();
+		System.out.print("전화번호 : ");	String phone = sc.next();
+		
+		for( int i = 0 ; i<memberList.length ; i++ ) {
+			if( memberList[i] != null && memberList[i].name.equals(name) && memberList[i].phone.equals(phone) ) {
+					System.out.println("안내) 회원님의 아이디 : " + memberList[i].id );
+					return; // 일치한 회원이 존재하면 아이디 출력후 함수 강제 종료
+			} // if end 
+		} // for end 
+		System.out.println("안내) 이름 혹은 전화번호가 일치하는 아이디가 없습니다.");
+	} // f end 
+	// 4. 비밀번호찾기 함수 : 입력받아 기존에 데이터와 일치한지 비교 [ Reading ]
+	static void 비밀번호찾기() {
+		System.out.println("--------- 비밀번호찾기 ---------");
+		System.out.print("아이디 : "); 	String id = sc.next();
+		System.out.print("전화번호 : ");	String phone = sc.next();
+		
+		for( int i = 0 ; i<memberList.length ; i++ ) {
+			if( memberList[i] != null && memberList[i].id.equals(id) && memberList[i].phone.equals(phone) ) {
+					System.out.println("안내) 회원님의 비밀번호 : " + memberList[i].pw );
+					return; // 일치한 회원이 존재하면 아이디 출력후 함수 강제 종료
+			} // if end 
+		} // for end 
+		System.out.println("안내) 아이디 혹은 전화번호가 일치하는 비밀번호가 없습니다.");
+	} // f end 
 } // class e 
 /*
 	주제 : 회원제 시스템 
@@ -104,12 +127,12 @@ public class MemberSys { // class s
 			4. 비밀번호찾기 메소드 
 				1. 아이디 , 전화번호 입력받아 저장
 				2. 입력받은 값과 배열내 동일한 값 찾기
-					- 만약에 동일한 값 있으면 *임시 비밀번호(문자4자리 난수생성 ) 업데이트후 출력 
+					- 만약에 동일한 값 있으면 찾은 비밀번호 출력
 					- 아니면 없다.
 					
 					
 					
-								// 1. 1안
+			// 1. 1안
 			Member m = new Member(); // 빈/깡통 생성자
 				// 1. m = { id = null , pw = null , name = null , phone = null , age = 0 }
 			m.id = id ; m.pw = pw; m.name = name; m.phone = phone; m.age = age;
