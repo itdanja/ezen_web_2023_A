@@ -34,7 +34,7 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 		} // whine e 
 	} // f end 
 	
-	void singupPage() {
+	void singupPage() { // 1. 회원가입
 		// 입/출력 
 		System.out.println("--------- 회원가입 ---------");
 		System.out.print("아이디 : "); 	String id = sc.next();
@@ -47,7 +47,14 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 		if( result ) System.out.println("안내)회원가입성공");
 		else System.out.println("안내)회원가입실패");
 	}
-	void loginPage() {}
+	
+	void loginPage() {
+		System.out.print("아이디 : "); 	String id = sc.next();
+		System.out.print("비밀번호 : ");	String pw = sc.next();
+		boolean result = MemberController.getInstance().loginLogic( id , pw );
+		if( result ) System.out.println("안내)로그인 성공했습니다.");
+		else System.out.println("안내_로그인 실패했습니다.");
+	} // f end 
 	void findIdPage() {}
 	void findPwPage() {}
 	

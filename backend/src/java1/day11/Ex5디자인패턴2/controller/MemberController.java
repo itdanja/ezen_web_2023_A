@@ -23,8 +23,15 @@ public class MemberController { // 기능처리(로직) 담당하는 클래스 /
 		return false; // 회원가입 실패
 		
 	}
-	void loginLogic() {
-		
+	public boolean loginLogic( String id , String pw ) {
+		for( int i = 0 ; i< MemberDao.memberList.length; i++ ) {
+			if( MemberDao.memberList[i] != null && 						// 1. i번재 인덱스의 값이 null 아니면서 [ 회원이 있는곳만 비교 ]
+					MemberDao.memberList[i].getId().equals(id) &&		// 2. i번째 인덱스의 회원객체 의 id가 입력한 id와 같고
+						MemberDao.memberList[i].getPw().equals(pw) ) {	// 3. i번째 인덱스의 회원객체 의 pw가 입력한 pw와 같으면  
+				return true; // 로그인 성공 
+			} // if end  
+		} // for end
+		return false; // 로그인 실패 
 	}
 	void findIdLogic() {
 		
