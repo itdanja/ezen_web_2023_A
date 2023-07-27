@@ -63,6 +63,7 @@ public class MemberSys {
 				if( login >= 0 ) { System.out.println("안내) 로그인성공"); } // 추후에 로그인시 새로운 메뉴 메소드호출 
 				else { System.out.println("안내) 로그인실패"); }
 				
+				
 			} // if end
 		} // w e 
 	} // m e 
