@@ -43,7 +43,9 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 		System.out.print("전화번호 : ");	String phone = sc.next();
 		System.out.print("나이 :");		int age = sc.nextInt();
 		// ---> 컨트롤러/서빙 에게 전달 // 컨트롤 클래스내 메소드 호출 
-		MemberController.getInstance().singupLogic( id , pw , name , phone , age );
+		boolean result=  MemberController.getInstance().singupLogic( id , pw , name , phone , age );
+		if( result ) System.out.println("안내)회원가입성공");
+		else System.out.println("안내)회원가입실패");
 	}
 	void loginPage() {}
 	void findIdPage() {}
