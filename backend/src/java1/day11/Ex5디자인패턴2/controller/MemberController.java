@@ -21,7 +21,6 @@ public class MemberController { // 기능처리(로직) 담당하는 클래스 /
 			}
 		}  // for end 
 		return false; // 회원가입 실패
-		
 	}
 	public boolean loginLogic( String id , String pw ) {
 		for( int i = 0 ; i< MemberDao.memberList.length; i++ ) {

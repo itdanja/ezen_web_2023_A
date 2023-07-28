@@ -15,12 +15,9 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 	public static MainPage getInstance() { return mainPage; }
 		// 3. 객체 외부에서 해당 클래스로 객체 생성 잠금 , 생성자를 private 
 	private MainPage() { }
-	
 	// 1. 필드
 	private Scanner sc = new Scanner(System.in); 
-	
 	// 2. 생성자
-	
 	// 3. 함수 
 	public void mainPage() {
 		while(true) { // 무한루프
@@ -33,7 +30,6 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 			if( ch == 4 ) { findPwPage(); }
 		} // whine e 
 	} // f end 
-	
 	void singupPage() { // 1. 회원가입
 		// 입/출력 
 		System.out.println("--------- 회원가입 ---------");
@@ -47,7 +43,6 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 		if( result ) System.out.println("안내)회원가입성공");
 		else System.out.println("안내)회원가입실패");
 	}
-	
 	void loginPage() {
 		System.out.print("아이디 : "); 	String id = sc.next();
 		System.out.print("비밀번호 : ");	String pw = sc.next();
@@ -55,6 +50,7 @@ public class MainPage { // 입출력 담당하는 클래스 // view -> HTML/JS
 		if( result ) System.out.println("안내)로그인 성공했습니다.");
 		else System.out.println("안내_로그인 실패했습니다.");
 	} // f end 
+	
 	void findIdPage() {}
 	void findPwPage() {}
 	

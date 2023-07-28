@@ -7,3 +7,5 @@ public class MemberDao { // 데이터 저장 담당하는 클래스 / model -> j
 	public static MemberDto[] memberList = new MemberDto[100];
 	
 }
+
+
