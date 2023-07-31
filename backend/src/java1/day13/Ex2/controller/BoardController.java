@@ -29,9 +29,14 @@ public class BoardController {
 	}
 	
 	// 글수정 처리 기능함수 [ U ] : 수정할 게시물 인덱스 , 수정할 내용 , 수정할 작성자
-	public void updateLogic() { 
-		System.out.println("검토용) 수정 컨트롤러 까지 도착");
+	public boolean updateLogic( int index , String content , String writer ) { 
+		// 1. 입력받은 인덱스의 게시물을 호출해서 새로운 입력받은 값으로 대입/저장/수정 = set , 호출/불러오기 = get
+		BoardDao.getInstance().boardDtoList.get(index).setContent( content );
+			// BoardDao.getInstance().boardDtoList.get(index).content = content    // * DTO 필드의 직접접근X -> set , get 간접접근O
+		BoardDao.getInstance().boardDtoList.get(index).setWriter( writer );
+		return true;
 	}
+	
 	// 글삭제 처리 기능함수 [ D ] : 삭제할 게시물 인덱스 
 	public boolean deleteLogic( int index ) { 
 		// 1. 리스트 안에 있는 객체 삭제 .get( 인덱스 ) : 해당 인덱스의 객체 호출

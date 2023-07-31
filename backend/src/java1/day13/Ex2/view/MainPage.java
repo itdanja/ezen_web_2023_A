@@ -60,8 +60,17 @@ public class MainPage {
 	}
 	// 글수정 페이지 입출력 함수
 	public void updateView() { 
-		// View 에서 Controller 함수 호출하기
-		BoardController.getInstance().updateLogic();
+		System.out.println("안내] 방문록 수정 페이지 ");
+		// 1. 입출력 
+		System.out.print("수정할 방문록 인덱스 번호 : ");	int index = sc.nextInt();
+		sc.nextLine();
+		System.out.print("수정할 내용 : ");				String content = sc.nextLine();
+		System.out.print("수정할 작성자 : ");				String writer = sc.next();
+		// 2. 입력받은 변수를 컨트롤에게 전달보내고 결과를 리턴 받음 
+		boolean result = BoardController.getInstance().updateLogic( index , content , writer );
+		// 3. 결과에 따른 제어
+		if( result ) { System.out.println("안내] 수정 성공 "); }
+		else { System.out.println("안내] 수정 실패 ");}
 	}
 	// 글삭제 페이지 입출력 함수
 	public void deleteView() { 
@@ -73,7 +82,6 @@ public class MainPage {
 		if( result ) { System.out.println("안내] 삭제 성공 ");}
 		else { System.out.println("안내] 삭제 실패 ");}
 	}
-	
 }
 
 
