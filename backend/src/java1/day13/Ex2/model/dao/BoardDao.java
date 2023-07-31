@@ -11,7 +11,7 @@ public class BoardDao {
 	private BoardDao() {}
 	// 게시물 여러개 저장하는곳 
 		// 1.배열
-	public BoardDto[] boardDtoArray = new BoardDto[100];
+	// public BoardDto[] boardDtoArray = new BoardDto[100];
 		// 2.리스트 : 배열을 쉽게 사용할수 있도록 *다양한 함수 제공 
 	public ArrayList<BoardDto> boardDtoList = new ArrayList<>();
 		// ArrayList : 배열처럼 사용가능한 클래스 객체 선언 

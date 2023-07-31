@@ -3,6 +3,7 @@ package java1.day13.Ex2.view;
 import java.util.Scanner;
 
 import java1.day13.Ex2.controller.BoardController;
+import java1.day13.Ex2.model.dao.BoardDao;
 
 public class MainPage {
 	// ---------------------- 싱글톤 ----------------------------- //
@@ -21,6 +22,7 @@ public class MainPage {
 	// 메인페이지 입출력 함수 
 	public void mainView() {
 		while(true) {
+			System.out.println("확인용] " + BoardDao.getInstance().boardDtoList );
 			System.out.println("\n\n >>>>> 방문록 프로그램 >>>>>");
 			System.out.print("1.글등록 2.글보기 3.글수정 4.글삭제 선택> ");
 			int ch = sc.nextInt();
@@ -30,7 +32,6 @@ public class MainPage {
 			if( ch == 4 ) { deleteView(); }
 		} // while end 
 	} // f end 
-	
 	// 글등록 페이지 입출력 함수
 	public void writeView() { 
 		System.out.println("안내] 방문록 등록 페이지 ");

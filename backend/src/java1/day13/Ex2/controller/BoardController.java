@@ -13,15 +13,12 @@ public class BoardController {
 	
 	// 글등록 처리 기능함수 [ C ] - 07/31 김현수 작업중
 	public boolean writeLogic( String content , String writer) { 
-		
 		// 1. 매개변수로 부터 전달 받은 content , writer 를 하나의 객체로 선언
 		BoardDto boardDto = new BoardDto(content, writer);
-	
 		// 2. 객체를 리스트에 저장
 		BoardDao.getInstance().boardDtoList.add(boardDto);
-		 
-		// 성공[true] 또는 실패[false]
-		return false;
+		// 3. 성공[true] 또는 실패[false]
+		return true;
 	}
 	// 글출력 처리 기능함수 [ R ] - 07/30 강호동 작업완료
 	public void printLogic() { 
