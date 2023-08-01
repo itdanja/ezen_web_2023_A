@@ -27,6 +27,7 @@ public class SmartPhone extends Phone {
 		// this.model = model ; // 오류 : 현재 클래스의 없는 필드니까..
 		// this.필드명 : 현재 클래스의 필드명 식별
 		// 상속 후 
+		super(); // [생략가능] 자식 클래스에서 부모 클래스 생성자 호출할때.
 		this.model = model;
 		this.color = color;
 	}
