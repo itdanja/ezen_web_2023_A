@@ -62,7 +62,7 @@ public class MainPage {
 	public void updateView() { 
 		System.out.println("안내] 방문록 수정 페이지 ");
 		// 1. 입출력 
-		System.out.print("수정할 방문록 인덱스 번호 : ");	int index = sc.nextInt();
+		System.out.print("수정할 방문록 인덱스 번호 : ");		int index = sc.nextInt();
 		sc.nextLine();
 		System.out.print("수정할 내용 : ");				String content = sc.nextLine();
 		System.out.print("수정할 작성자 : ");				String writer = sc.next();
