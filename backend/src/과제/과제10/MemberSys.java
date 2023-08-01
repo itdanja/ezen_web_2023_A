@@ -15,11 +15,8 @@ public class MemberSys { // class s
 	
 	public static void main(String[] args) {
 		while(true) { // 무한루프
-			// * 확인용 
-			System.out.println("회원배열(리스트) 상태 : " + Arrays.toString( memberList ) );
-			
 			System.out.println("\n\n--------- 회원 시스템 ---------"); // 1. 무한 출력
-			System.out.print("1.회원가입 2.로그인 3.아이디찾기 4.비밀번호찾    선택> ");
+			System.out.print("1.회원가입 2.로그인 3.아이디찾기 4.비밀번호찾기    선택> ");
 			
 			// 입력객체의 사용 구역 범위 생각!!!!!! [ 프로그램내 전역구역 = static ]
 			int ch = sc.nextInt();
@@ -29,7 +26,7 @@ public class MemberSys { // class s
 			// 2. 정적멤버( static있는) 함수는 객체없이 클래스를 통한 호출한다.
 			if( ch == 2 ) { MemberSys.로그인(); }
 			if( ch == 3 ) { MemberSys.아이디찾기(); }
-			if( ch == 4 ) { MemberSys.비밀번호찾기(); 회원가입();  }
+			if( ch == 4 ) { MemberSys.비밀번호찾기(); }
 			
 		} // whine e 
 	} // main e 
