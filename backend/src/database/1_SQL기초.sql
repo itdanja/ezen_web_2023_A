@@ -47,6 +47,7 @@
                 - 2. drop 		: 데이터베이스 , 테이블(표) 삭제 
 					- drop database db명;
                     - drop database if exists db명;
+                    - drop table table명;
                     
                 - 3. alter 		: 테이블(표) 속성 수정 
                 - 4. truncate  	: 테이블(표)내 데이터 초기화/삭제
@@ -87,6 +88,30 @@
 			
             3. 행/열 로 구성된 테이블(표)를 다른 테이블(표)와 연결/관계 = 관계형 데이터베이스 
             
+		- 데이터 필드 타입 [ mysql기준 *DBMS 조금씩 다름 ] 
+			(숫자) : 바이트 단위 
+            1.정수
+				tinyint		[1] 		: -128~127  
+                smallint	[2] 		: +-3만정도  
+                mediumint	[3]			: +-8백만정도  
+                int			[4] 		: +-21억정도
+                bigint		[8] 		: +-21억 이상
+			2.실수 
+				float		[4] 		: 소수점 7자리  
+                double		[8]			: 소수점 15자리 
+			3.문자
+				char(문자길이)			: [ 글자수 최소1~최대255 ] 고정길이			char(3) -> 'ab'	-> 3바이트  	[ *저장할 데이터의 글자수가 정확히 정해져 있는경우 ]
+                varchar(문자길이)			: [ 글자수 최소1~최대65535 ] 가변길이			varchar(3) -> 'ab' -> 2바이트 [ *저장할 데이터의 글자수가 정확하지 않을때 ]
+            5.대용량 문자 
+				text [ 최소1~최대65535 ]
+                mediumtext[ 최소1 ~ 최대 16000000 ]
+                longtext [ 4G ]		: 긴글 텍스트 
+			4.날짜
+				date				: (날짜) YYYY-MM-DD
+                time 				: (시간) HH:MM:SS
+                datetime			: (날짜시간)YYYY-MM-DD HH:MM:SS
+			6.논리
+				boolean		[1]			: 0 or 1 
 */
 /* ------------ 데이터베이스 만들기 -------------- */
 #예1 : 데이터베이스( 여러개의 테이블(표) 들이 저장 할 수 있는 공간 - 폴더와 비슷한 형태 ) 생성
@@ -143,7 +168,66 @@ create table member( 아이디 text , 비밀번호 text );
 		# ( 필드명 타입 , 필드명 타입 , 필드명 타입 , 필드명 타입 )	: 테이블(표) 제목/속성/열/필드 정의 
 #예2 : 테이블 확인 
 select * from member;
-        
+#예3 : 테이블 삭제 
+drop table member;
+
+# 활용2 : 문제1
+/*
+	문제1 : 
+		1. 웹개발 하는데 DB저장소 'sqldb1web' 이름으로 DB 생성
+		2. 해당 db에 member 테이블 생성 
+			id( 문자열 최대 20 )	
+            password( 문자열 최대 10 )
+*/
+# 1. 만약에 생성할 이름의 DB명이 존재하면 삭제..
+drop database if exists sqldb1web;
+# 2. DB 생성 
+create database sqldb1web;
+# 3. DB 사용 선택 
+use sqldb1web;
+# 4. 만약에 생성할 이름의 테이블명이 존재하면 삭제.. 
+drop table if exists member;
+# 5. 테이블생성	( 필드명 타입 , 필드명 타입 ) 
+create table member( id varchar(20) , password varchar(20) );
+# 6. 테이블생성 여부 확인
+select * from member;
+/*
+	문제2 : 
+		1. 웹개발 하는데 DB저장소 'sqldb1web2' 이름으로 DB 생성
+		2. 해당 db에 board 테이블 생성 
+				게시물번호 	( 필드명 :no  		타입 : 최대 21억정도 )
+				게시물제목		( 필드명 :title 		타입 : 문자열 최대 100 )	
+				게시물내용 	( 필드명 :content 	타입 : 문자열 최대 6만5천 이상 )
+				게시물조회수	( 필드명 :view 		타입 : 최대 21억정도 )
+				게시물작성일 	( 필드명 :date 		타입 : 날짜/시간 )
+*/
+# 1. 데이터베이스 생성 
+drop database if exists sqldb1web2;
+create database sqldb1web2;
+# 2. 테이블 생성 
+use sqldb1web2;
+drop table if exists board;
+create table board( no int , title varchar(100) , content longtext , view int , date datetime );
+select * from board;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
