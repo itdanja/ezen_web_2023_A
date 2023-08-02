@@ -279,7 +279,7 @@ create table member2(
 		mno_pk int , 				
         mid varchar(20)	, 		
         mpw varchar(20) ,
-		primary key( mno_pk )	-- 현재 테이블에서 mno_pk 라는 필드를 식별키로 사용 
+		primary key( mno_pk )	-- 현재 테이블에서 mno_pk 라는 필드를 식별키로 사용 설정
 );
 drop table if exists board2;
 create table board2(
@@ -293,6 +293,40 @@ create table board2(
 			# foreign key( mno_fk ) 		: 'mno_fk' 라는 필드를 FK 필드로 설정 
             # references member2( mno_pk ) 	: FK필드를 member2 테이블의 mno_pk 필드와 참조.. [ 관계 ] 
 );
+
+/*
+	문제5 : 조건
+		1) 키오스크 시스템 개발하는데 'sqldb2sys' 라는 이름으로 DB 생성 
+        2) 해당 DB에 카테고리(category) 와 제품(product) 테이블 2개를  생성
+        3) 	카테고리 : 카테고리번호(cno) , 카테고리명(cname)  
+			제품 : 제품번호(pno) , 제품명(pname) , 제품가격(pprice) 
+			- 필드 타입은 적절한 타입으로 선언 
+		4) 두 테이블간 관계 
+			- pk필드는 새로 생성하지 않고 pk설정만 하고 fk필드는 선언후 관계 설정한다.
+*/
+# 조건1)
+drop database if exists sqldb2sys;
+create database sqldb2sys;
+# 조건2)	1. 테이블선언하고 필드명과 필드타입 선언 2.PK선정[테이블당 1개 권장] 3. 1:M 관계 경우에는  M쪽 테이블에 FK 필드 선언/설정 
+	# 여러테이블 생성할때 : PK테이블 생성하고 FK테이블 생성		# 테이블 삭제할때 : FK테이블 삭제하고 PK테이블 삭제 	# 제약옵션 옵션 사용
+use sqldb2sys;
+drop table if exists category; 
+create table category( 
+	cno_pk tinyint , 		
+    cname varchar(10) ,
+    primary key( cno_pk )
+);
+drop table if exists product;
+create table product( 
+	pno_pk int , 
+    pname varchar(30) , 
+    pprice int  ,
+    cno_fk tinyint , 		-- FK필드로 사용할 필드 선언 [ 연결할 PK필드명/타입 와 동일하게 선언 ] 
+    primary key( pno_pk ) ,
+    foreign key( cno_fk ) references category( cno_pk )
+);
+ 
+
 
 
 
