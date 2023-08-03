@@ -60,8 +60,8 @@
                     
             -2. DML [ 데이버베이스 조작어 ]
 				- 1. insert 	: 테이블(표)에 레코드(행) 삽입 
-                	# 1. insert into 테이블명 values( 값1 , 값2 , 값3 );				# 모든 필드에 값 추가할때
-					# 2. insert into 테이블명( 필드명1, 필드명2 ) values( 값1 , 값2 ) 		# 특정 필드에 값 추가할때.
+                	# 1. insert into 테이블명 values( 값1 , 값2 , 값3 );					# 모든 필드에 값 삽입 할때
+					# 2. insert into 테이블명( 필드명1, 필드명2 ) values( 값1 , 값2 ) 		# 특정 필드에 값 삽입 할때.
                     
                 - 2. select 	: 테이블(표)에 레코드(행) 검색 
 					- select * from 테이블명	: 테이블내 모든 필드의 레코드(행) 검색 [ * : 와일드카드(모든) ]
@@ -415,12 +415,73 @@ insert
     
 insert into member1( mid , memail , mimg ) values( '김희철' , 'vbn@com' , '김희철증명사진.jpg' );
 
+/*
+	문제6 
+		[조건1]
+		1. 'sqldb3web2' 데이터베이스 생성한다.
+		2. 'product' 테이블 생성합니다.
+				[ 요구사항 ]
+				제품번호		제품 식별용으로 정수형태로 저장하고 자동번호 부여 했으면 좋겠다.
+				제품명		문자열 형태로 100글자 내외로 할것 같고 중복은 방지 해주세요.
+				제품가격		정수로 저장하고 기본값은 0 으로 해주세요.
+				제품등록일		날짜/시간 저장하고 제품등록할때 자동으로 날짜/시간 저장해주세요.				
+			- 그리고 모든 필드에 null 값이 들어가지 않도록 해주세요.
+		[조건2]
+		1. 위에서 선언한 'product' 테이블에 제품 (레코드) 등록(insert) 
+			[실행1] 제품명 : '콜라' , 1000  
+			[실행2] 제품명 : '사이다'
+            [실행3] 제품명 : '환타' , 1500 , '2023-08-03 17:10:30'
+		
+        [조건3]
+		1. 위에서 선언한 'product' 테이블 과 관계가 있는 'category' 테이블 생성 
+			[ 요구사항 ]
+			1. 필드
+				카테고리번호 		: 카테고리식별용으로 정수형태로 저장하고 자동번호 부여 했으면 좋겠다.
+                카테고리명			: 문자열 형태로 20글자 내외로 할것 같고 중복X  , null X 해주세요.
+            2. 관계 
+				'product' 테이블 과 'category' 테이블 관계 연결 해주세요.
+                
+*/
+# 1. DB 생성 
+drop database if exists sqldb3web2;		create database sqldb3web2;		use sqldb3web2;
+# 2. 테이블 생성 
+drop table if exists product;
+create table product( # 작성순서 :  1. 필드명 과 타입 선정 	# 2. 제약조건 [ pk -> 기타 등등 ]
+	pno int auto_increment  , 				-- 제품번호 [ 정수타입 , pk필드(not null , unique) , 자동번호부여 ]
+    pname varchar(100) unique not null , 	-- 제품명 [ 문자열(100) , 중복제거 ]
+    pprice int default 0 not null , 		-- 제품가격 [ 정수타입 , 기본값 0 ]
+    pdate datetime default now() not null ,	-- 제품등록일[ 날짜/시간타입 , 기본값 현재시간 ]
+    primary key(pno) ,						-- 제품번호 필드를 pk필드 설정 
+    # [조건3]
+    cno int ,  -- 카테고리번호 
+    foreign key( cno ) references category( cno )	-- category 테이블이 우선적으로 생성이 되어 있는 상태 이면 참조 가능 
+);
+#[실행1] 제품명 : '콜라' , 1000  
+insert into product( pname, pprice ) values ( '콜라' ,1000 ); 			
+# insert : 삽입하다. # into : ~~ 어디에 # ( ) : 값을 삽입할 필드명   # values	: 삽입할 값들    
+#[실행2] 제품명 : '사이다'
+insert into product( pname) values( '사이다');	
+#[실행3] 제품명 : '환타' , 1500 , '2023-08-03 17:10:30'
+insert into product( pname , pprice , pdate ) values( '환타' , 1500 , '2023-08-03 17:10:30');
+select * from product; 
 
-
-
-
-
-
+#[조건3] 'category' 테이블 생성 [ 상위테이블 생성 -> 하위테이블 생성  ]
+drop table if exists category;
+create table category(
+	cno	int auto_increment , 
+    cname varchar(20) unique not null ,
+    primary key( cno )
+);
+#[실행1] 카테고리 등록 
+insert into category( cname ) values( '에이드' );		# '에이드' 카테고리 등록 [ 자동번호 부여 = 1 ]
+insert into category( cname ) values( '탄산' );		# '탄산' 카테고리 등록 [ 자동번호 부여 = 2 ]
+# 1번카테고리[에이드] 에 제품 등록 
+insert into product ( pname , pprice , cno ) values ( '사과에이드' , 3000 , 1 );
+# 1번카테고리[에이드] 에 제품 등록 
+insert into product ( pname , pprice , cno ) values ( '포도에이드' , 3500 , 1 );
+# 2번카테고리[탄산] 에 제품 등록 
+insert into product ( pname , pprice , cno ) values ( '제로콜라' , 4000 , 2 );
+select * from product;
 
 
 
