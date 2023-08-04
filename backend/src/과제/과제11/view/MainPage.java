@@ -37,9 +37,12 @@ public class MainPage {
 		System.out.print("비밀번호 > "); 		String pw = sc.next();
 		System.out.print("이름 > "); 			String name = sc.next();
 		System.out.print("전화번호[-포함] > ");String phone = sc.next();
-		// 2. 입력받은 값을 컨트롤에게 전달 
- 		MemberController.getInstance()
- 					.signupLogic(id, pw, name, phone);
+		// 2. 입력받은 값을 컨트롤에게 전달 하고 결과 받기 
+		boolean result = 
+				MemberController.getInstance().signupLogic(id, pw, name, phone);
+		// 3. 결과에 출력 
+		if( result ) { System.out.println("안내] 회원가입이 성공했습니다. 감사합니다.");}
+		else { System.out.println("경고] 회원가입시 실패. 관리자에게 문의");}
 	}
 	// 3. 로그인 화면
 	public void loginView() {
@@ -47,8 +50,10 @@ public class MainPage {
 		System.out.print("아이디 > "); 		String id = sc.next();
 		System.out.print("비밀번호 > "); 		String pw = sc.next();
 		
-		MemberController.getInstance().loginLogic(id, pw);
-		
+		boolean result = 
+				MemberController.getInstance().loginLogic(id, pw);
+		if( result ) { System.out.println("안내] 로그인성공");}
+		else { System.out.println("경고] 로그인실패");}
 	}
 	
 }

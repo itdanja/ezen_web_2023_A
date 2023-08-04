@@ -14,6 +14,52 @@ public class MemberDao extends Dao {
 	private MemberDao() {}
 	
 	// 2. 회원가입SQL 
+	public boolean signupSQL( MemberDto dto ) {
+		try {
+			// 1. 연동된DB객체 에서 SQL조작 도구(PreparedStatement)꺼내기  [ 연동객체명.prepareStatement("조작할SQL")
+			ps = conn.prepareStatement( "insert into member(mid,mpw,mname,mphone)values(?,?,?,?)" );
+			// 2. sql안에 있는 ?매개변수에 값 대입 [ ps.set타입( ?순서번호 , 값 ) ]
+			ps.setString(1, dto.getMid() );
+			ps.setString(2, dto.getMpw() );
+			ps.setString(3, dto.getMname() );
+			ps.setString(4, dto.getMphone() );
+			// 3. sql 실행 					[ ps.ps.executeUpdate() : SQL 실행 ]
+			ps.executeUpdate();
+			// 4. 리턴 [ 회원가입성공 =true / 회원가입실패 = false ] 
+			return true;
+		}catch (Exception e) {System.out.println(e);}
+		// 4. 리턴 [ 회원가입성공 =true / 회원가입실패 = false ] 
+		return false;
+ 	}
+	// 3. 로그인SQL
+	public boolean loginSQL( String id , String pw ) {
+		try {
+			// 1단계 : SQL 작성한다. [ 추천 : MYSQL 워크벤치에서 임의의값으로 테스트하고 ]
+			String sql = "select * from member where mid = ? and mpw = ?";
+			// 2단계 : SQL 조작할수 있는 객체 필요함으로 PreparedStatement 반환받기
+			ps = conn.prepareStatement(sql);
+			// 3단계 : SQL 조작 [ SQL안에 있는 매개변수[?]에 값 대입 ]
+			ps.setString( 1 , id );
+			ps.setString( 2 , pw );
+			// 4단계 : SQL 실행해서 그 결과객체 를 rs객체에 대입 	[ * ps는 결과를 조작할수 없다. ]
+				// [ insert/update/delete : ps.executeUpdate(); / select :ps.executeQuery(); ]
+			rs = ps.executeQuery();
+			// 5단계 : SQL 실행 결과 조작 	[ rs.next() : 결과중에서 다음 레코드객체 호출 ]
+				// 만약에 검색결과의 레코드 3개 가정 [   rs = null -> 레코드1객체 -> 레코드2객체 -> 레코드3객체 ]
+				//									  .next()	 .next()	 .next()
+			if( rs.next() ) { // 로그인SQL 결과레코드는 1개 또는 0개 이므로 if 사용해서 .next() 1번 호출 해서
+										// next() 다음레코드가 존재하면 true / false
+				return true; // 로그인 성공 
+			}
+			
+		}catch (Exception e) { System.out.println(e); }
+		return false; // 로그인 실패 
+	}
+}
+
+/*
+
+// 2. 회원가입SQL 
 	public void signupSQL( MemberDto dto ) {
 		System.out.println("--- signupSQL 다오 도착 ");
 		System.out.println( dto );
@@ -37,15 +83,11 @@ public class MemberDao extends Dao {
 			ps.executeUpdate();	
 			
 		}catch ( Exception e) { System.out.println("경고] 회원가입실패 사유 : "+e); }
-		
 	}
-	// 3. 로그인SQL
-	public void loginSQL( String id , String pw ) {
-		System.out.println("--- loginSQL 다오 도착 ");
-		System.out.println( id + pw  );
-	}
-	
-}
+
+ 
+ 
+ */
 
 
 
