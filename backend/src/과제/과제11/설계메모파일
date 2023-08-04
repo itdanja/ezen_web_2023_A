@@ -18,3 +18,27 @@
 	
 	2. MainPage 클래스 , MemberController 클래스 => 싱글톤 선언 
 	3. AppStart --> view --> Controller 메소드로 이동 
+	4. SinupView() 메소드 
+		아이디 , 비밀번호 , 이름 , 전화번호 입력받아 컨트롤에게 이동해서 출력  
+	5. loginView() 메소드 
+		아이디 , 비밀번호 입력받아 컨트롤에게 이동해서 출력 
+	6.
+		# 회원번호[자동] 아이디 비밀번호 이름 전화번호를 저장하는 member 테이블 생성 
+		# 테이블과 비슷하게 memberDto 클래스 설계 
+	7. 
+		signupLogic() 메소드 
+			매개변수로 전달받은 값들을 MemberDto 객체화 해서 signupSQL() 에게 전달 
+		loginLogic() 메소드 
+			매개변수로 전달받은 값들을 loginSQL() 에게 전달 
+	
+
+
+
+
+
+
+
+
+
+
+
