@@ -1,0 +1,20 @@
+과제11
+	1. 프로젝트 패키지 구조도 
+		- view 패키지
+			MainPage 클래스 
+		- controller 패키지 
+			MemberController 클래스 
+			* BoardController 클래스 
+		- model 패키지
+			- dto 패키지
+				MemberDto 클래스 
+				* BoardDto 클래스 
+			- dao 패키지 
+				MemberDao 클래스
+				* BoardDao 클래스  
+		- AppStart 클래스 
+		- useSQL.sql 파일 
+		- 설계파일.txt
+	
+	2. MainPage 클래스 , MemberController 클래스 => 싱글톤 선언 
+	3. AppStart --> view --> Controller 메소드로 이동 
