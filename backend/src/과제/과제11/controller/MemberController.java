@@ -10,6 +10,14 @@ public class MemberController {
 	
 	private int loginMno = 0; 
 	
+	
+	
+	public int getLoginMno() {
+		return loginMno;
+	}
+	public void setLoginMno(int loginMno) {
+		this.loginMno = loginMno;
+	}
 	// 2. 회원가입 처리
 	public int signupLogic( String id , String pw , String name , String phone ) {
 		System.out.println("--- signupLogic컨트롤 도착 ");
@@ -53,7 +61,65 @@ public class MemberController {
 	// 4. 로그아웃
 	public void logOut() { this.loginMno = 0; }
 	
+	//
+	public MemberDto myInfoLogic() {
+		return MemberDao.getInstance().myInfoSQL(loginMno);
+	}
+	
+	public boolean myInfoUpdateLogic( String newPw ) {
+		return MemberDao.getInstance().myInfoUpdateSQL( newPw , loginMno );
+	}
+	
+	public boolean myInfoDeleteLogic(  ) {
+		
+		boolean result =  MemberDao.getInstance().myInfoDeleteSQL( loginMno );
+		
+		logOut();
+		
+		return result;
+		
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

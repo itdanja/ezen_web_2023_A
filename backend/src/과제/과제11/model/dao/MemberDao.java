@@ -93,6 +93,57 @@ public class MemberDao extends Dao {
 		return null; // 로그인 실패 
 	}
 	
+	//
+	public MemberDto myInfoSQL( int mno ) {
+		
+		try {
+			String sql = "select * from member where mno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , mno );
+			rs = ps.executeQuery();
+			if( rs.next() ) {  
+				MemberDto memberDto = new MemberDto( 
+						rs.getInt(1) ,
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4), 
+						rs.getString(5) );
+				return memberDto;
+			}
+		}catch (Exception e) { System.out.println(e); }
+		return null; // 로그인 실패 
+		
+	}
+	
+	public boolean myInfoUpdateSQL(  String newPw , int mno ) {
+		
+		try {
+			String sql = "update member set mpw = ? where mno = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , newPw );
+			ps.setInt( 2 , mno );
+			
+			ps.executeUpdate(); return true;
+			
+		}catch (Exception e) { System.out.println(e); }
+		return false; // 로그인 실패 
+		
+	}
+	
+	public boolean myInfoDeleteSQL( int mno ) {
+		
+		try {
+			String sql = "delete from member where mno = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , mno );
+			
+			ps.executeUpdate(); return true;
+		
+		}catch (Exception e) { System.out.println(e); }
+		return false; // 로그인 실패 
+		
+	}
+	
 }
 
 /*

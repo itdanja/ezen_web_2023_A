@@ -3,6 +3,7 @@ package 과제.과제11.view;
 import java.util.Scanner;
 
 import 과제.과제11.controller.MemberController;
+import 과제.과제11.model.dto.MemberDto;
 
 public class LoginPage {
 	
@@ -13,12 +14,13 @@ public class LoginPage {
 	private Scanner sc = new Scanner(System.in);
 	// 1. 메인메뉴 
 	public void loginMenu() {
-		while(true) {
+		while( MemberController.getInstance().getLoginMno() >= 1  ) {
 			System.out.println("\n\n ===== ===== ===== ===== ");
 			System.out.print("1.로그아웃 2.내정보 3.글쓰기 선택 : ");
 			try {
 				int ch = sc.nextInt(); // 만약에 타입과 일치하지 않는 값을 입력하면 InputMismatchException
 				if( ch == 1 ) { MemberController.getInstance().logOut(); break; }
+				if( ch == 2 ) { myInfoView(); }
 			}catch( Exception e ) {
 				System.out.println("경고] 잘못된 입력입니다. ");
 				sc = new Scanner(System.in); // 입력객체의 메모리를 새롭게 만들어주기 
@@ -27,7 +29,61 @@ public class LoginPage {
 		} // w end 
 	} // f end 
 	
+	// 
+	public void myInfoView() {
+		System.out.println("\n\n ===== ===== myInfo ===== ===== ");
+		MemberDto memberDto =
+		MemberController.getInstance().myInfoLogic();
+		
+		System.out.println(" 아이디 : " + memberDto.getMid() );
+		System.out.println(" 이름 : " + memberDto.getMname() );
+		System.out.println(" 전화번호 : " + memberDto.getMphone() );
+		
+		System.out.print("1.비밀번호수정 2.회원탈퇴 선택 : ");
+		int ch = sc.nextInt();
+		if( ch == 1 ) { myInfoUpdateView(); }
+		else if( ch == 2 ) { myInfoDeleteView(); }
+		
+	}
+	
+	//
+	public void myInfoUpdateView() {
+		System.out.println("\n\n ===== ===== update ===== ===== ");
+		System.out.print(" 새 비밀번호 : "  );		String newPw = sc.next();
+		
+		boolean result = MemberController.getInstance().myInfoUpdateLogic( newPw);
+		if( result ) System.out.println("새비밀번호로 수정되었습니다.");
+		else System.out.println("기존비밀번호가 일치하지 않습니다.");
+	}
+	
+	//
+	public void myInfoDeleteView() {
+		System.out.println("\n\n ===== ===== delete ===== ===== ");
+		
+		boolean result = MemberController.getInstance().myInfoDeleteLogic(  );
+		if( result ) {System.out.println("회원탈퇴 되었습니다.");}
+		else System.out.println("비밀번호가 일치하지 않습니다.");
+		
+	}
+	
 	
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
