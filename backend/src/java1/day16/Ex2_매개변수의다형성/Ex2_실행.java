@@ -5,9 +5,9 @@ public class Ex2_실행 {
 		// 0. 
 		Driver driver = new Driver();
 		// 1. 부모객체 
-		Vehicle vehicle = new Vehicle();
-			System.out.println("------------> 1.차량대입 ");
-			driver.drive( 3 , vehicle );  	// 객체의 타입[Vehicle] 매개변수 타입[Vehicle]	 타입이 일치해서 가능 
+		//Vehicle vehicle = new Vehicle();
+		//	System.out.println("------------> 1.차량대입 ");
+		//	driver.drive( 3 , vehicle );  	// 객체의 타입[Vehicle] 매개변수 타입[Vehicle]	 타입이 일치해서 가능 
 		// 2. 자식객체 
 		Bus bus = new Bus();
 			System.out.println("------------> 2.버스대입 ");
