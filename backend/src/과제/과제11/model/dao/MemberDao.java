@@ -45,7 +45,7 @@ public class MemberDao extends Dao {
  	}
 	
 	// 3. 로그인SQL
-	public boolean loginSQL( String id , String pw ) {
+	public int loginSQL( String id , String pw ) {
 		try {
 			// 1단계 : SQL 작성한다. [ 추천 : MYSQL 워크벤치에서 임의의값으로 테스트하고 ]
 			String sql = "select * from member where mid = ? and mpw = ?";
@@ -62,11 +62,11 @@ public class MemberDao extends Dao {
 				//									  .next()	 .next()	 .next()
 			if( rs.next() ) { // 로그인SQL 결과레코드는 1개 또는 0개 이므로 if 사용해서 .next() 1번 호출 해서
 										// next() 다음레코드가 존재하면 true / false
-				return true; // 로그인 성공 
+				return rs.getInt(1); // 검색된 회원번호(첫번째필드) 를 반환
 			}
 			
 		}catch (Exception e) { System.out.println(e); }
-		return false; // 로그인 실패 
+		return 0; // 로그인 실패 
 	}
 	
 	// 4. 

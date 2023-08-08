@@ -4,11 +4,12 @@ import 과제.과제11.model.dao.MemberDao;
 import 과제.과제11.model.dto.MemberDto;
 
 public class MemberController {
+	
 	private static MemberController memberController = new MemberController();
 	public static MemberController getInstance() { return memberController; }
 	private MemberController() {}
 	
-	// 2. 회원가입 처리	[ 반환 : 1:성공 2:실패[db오류] 3:아이디중복실패 4.전화번호중복체실패
+	// 2. 회원가입 처리	[ 반환 : 1:성공 2:실패[db오류] 3:아이디중복실패 4.전화번호중복실패
 	public int signupLogic( String id , String pw , String name , String phone ) {
 		System.out.println("--- signupLogic컨트롤 도착 ");
 		System.out.println( id + pw + name + phone );
@@ -23,16 +24,24 @@ public class MemberController {
 		if( result ) return 1;
 		else return 2;
 	}
-	// 3. 로그인 처리
+	
+	// 0. 로그인된 회원의번호를 저장하는 필드 = 웹세션
+	private int loginSession = 0; // 0 : 로그인 안한상태  , 1이상 : 로그인된 회원의 번호 
+	public int getLoginSession() { return loginSession; }
+	
+	// 3-1. 로그인 처리
 	public boolean loginLogic( String id , String pw) {
-		// 유효성검사 했다치고 
-
 		// 2. Dao 에게 전달
-		boolean result = MemberDao.getInstance().loginSQL( id , pw );
-		return result;
+		int result = MemberDao.getInstance().loginSQL( id , pw );
+		// 로그인 성공했을때 기록 하기[ - 로그인 이후 로그인된정보로 활동 ]
+		if( result >= 1 ) { this.loginSession = result; return true; }
+		else { return false; }
 	}	
 	
-	// 4. 
+	// 3-2 로그아웃 처리
+	public void logOut() { this.loginSession = 0; }
+	
+	// 4. 아이디 찾기
 	public String findById( String name , String phone) {
 		// - 테스트. view 전달받은 매개변수 확인 
 		System.out.println("findById value : " + name + phone );
@@ -42,7 +51,7 @@ public class MemberController {
 		return result; 
 	}
 	
-	// 5.
+	// 5.비밀번호 찾기
 	public String findByPw( String id , String phone ) {
 		// - 테스트. view 전달받은 매개변수 확인 
 		System.out.println("findByPw value : " + id + phone );

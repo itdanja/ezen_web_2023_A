@@ -60,13 +60,15 @@ public class MainPage {
 		System.out.print("아이디 > "); 		String id = sc.next();
 		System.out.print("비밀번호 > "); 		String pw = sc.next();
 		
-		boolean result = 
-				MemberController.getInstance().loginLogic(id, pw);
-		if( result ) { System.out.println("안내] 로그인성공");}
+		boolean result = MemberController.getInstance().loginLogic(id, pw);
+		if( result ) { 
+			System.out.println("안내] 로그인성공");
+			LoginPage.getInstance().loginMenu(); // 만약에 로그인 성공하면 다른 view 클래스로 이동 
+		}
 		else { System.out.println("경고] 로그인실패");}
 	}
 	
-	// 4. 
+	// 4. 아이디 찾기
 	public void findById( ) {
 		System.out.println(" ----- 아이디찾기 페이지 ----- ");
 		System.out.print("이름 > "); 		String name = sc.next();
@@ -77,7 +79,7 @@ public class MainPage {
 		else { System.out.println("경고] 정보가 일치한 아이디가 없습니다.");}
 	}
 	
-	// 5.
+	// 5. 비밀번호 찾기
 	public void findByPw() {
 		System.out.println(" ----- 비밀번호찾기 페이지 ----- ");
 		System.out.print("아이디 > "); 		String id = sc.next();
