@@ -29,7 +29,53 @@ public class MemberController {
 		boolean result = MemberDao.getInstance().loginSQL( id , pw );
 		return result;
 	}	
+	
+	// 4. 
+	public String findById( String name , String phone) {
+		// - 테스트. view 전달받은 매개변수 확인 
+		System.out.println("findById value : " + name + phone );
+		
+		return null; // 실패 
+	}
+	
+	// 5.
+	public String findByPw( String id , String phone ) {
+		// - 테스트. view 전달받은 매개변수 확인 
+		System.out.println("findByPw value : " + id + phone );
+				
+		return null;  // 실패 
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

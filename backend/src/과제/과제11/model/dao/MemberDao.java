@@ -55,6 +55,20 @@ public class MemberDao extends Dao {
 		}catch (Exception e) { System.out.println(e); }
 		return false; // 로그인 실패 
 	}
+	
+	// 4. 
+	public String findById( String name , String phone ) {
+		return null;  // 실패 
+	}
+	
+	// 5.
+	public String findByPw( String id , String phone  ) {
+		return null;  // 실패 
+	}
+	
+	
+	
+	
 }
 
 /*
