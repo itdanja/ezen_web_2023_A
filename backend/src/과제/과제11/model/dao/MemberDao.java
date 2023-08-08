@@ -13,6 +13,18 @@ public class MemberDao extends Dao {
 	public static MemberDao getInstance() { return memberDao; }
 	private MemberDao() {}
 	
+	// 1. 회원정보 Check SQL : int type=1아이디중복체크 type=2전화번호중복체크  // vs String 필드명 
+	public boolean infoCheck( String 검색할필드명 , String 검색할값 ) {
+		try {	// 오류 : You have an error in your SQL syntax // SQL 문법 오류 발생
+			String sql = "select * from member where "+검색할필드명+" = ?";		System.out.println( sql );
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , 검색할값 );
+			rs = ps.executeQuery();
+			if( rs.next() ) { return true; } // 레코드 존재 => 이미 있는 데이터 => 중복 
+		}catch (Exception e) { System.out.println(e);}
+		return false;
+	}
+	
 	// 2. 회원가입SQL 
 	public boolean signupSQL( MemberDto dto ) {
 		try {
@@ -31,6 +43,7 @@ public class MemberDao extends Dao {
 		// 4. 리턴 [ 회원가입성공 =true / 회원가입실패 = false ] 
 		return false;
  	}
+	
 	// 3. 로그인SQL
 	public boolean loginSQL( String id , String pw ) {
 		try {
