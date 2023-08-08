@@ -25,7 +25,7 @@ public class MemberController {
 		else return 2;
 	}
 	
-	// 0. 로그인된 회원의번호를 저장하는 필드 = 웹세션
+	// 0. 로그인된 회원의번호(PK식별용) 를 저장하는 필드 = 웹세션
 	private int loginSession = 0; // 0 : 로그인 안한상태  , 1이상 : 로그인된 회원의 번호 
 	public int getLoginSession() { return loginSession; }
 	
@@ -59,6 +59,21 @@ public class MemberController {
 		return MemberDao.getInstance().findByPw(id, phone);  // 실패 
 	}
 	
+	// 6.
+	public MemberDto info() {
+		// 현재 로그인된 회원번호[loginSession]는 view에서 전달 받지않고 컨트롤안에 저장 되어있으므로 
+		// 현재 로그인된 회원번호로 회원정보 요청하기 
+		return MemberDao.getInstance().info( this.loginSession );
+	}
+	
+	// 7.
+	public boolean infoUpdate( String newPw ) {
+		return MemberDao.getInstance().infoUpdate(newPw, loginSession);
+	}
+	// 8.
+	public boolean infoDelete() {
+		return MemberDao.getInstance().infoDelete(loginSession);
+	}
 }
 
 
