@@ -1,8 +1,11 @@
 package 과제.과제11.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import 과제.과제11.controller.BoardController;
 import 과제.과제11.controller.MemberController;
+import 과제.과제11.model.dto.BoardDto;
 import 과제.과제11.model.dto.MemberDto;
 
 public class LoginPage {
@@ -18,6 +21,7 @@ public class LoginPage {
 		while( MemberController.getInstance().getLoginSession() != 0 ) { // 로그인이 되어 있는 경우에만 메뉴 반복 
 			
 			System.out.println("\n\n ===== ===== ===== ===== ");
+			boardPrint();
 			System.out.print("1.로그아웃 2.회원정보 3.글쓰기 선택 : ");
 			try {
 				int ch = sc.nextInt();
@@ -81,15 +85,42 @@ public class LoginPage {
 		}
 	} // f end 
 	
-	// 5. boardWrite : 게시물쓰기 페이지 
-	public void boardWrite() {}
-	// 6. boardPrint : 모든 게시물 출력 
-	public void boardPrint() {}
-	// 7. boardView : 개별 게시물 출력 
+	// 9. boardWrite : 게시물쓰기 페이지 
+	public void boardWrite() {
+		System.out.println("\n\n ===== board write ===== ");
+		sc.nextLine();
+		System.out.print("title>" );	String title = sc.nextLine();
+		System.out.print("content>" );	String content = sc.nextLine();
+		
+		boolean result = 
+		BoardController.getInstance().boardWrite( title , content );
+		
+		if( result ) { System.out.println("글쓰기 성공"); }
+		else { System.out.println("글쓰기 실패");}
+		
+	}
+	// 10. boardPrint : 모든 게시물 출력 
+	public void boardPrint() {
+		System.out.println("\n\n ===== board list ===== ");
+		
+		ArrayList<BoardDto> result = BoardController.getInstance().boardPrint();
+		
+		System.out.printf("%-3s %-19s %-10s %s \n" ,
+				"no" , "date" , "mid" , "title" );
+		
+		for( int i = 0 ; i<result.size(); i++ ) {
+			BoardDto dto = result.get(i);
+			System.out.printf("%-3s %-19s %-10s %s \n" ,
+								dto.getBno() , dto.getBdate() , dto.getMid() , dto.getBtitle() );
+		}
+		System.out.println(" ===== ===== ===== ===== ");
+	}
+	
+	// 11. boardView : 개별 게시물 출력 
 	public void boardView() {}
-	// 8. boardUpdate : 게시물 수정 
+	// 12. boardUpdate : 게시물 수정 
 	public void boardUpdate() {}
-	// 9. boardDelete : 게시물 삭제
+	// 13. boardDelete : 게시물 삭제
 	public void boardDelete() {}
 }
 
