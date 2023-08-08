@@ -34,16 +34,18 @@ public class MemberController {
 	public String findById( String name , String phone) {
 		// - 테스트. view 전달받은 매개변수 확인 
 		System.out.println("findById value : " + name + phone );
-		
-		return null; // 실패 
+		// Dao에게 매개변수 전달하고 찾은 아이디 반환 받기 
+		String result =
+				MemberDao.getInstance().findById(name, phone);
+		return result; 
 	}
 	
 	// 5.
 	public String findByPw( String id , String phone ) {
 		// - 테스트. view 전달받은 매개변수 확인 
 		System.out.println("findByPw value : " + id + phone );
-				
-		return null;  // 실패 
+		// Dao에게 매개변수 전달하고 찾은 아이디 반환 받기 
+		return MemberDao.getInstance().findByPw(id, phone);  // 실패 
 	}
 	
 }
