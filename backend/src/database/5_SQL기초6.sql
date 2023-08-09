@@ -73,18 +73,31 @@ select * from member where mheight >= 165 and mheight <=170;	# 4.필드의 값�
 select * from member where mheight >= 165 or mnumber > 6; 		# 5.필드의 값이 이상 이거나 초과 이면 레코드 검색 
 select * from member where maddr ='경기' or maddr = '전남' or maddr ='경남';
 	select * from member where maddr in( '경기','전남','경남');
+    select * from member where not maddr in( '경기','전남','경남');
 select * from member where mname = '에이핑크';
-select * from member where mname like '에이%';					# 6. '에이' 로 시작하는 문자 
-select * from member where mname like '%핑크'; 					# 7. '핑크' 로 끝나는 문자
-select * from member where mname like '에이_';					# 8. '에이' 로 시작하는 세글자
-select * from member where mname like '_핑크';					# 9. '핑크' 로 끝나는 세글자 
-select * from member where mname like '%우%';					# 10 '우' 가 포함된 문자 
-select * from member where mname like '_우_';					# 11 '우' 가 두번째에 위치한 세글자 
+select * from member where not mname = '에이핑크';					# 6-1. '에이핑크' 가 아니면 
+select * from member where mname != '에이핑크';					# 6-2. '에이핑크' 가 아닌 
+select * from member where mname like '에이%';					# 7. '에이' 로 시작하는 문자 
+select * from member where mname like '%핑크'; 					# 8. '핑크' 로 끝나는 문자
+select * from member where mname like '에이_';					# 9. '에이' 로 시작하는 세글자
+select * from member where mname like '_핑크';					# 10. '핑크' 로 끝나는 세글자 
+select * from member where mname like '%우%';					# 11 '우' 가 포함된 문자 
+select * from member where mname like '_우_';					# 12 '우' 가 두번째에 위치한 세글자 
 select mname 그룹명 , mnumber 멤버수 , 
 	mnumber+10 , mnumber-10 , mnumber * 10 , mnumber/10 , mnumber div 3 , mnumber mod 3 ,
     mnumber * mheight
-from member;													# 12 산술연산자. 
+from member;													# 13 산술연산자. 
+select * from member where mphone1 = '';						# 공백 검색 
+select * from member where mphone1 = ' ';						# 띄어쓰기 하나 들어간 데이터 검색
+select * from member where mphone1 = null;						# 불가능!!   
+select * from member where mphone1 is null;						# null 검색
+select * from member where mphone1 is not null;					# null 아닌 검색 
+ 
 /*
+	null vs 공백 vs 띄어쓰기 
+		null : 참조 없다.
+        공백 : 임의의공간 확보하기 위한 임의값[쓰레기값]
+        띄어쓰기 : 문자 
 	연산자 
 		1. 산술연산자 : +더하기		-빼기	*곱하기	/나누기  div몫 	mod나머지 
         2. 비교연산자 : >초과	<미만	>=이상 <=이하 =같다 !=같지않다.
@@ -93,9 +106,93 @@ from member;													# 12 산술연산자.
 			- 동일한 필드명의 여러개 연산을 나열할때. 
 				- between 시작값 and 끝값 		: 시작값 부터 끝값 사이 이면 	= and 유사 
 				- in( 값 , 값 , 값 )			: 여러 값 중 하나라도 포함하면 	= or 유사 
+                
 			- 패턴 비교 검색 
-				like 
+				필드명 like 패턴  
 					% : 모든 문자수 대응 
                     _ : _개수만큼 문자수 대응 
+			- null 연산
+				필드명 is null			: 해당 필드의 데이터가 null 이면 
+                필드명 is not null		: 해당 필드의 데이터가 null 이 아니면 
 */
+
+# 5. 검색 결과의 레코드 정렬하기 [ order by 필드명 asc/desc ] 	
+	# asc : 오름차순 , 작은수 -> 큰수 , 과거날짜 -> 최근날짜 
+    # desc : 내림차순 , 큰수 -> 작은수 , 최근날짜 -> 과거날짜 
+select * from member order by mdebut asc;		# 데뷔일 필드 기준으로 오름차순 
+select * from member order by mdebut desc;		# 데뷔일 필드 기준으로 내림차순 
+	# 정렬 기준 2개 이상 [ order by 필드명 정렬기준 , 필드명 정렬기준 ]
+    # 첫번째 정렬후 동일한 키가 있을경우 동일한 키 중에서 데뷔날짜 오름차순 
+select * from member order by mheight desc , mdebut asc;
+/*										상위정렬의 동일데이터기준[ 동일한 학년끼리의 점수 정렬 ]
+	학년 점수 	->> 학년 오름차순 		학년 점수	 	->> 점수 오름차순   		학년 점수
+	1	90							1	90								1	90
+	3	80							1	100								1	100
+	2	95							2	95								2	95
+    1	100							3	80								3	75	
+    3	75							3	75								3	80
+*/
+# 6. 검색 레코드 수 제한 [ limit 레코드수  , limit 시작레코드번호 , 개수  ]
+select * from member limit 2;						# 검색 결과의 레코드를 2개만 표시 
+select * from member limit 0 , 3;					# 0(첫번째)레코드 부터 3개만 표시
+select * from member order by mheight desc limit 3; # 키 상위 3명
+
+# 7. 검색된 필드의 중복 제거 [ distinct ]
+select maddr from member; 				# 모든 주소 검색 
+select distinct maddr from member;		# 모든 주소에서 중복 제거 검색 
+
+/*
+  정리 
+	
+    
+    select : 검색 
+	select 필드명 from 테이블명 
+	select * from 테이블명 
+	1. where 조건절 
+		select * from 테이블명 where 조건절 
+
+	2. order by 필드명 정렬기준 
+		select * from 테이블명 order by 필드명 정렬기준
+
+	3. limit 레코드수
+		select * from 테이블명 limit 레코드수
+		select * from 테이블명 limit 시작레코드번호[0] , 레코드수 
+
+	- 키워드 우선순위
+		select * from 테이블명 where 조건절 order by 필드명 정렬기준 limit 레코드수
+
+	4. 연산자
+		1. as : 별칭
+	 		select 필드명 as 별칭 from 테이블명  
+			select 필드명 별칭 from 테이블명 별칭
+ 
+		2. distinct : 필드 중복 제거 
+			select distinct 필드명 from 테이블명 
+ 
+		3. 산술
+			+더하기 -빼기 *곱하기 /나누기 div몫 mod나머지 
+		4. 비교
+			=같다	!=같지않다.  >초과 <미만 >=이상 <=이하
+		5. 논리
+			and이면서 or이거나 not부정 
+		6. 기타
+			필드명 between 시작값 and 끝값 
+			필드명 in( 값 , 값 , 값 )
+			필드명 like '%값%'		% : 모든 문자 수 대응 
+			필드명 like '_값_'		_ : _ 개수만큼 문자 수 대응 
+			필드명 is null		
+			필드명 is not null
+
+
+*/
+ 
+
+
+
+
+
+
+
+
+
 
