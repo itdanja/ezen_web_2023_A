@@ -1,13 +1,12 @@
-package 과제.과제11.model.dao;
+package 과제.과제11.controller;
 
 import 과제.과제11.view.LoginPage;
 
-public class BoardDao extends Dao {
-	
+public class BoardController {
 	// 0.싱글톤 
-	private static BoardDao boardDao = new BoardDao();
-	public static BoardDao getInstance() { return boardDao; }
-	private BoardDao() {}
+	private static BoardController boardController = new BoardController();
+	public static BoardController getInstance() { return boardController; }
+	private BoardController() {}
 	
 	// 9. boardWrite : 게시물쓰기 페이지 
 	public void boardWrite() {
@@ -22,8 +21,9 @@ public class BoardDao extends Dao {
 	// 13. boardDelete : 게시물 삭제
 	public void boardDelete() {}
 
-	
 }
+
+
 
 
 

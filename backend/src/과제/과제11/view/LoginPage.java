@@ -81,16 +81,19 @@ public class LoginPage {
 		}
 	} // f end 
 	
-	// 5. boardWrite : 게시물쓰기 페이지 
-	public void boardWrite() {}
-	// 6. boardPrint : 모든 게시물 출력 
+	// 9. boardWrite : 게시물쓰기 페이지 
+	public void boardWrite() {
+		
+	}
+	// 10. boardPrint : 모든 게시물 출력 
 	public void boardPrint() {}
-	// 7. boardView : 개별 게시물 출력 
+	// 11. boardView : 개별 게시물 출력 
 	public void boardView() {}
-	// 8. boardUpdate : 게시물 수정 
+	// 12. boardUpdate : 게시물 수정 
 	public void boardUpdate() {}
-	// 9. boardDelete : 게시물 삭제
+	// 13. boardDelete : 게시물 삭제
 	public void boardDelete() {}
+	
 }
 
 
