@@ -31,7 +31,7 @@ public class BoardDao extends Dao {
 		}catch (Exception e) {System.out.println(e);}
 		return false; // 실패
 	}
-	// 10. boardPrint : 모든 게시물 출력 [ 반환타입 : 
+	// 10. boardPrint : 모든[여러개] 게시물 출력 [ 반환타입 : 
 	// public BoardDto[] boardPrint() {
 	public ArrayList<BoardDto> boardPrint() {
 		ArrayList<BoardDto> list = new ArrayList<>(); // 여러개 BoardDto 를 저장할 리스트객체 선언 
@@ -57,8 +57,23 @@ public class BoardDao extends Dao {
 	
 	
 	
-	// 11. boardView : 개별 게시물 출력 
-	public void boardView() {}
+	// 11. boardView : 개별[1개] 게시물 출력 
+	public BoardDto boardView(  int bno ) {
+		try {
+			String sql ="select b.* , m.mid from board b natural join member m where b.bno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , bno );
+			rs = ps.executeQuery();
+			if( rs.next() ) { // 레코드1개 --> Dto 변환 
+				BoardDto dto = new BoardDto(
+						rs.getInt(1) , rs.getString(2) , rs.getString(3), 
+						rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getString(7) );
+				return dto;
+			}
+		}catch (Exception e) {System.out.println(e);}
+		return null;
+	}
+	
 	// 12. boardUpdate : 게시물 수정 
 	public void boardUpdate() {}
 	// 13. boardDelete : 게시물 삭제
