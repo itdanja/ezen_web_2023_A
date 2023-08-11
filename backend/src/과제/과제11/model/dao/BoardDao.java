@@ -59,6 +59,9 @@ public class BoardDao extends Dao {
 	
 	// 11. boardView : 개별[1개] 게시물 출력 
 	public BoardDto boardView(  int bno ) {
+		
+		// boardViewCount( bno ); // *게시물 조회전 조회수 증가 함수 호출 
+		
 		try {
 			String sql ="select b.* , m.mid from board b natural join member m where b.bno = ?";
 			ps = conn.prepareStatement(sql);
@@ -68,7 +71,7 @@ public class BoardDao extends Dao {
 				BoardDto dto = new BoardDto(
 						rs.getInt(1) , rs.getString(2) , rs.getString(3), 
 						rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getString(7) );
-				boardViewCount( dto.getBno() ); // 조회수 증가 함수 호출 
+				boardViewCount( bno ); // *게시물 조회후 조회수 증가 함수 호출 
 				return dto;
 			}
 		}catch (Exception e) {System.out.println(e);}
@@ -77,7 +80,20 @@ public class BoardDao extends Dao {
 	
 	// 11-2 조회수 증가함수 
 	public boolean boardViewCount( int bno ) { 
-		try {
+		/*
+		 	[ java , mysql ]
+		 	int i = 3 ;
+		 	i = i+1;
+		 	
+		 	[ java ]
+		 	int i = 3 ;
+		 	
+		 	i += 1;
+		 	[ java ]
+		 	i++;
+		  
+		 */
+		try {	// 					set 수정할필드명 = 기본필드값 + 1
 			String sql = "update board set bview = bview+1 where bno = "+bno;
 			ps = conn.prepareStatement(sql);
 			int row = ps.executeUpdate();
