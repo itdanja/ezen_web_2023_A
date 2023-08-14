@@ -51,7 +51,7 @@ public class LoginPage {
 		System.out.println(">NAME : " + result.getMname() );
 		System.out.println(">PHONE : " + result.getMphone() );
 		// 2. 서브메뉴 
-		System.out.print("1.비밀번호수정 2.회원탈퇴 3.뒤로가기 선택 : ");
+		System.out.print("1.비밀번호수정 2.회원탈퇴 3.뒤로가기 4.쪽지확인 선택 : ");
 		int ch = sc.nextInt();
 		if( ch == 1 ) { infoUpdate(); }
 		if( ch == 2 ) { infoDelete(); }
@@ -129,7 +129,7 @@ public class LoginPage {
 		System.out.printf("content : %s \n " , result.getBcontent() );
 		
 		// 4. 추가메뉴 
-		System.out.print("1.뒤로가기 2.수정 3.삭제 선택> "); 
+		System.out.print("1.뒤로가기 2.수정 3.삭제 4.쪽지보내기 선택> "); 
 		int ch = sc.nextInt();
 		if( ch == 1 ) {}
 		if( ch == 2 ) { boardUpdate( bno , result.getMno() ); } // 보고 있는 게시물 번호와 작성자회원번호

@@ -1,0 +1,189 @@
+[MYSQL 8.x] SQL 
+	* 대소문자 구분X
+	-DDL	데이터베이스 정의어
+		1. create  		데이터베이스/테이블 생성
+			create database DB명;
+			create database TABLE명( 속성명 타입 제약조건 , 속성명 타입 제약조건 )
+		2. drop		데이터베이스/테이블 삭제 
+			drop database DB명;
+			drop database if exists DB명;
+			drop table if exists TABLE명;
+		3. alter		데이터베이스/테이블 수정
+		4. truncate	테이블 내 데이터 삭제 
+		5. rename	테이블 이름 수정 
+		6. show		데이터베이스 검색
+			show databases
+		7. use 		데이터베이스 사용 선택 
+			use DB명
+
+	-DML	데이터베이스 조작어 
+		1. insert
+			insert into 테이블명 values( 값1, 값2, 값3, 값4 )			모든 필드의 값 대입해서 레코드 삽입할때. 
+			insert into 테이블명( 필드명 , 필드명 , 필드명 ) values( 값1, 값2, 값3)	특정 필드의 값 대입해서 레코드 삽입할때.
+		2. select 
+			select 필드명 , 필드명 from 테이블명				모든 레코드 검색 [ *특정 필드만 표시 ] 
+			select * from 테이블명 					모든 레코드 검색 [ *모든 필드 표시 ]
+			[ 1. where 조건 ]
+				select * from 테이블명 where 조건
+				- select * from member where  bno = 3;		: 회원번호가 3인 레코드 
+			[ 2. order by 정렬 ]
+				select * from 테이블명 order by 정렬기준필드명 정렬기준[ asc:오름차순/desc:내림차순 ] 
+				- select * from member order by point desc  		: 포인트 필드 기준으로 내림차순 
+			[ 3. limit 검색결과 레코드표시제한 ]			
+				select * from 테이블명 limit 레코드수
+				select * from 테이블명 limit 시작레코드번호[0~] , 레코드수 
+				- select * from member limit 3			: 3개 레코드
+				- select * from member limit 2 , 5			: 3번째 레코드부터 5개 레코드 
+			[ ----- 작성순서 ]
+				select * from 테이블명 where 조건절 order by 정렬필드 정렬기준 limit 레코드수 
+
+			[ 조인 JOIN ]
+				* 두 테이블 1개 필드 이상의 값이 동일한 존재!! [ *대부분 PK-FK 관계 ]
+				1. 조건 JOIN [ 교집합 ]
+					select * from 테이블명A , 테이블명B where 테이블명A.필드명 = 테이블명B.필드명 
+					select * from 테이블명A  a , 테이블명B b where a.필드명 = b.필드명 
+				2. 자연 조인 [ 교집합 ]
+					select * from 테이블명A  a natual join 테이블명B b 
+				 
+		3. update
+			update 테이블명 set 수정할필드명 = 수정할값 where 조건 
+		4. delete 
+			delete from 테이블명 where 조건 
+	-DCL	데이터베이스 제어어
+		1. grant
+		2. revoke
+	-TCL	트랜잭션 제어어
+		1. commit
+		2. rollback 
+---------------------------------------------------------------------------------------------------------
+ 	< 데이터 필드 타입 > 
+	- 정수
+		tinyint 		[1]	: -128~127
+		smallint		[2]	: +-3만정도
+		mediumint	[3]	: +-8백만정도
+		int		[4]	: +-21억정도
+		bigint		[8]	: +-21억이상 
+	- 실수
+		float		[4]	: 소수점 7자리 
+		double		[8]	: 소수점 15자리 
+	- 문자
+		char(길이)	[고정]	: 저장할 데이터의 글자수가 정확히 정해져 있는경우
+		varchar(길이)	[가변]	: 저장할 데이터의 글자수가 정확하지 않을때
+	- 대용량 문자 
+		text			: 1~65535
+		mediumtext		: 1~16000000
+		longtext		[4G] 
+	- 날짜
+		date			: YYYY-MM-DD   YYYY.MM.DD 형식	[ - , . ] 형식 
+		time			: HH:MM:SS [ : ] 형식 
+		datetime			: YYYY-MM-DD HH:MM:SS
+	- 논리
+		boolean		[1]	: true = 1 / false = 0    <==> tinyint
+---------------------------------------------------------------------------------------------------------
+	<제약조건>
+	- pk
+		primary key( pk사용할필드명 )
+	- fk
+		foreign key( fk사용할필드명 ) references pk테이블명(pk필드명) [선택옵션]
+		[선택옵션]
+			on delete/update cascade	: PK필드의 값이 삭제/수정 되었을때 FK필드 같이 삭제/수정
+			on delete/update restrict	: (기본값) PK필드의 값이 삭제/수정 되었을때 FK필드의 값이 존재하면 불가능 
+			on delete/update no action	: 아무런 변화 없음 
+			on delete/update set null	: PK필드의 값이 삭제/수정 되었을때 FK필드을 특정 값[NULL]으로 수정			
+	- auto_increment
+		필드명 타입  auto_increment	* [PK필드에서만 사용가능]
+	- not null 해당 필드의 null 대입 금지 
+		필드명 타입 not null
+	- unique 해당 필드의 중복값 대입 금지 
+		필드명 타입 unique
+	- default 레코드 삽입시 필드의 값이 없으면 기본값 대입 *[삽입할 필드의 값이 있으면 해당 값 대입]
+		필드명 타입 default 값 
+---------------------------------------------------------------------------------------------------------
+	<연산자>
+		1. 산술	+더하기	-빼기 *곱하기 /나누기 div몫 mod나머지
+		2. 비교	=같다 !=같지않다. >초과 <미만 >=이상 <=이하
+		3. 논리	and이면서 or이거나 not부정
+		4. 기타 
+			필드명 between 시작값 and 끝값 
+			필드명 in( 값1 , 값2 , 값3 )
+			필드명 like '%값%'			% : 모든 문자 수 대응 	
+			필드명 like '_값_'			_ : _ 개수만큼 문자 수 대응 
+			필드명 is null			null 이면 		[* 필드명 = null 사용 불가 ]
+			필드명 not null			null 아니면 
+---------------------------------------------------------------------------------------------------------
+	<기타기워드>
+		1. 별칭 : 검색결과나 연산시 테이블명/필드명 에 별명
+			필드명 as 별칭명	 , 테이블명 as 별칭명
+			필드명 별칭명 	 , 테이블명 별칭명 
+		2. distinct : 필드의 값 중복 제거 
+			select distinct 필드명 from 테이블명 
+---------------------------------------------------------------------------------------------------------
+	<함수>
+		1. 날짜,시간 관련 함수 
+			- 현재 날짜,시간 반환 함수
+				1. now()		: 현재 시스템[DB서버의PC]의 날짜/시간 반환 
+				2. curdate()	: 현재 시스템[DB서버의PC]의 날짜 반환  
+				3. curtime()	: 현재 시스템[DB서버의PC]의 시간 반환  
+			- 추출 함수
+				1. year(날짜) 	: 해당 날짜의 연도
+				2. month(날짜) 	: 해당 날짜의 월 
+				3. day(날짜) 	: 해당 날짜의 일 
+				4. weekday( 날짜 ) 	: 해당 날짜의 요일[ 월=0 ~ 일=6 ]
+				5. last_day(날짜)	: 해당 월의 마지막 날짜 
+				6. hour(시간) 	: 해당 시간의 시
+				7. minute(시간)	: 해당 시간의 분 
+				8. second(시간) 	: 해당 시간의 초
+			- 정의 함수 
+				1. date('YYYY-MM-DD')
+				2. time('HH:MM:SS')
+			- 형식 함수 
+				1. date_format( 날짜/시간 , '형식')
+				* 형식
+					- 날짜형식 : %y 년도2자리 %Y 년도4자리 %m 월2자리 %c 월1자리 %M 월[영문] %d 일2자리 %D 일[서수] %e 일1자리 %W 요일[영문] %a 요일[영문약자]
+					- 시간형식 : %H 시2자리 %i 분2자리 %S 초2자리
+
+		2. 집계함수
+			1. sum(필드명) 		: 해당 필드의 값 총합계 
+			2. avg(필드명) 		: 해당 필드의 값 평균 
+			3. max(필드명) 		: 해당 필드의 최댓값
+			4. min(필드명) 		: 해당 필드의 최솟값
+			5. count(필드명) 		: 해당 필드의 레코드 수  [ null 제외 ]
+			6. count(*)		: 해당 필드의 레코드 수  [ null 포함 ]
+
+		3. 수학삼각함수
+			1. abs( 필드/값 )		 	: 절대값 
+			2. ceil( 필드/값 ) 			: 무조건 올림
+			3. floor( 필드/값 )		 	: 무조건 내림
+			4. round( 필드/값 ) 		: 반올림 [ 5이상 ]
+			5. round( 필드/값 , [표시할자릿수] ) 	: 반올림 [ 5이상 ]
+			6. truncate( 필드/값 , [표시할자릿수] ) 	: 자르기
+			7. pow( 값 , 승 )			: 제곱 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
