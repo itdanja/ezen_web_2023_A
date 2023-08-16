@@ -28,7 +28,7 @@ public class MainPage {
 				if( ch == 4 ) { findByPw(); }
 				
 			}catch( Exception e ) {
-				System.out.println("경고] 잘못된 입력입니다. ");
+				System.out.println("경고] 잘못된 입력입니다. " + e);
 				sc = new Scanner(System.in); // 입력객체의 메모리를 새롭게 만들어주기 
 				// 왜? 초기화 안하면 입력된 값이 객체내 계속있기때문에 오류 계속 발생 // 객체내 입력값 지우기 => 객체 새로 만들기 
 			} // c end
