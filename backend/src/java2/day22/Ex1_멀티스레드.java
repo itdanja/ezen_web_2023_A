@@ -26,8 +26,8 @@ public class Ex1_멀티스레드 {
 			catch (Exception e) {System.out.println(e);}
 		}
 		// ---------------------------- -- --- ---------------------------- // 
-		System.out.println("멀티스레드 시작");
-		// ---------------------------- 멀티 스레드 ---------------------------- // 
+		System.out.println("멀티스레드 시작 [익명구현체] ");
+		// ---------------------------- 1. 멀티 스레드 [익명구현체] ---------------------------- // 
 		// 1. [main스레드가 작업스레드 생성] main스레드외 작업스레드 객체 만들기 
 		Thread thread = new Thread( new Runnable() {
 			@Override
@@ -50,8 +50,35 @@ public class Ex1_멀티스레드 {
 			catch (Exception e) {System.out.println(e);}
 		}
 		// ---------------------------- -- --- ---------------------------- // 
+		System.out.println("멀티스레드 시작 [구현체] ");
+		// ---------------------------- 2. 멀티 스레드 [구현체] ---------------------------- // 
+		비프음 비프음 = new 비프음(); // Runnable인터페이스 구현한 객체 [ 구현체 ]
+		Thread thread2 = new Thread( 비프음 ); // Runnable구현체를 Thread객체에게 전달
+		thread2.start();	// Thread 클래스에 start()실행시 run메소드 실행 
 		
+		// 3. main 스레드 작업
+		for( int i = 0 ; i<5 ; i++ ) {
+			System.out.println("띵");
+			try { Thread.sleep(500); }
+			catch (Exception e) {System.out.println(e);}
+		}
 		
+		// ---------------------------- -- --- ---------------------------- // 
+		System.out.println("멀티스레드 시작 [ Thread 자식 클래스 ] ");
+		// ---------------------------- 3. 멀티 스레드 [구현체] ---------------------------- // 
+		비프음2 비프음2 = new 비프음2();	// Thread 자식객체 생성
+		비프음2.start(); // run메소드 실행 
+		
+		// 3. main 스레드 작업
+		for( int i = 0 ; i<5 ; i++ ) {
+			System.out.println("띵");
+			try { Thread.sleep(500); }
+			catch (Exception e) {System.out.println(e);}
+		}
+		// ---------------------------- -- --- ---------------------------- // 
+		System.out.println("멀티스레드 시작 [ Thread 자식 클래스 ] ");
+		
+		비프음2 비프음3 = new 비프음2() { public void run() { } };
 		
 	} // main e 
 } // class e
@@ -77,8 +104,26 @@ public class Ex1_멀티스레드 {
 		3. 
 			싱글스레드: main메소드만 사용하는 경우 [*메인스레드가 종료되면 프로세스 종료 ]
 			멀티스레드: main메소드에 새로운 작업스레드를 생성하는 경우 [*모든스레드가 종료되면 프로세스 종료]
-		4. 스레드 생성 
-			Thread 클래스 
+		4. 작업 스레드 생성 
+			1. Thread 클래스로 직접 생성 
+				1. Thread 변수명 = new Thread( Runnable구현객체 );
+				- start() : run메소드 호출
+		
+		5.
+			Runnable : 스레드가 작업을 실행할때 사용하는 인터페이스 
+				- run() : [추상메소드] 작업스레드 실행 코드 정의
+				
+		6. 익명[이름없는]객체
+			익명객체
+				클래스명 클래스 = new 클래스명(){ 오버라이딩메소드 }
+					비프음2 비프음3 = new 비프음2() { public void run() { } };
+			익명구현객체
+				클래스명 클래스 = new 클래스명( new 인터페이스명(){ 오버라이딩메소드 } )
+					Thread thread = new Thread( new Runnable() { } ); 
+			
+				
+				
+				
  */
 
 
