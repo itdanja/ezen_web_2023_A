@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.visitwrap{
+	width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.visitwritebox { display: flex;     margin: 50px 0px; }
+
+.visitwritebox input{
+	width: 100px;
+    padding: 5px;
+    border: 1px solid #E8E8E8;
+}
+.visitwritebox textarea{
+	width: 100%;
+    padding: 5px;
+    border: 1px solid #E8E8E8;
+    resize: none;
+}
+.visitwritebox button {
+	width: 80px;
+    background-color: black;
+    color : white;
+    border: none;
+}
+.visitbox{
+	display: flex;
+	border-top: 1px solid #e8e8e8;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+.visitbox > :nth-child(1){ width: 20%; }
+.visitbox > :nth-child(2){ width: 60%; margin: 0% 3%; }
+.visitbox > :nth-child(3){ width: 15%;}
+
+.visitbox > :nth-child(1) > :nth-child(2){ font-size: 8px;}
+
+
+.visitbox > :nth-child(3) > button {
+	width: 100%;
+	background-color: black;
+    color : white;
+    border: none;
+}
+/*
+	:nth-child(N)= 부모안에 모든 요소 중 N번째 요소
+	A:nth-of-type(N)= 부모안에 A라는 요소 중 N번째 요소
+	
+	띄어쓰기
+	>
+*/
+
+
+    
+
