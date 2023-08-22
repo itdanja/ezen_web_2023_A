@@ -17,7 +17,7 @@
 		<div> <!-- 쓰기 구역  -->
 			<input class="vwriter" 	type="text" placeholder="작성자">
 			<input class="vpwd" 	type="text" placeholder="비밀번호">
-			<textarea class="vcontent"></textarea>
+			<textarea class="vcontent" placeholder="방문록내용"></textarea>
 			<button onclick="vwrite()" type="button">등록</button>
 		</div>
 	

@@ -21,26 +21,40 @@ function vwrite() {
 		url : "/jspweb/VisitLogController",
 		method : "post",
 		data : info ,
-		success : function f( r ){ console.log( r ); } ,
+		success : function f( r ){ console.log( r ); 
+			if( r == true ){ 
+				alert('등록성공');  vread();
+				// 등록 성공시 HTML에서 작성한 INPUT 내용들 공백으로 초기화
+				vwriterInput.value = '';  vpwdInput.value = '';  vcontentInput.value = '';
+			}
+			else{ alert('등록실패');}
+		} ,
 		error : function f(r){}
 	})
 		// 5. 결과에 따른 코드 
 		
 } // f e
 
-// 1. Read ( 호출 ) : 방문록 호출 함수 = vread
-function vread() {
-	
+// 2. Read ( 호출 ) : 방문록 호출 함수 = vread
+vread(); // JS 열릴때 1번 실행
+function vread() { // 실행조건 : JS 열릴때 1번 실행 , 등록성공했을때 , 수정성공했을때 , 삭제성공했을때 => 최신화[화면 새로고침]
+	$.ajax({
+		url : "http://localhost/jspweb/VisitLogController" , 
+		method : "get" ,
+		data : "" ,
+		success : function f(r){ console.log(r); },
+		error : function f(r){}
+	})
 } // f e
 
 
-// 1. update ( 수정 ) : 방문록 수정 함수 = vupdate
+// 3. update ( 수정 ) : 방문록 수정 함수 = vupdate
 function vupdate() {
 	
 } // f e 
 
 
-// 1. delete ( 삭제 ) : 방문록 삭제 함수 = vdelete
+// 4. delete ( 삭제 ) : 방문록 삭제 함수 = vdelete
 function vdelete() {
 	
 } // f e 
