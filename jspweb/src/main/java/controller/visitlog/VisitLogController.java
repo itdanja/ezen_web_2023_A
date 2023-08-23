@@ -54,12 +54,68 @@ public class VisitLogController extends HttpServlet {
 		response.getWriter().print( jsonArray );
 	}
 	// 3. 수정 
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		// 1. AJAX data 데이터 요청한다.
+			// request.getParameter("속성명"); String 반환
+		int vno = Integer.parseInt( request.getParameter("vno") ) ;	System.out.println( "vno : " + vno );
+		String vcontent = request.getParameter("vcontent");			System.out.println( "vcontent : " + vcontent );
+		String vpwd = request.getParameter("vpwd");					System.out.println( "vpwd : " + vpwd );
+			
+		// 2. (데이터 많으면)객체화
+		// 3. Dao 에게 전달후 SQL결과를 받는다.
+		boolean result = VisitDao.getInstance().vupdate(vno, vcontent, vpwd);
+		// 4. 결과를 AJAX에게 전달한다.
+		response.setContentType("application/json; charset=UTF-8");
+		response.getWriter().print(result);
 		
 	}
 	// 4. 삭제
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. AJAX data 데이터 요청한다.
+		int vno = Integer.parseInt( request.getParameter("vno") ) ;		System.out.println( "vno : " + vno );
+		String vpwd = request.getParameter("vpwd");						System.out.println( "vpwd : " + vpwd );
 		
+		// 2. (데이터 많으면)객체화
+		// 3. Dao 에게 전달후 SQL결과를 받는다.
+		boolean result = VisitDao.getInstance().vdelete(vno, vpwd);
+		// 4. 결과를 AJAX에게 전달한다.
+		response.setContentType("application/json; charset=UTF-8");
+		response.getWriter().print(result);
 	}
+	
+	/* 
+	 	- HTTP서블릿클래스는 기본적으로 get,post,put,delete 함수 제공 
+	 	- 기본 톰캣서버는 get,post만 매개변수(데이터) 전달 가능 
+	 	- put,delete 함수도 매개변수 전달 가능하도록 설정 [ 서버마다 설정]
+	 	server.xml [ Source ]
+	 		63줄 쯤 원본 코드
+	 			<Connector connectionTimeout="20000" maxParameterCount="1000" port="80" protocol="HTTP/1.1" redirectPort="8443"/>
+	 		put,delete에도 매개변수 전달가능하도록 코드 설정 [ parseBodyMethods="POST,PUT,DELETE" URIEncoding="UTF-8" 추가 ]
+	 			<Connector connectionTimeout="20000" port="80" protocol="HTTP/1.1" redirectPort="8443" parseBodyMethods="POST,PUT,DELETE" URIEncoding="UTF-8"/>
+	 			
+	 */
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
