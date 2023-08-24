@@ -5,7 +5,7 @@
 
 /*
 	정규표현식 : 문자열에 특정 규칙/패턴 집합 표현할때 사용되는 언어
-		문법
+		패턴 문법
 			/^		: 정규표현식 시작 알림.
 			$/		: 정규표현식 끝 알림.
 			[a-z] 	: 소문자 a-z 패턴 
@@ -30,13 +30,31 @@
 function idcheck(){ /* 실행조건 : 아이디 입력창에 입력할때마다 */
 	// 1. 값 호출 
 	let mid = document.querySelector('.mid').value; 
+	let idcheckbox = document.querySelector('.idcheckbox');
 	// 2. 유효성검사 
 		// 제어문 이용한 검사 if( mid.length < 5 && mid.length >= 30  ) { }
 		// 1. 아이디는 영문(소문자)+숫자 조합의 5~30글자 사이 이면
 			// 1. 정규표현식 작성.
 		let midj = /^[a-z0-9]{5,30}$/
-			// 2. 정규표현식 검사.
-		console.log( midj.test( mid ) )
+			// 2. 정규표현식 검사. 
+			console.log( midj.test( mid ) )
+			console.log( mid )
+		if( midj.test(mid) ){ // 입력한 값이 패턴과 일치하면
+			// -- [ 아이디중복검사 ]입력한 아이디가 패턴과 일치하면
+			$.ajax({
+				url : "/jspweb/MemberFindController" ,
+				method : "get" ,
+				data : { mid : mid },
+				success : r => { 
+					if( r ){  idcheckbox.innerHTML = '사용중인 아이디 입니다.' }
+					else { idcheckbox.innerHTML = '사용가능한 아이디 입니다.' } 
+				} ,
+				error : e => { }
+			})
+			
+		}else{ // 입력한 값이 패턴과 일치하지 않으면
+			idcheckbox.innerHTML ='영문(소문자)+숫자 조합의 5~30글자 가능합니다.';
+		}
 	// 3. 결과 출력 
 }
 

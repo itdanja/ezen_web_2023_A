@@ -30,8 +30,18 @@ public class MemberDao extends Dao {
 	
 	// 5. 내정보 호출 
 	
-	// 6. 아이디/이메일 중복검사
-	
+	// 6. 아이디 중복검사 [ 인수 : 검사할아이디 / 반환 : true(중복있어) , false(중복없어) 
+	public boolean findId( String mid ) {
+		try {
+			String sql = "select * from member where mid = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , mid );
+			rs = ps.executeQuery();
+			// [ while : 결과 레코드 여러개 검사 vs if : 결과 레코드 한개 검사 ]
+			if( rs.next() ) return true;
+		}catch (Exception e) {System.out.println(e);}
+		return false;
+	}
 	// 7. 회원수정
 	
 	// 8. 회원탈퇴
@@ -39,3 +49,19 @@ public class MemberDao extends Dao {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
