@@ -11,3 +11,12 @@ create table visitlog(
     vdate		datetime default now() , 	-- (방문록 작성일/시간 ) , 생략시 자동날짜/시간 등록 
     primary key( vno )
 );
+drop table if exists member;
+create table member(
+	mno int auto_increment ,				-- 식별번호( 회원번호 ) , 자동번호 부여 
+    mid varchar(50) not null unique ,		-- ( 회원아이디 ) , 공백불가능 , 중복불가능  
+    mpwd varchar(20) not null , 			-- ( 회원비밀번호 ) , 공백불가능  
+    memail varchar(50) not null unique ,	-- ( 회원이메일 )  , 공백불가능  
+    mimg longtext ,							-- ( 회원 프로필의 이미지사진 이름 ) , 공백가능 
+    primary key( mno )
+);

@@ -14,7 +14,7 @@
 	<%@include file = "../header.jsp" %>
 
 	<div> <!-- 회원가입 전체 구역  -->
-		아이디 : <input class="mid" type="text" /> <br/>
+		아이디 : <input onkeydown="idcheck() " class="mid" type="text" /> <br/>
 		비밀번호 : <input class="mpwd" type="password" /> <br/>
 		비밀번호 확인 : <input class="mpwdconfirm" type="password" /> <br/>
 		이메일 : <input class="memail" type="text" /> <br/>
