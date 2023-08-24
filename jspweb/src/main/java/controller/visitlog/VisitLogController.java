@@ -21,7 +21,7 @@ public class VisitLogController extends HttpServlet {
     public VisitLogController() {   super(); }
 
     // 1. 저장 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. AJAX의 data속성에 있는 객체 정보(속성명이용) 를 요청 하기 
 		//request.getParameter("객체의속성명");
 		String vwriter = request.getParameter("vwriter");	System.out.println( "vwriter : " + vwriter);

@@ -8,7 +8,7 @@ public class Ex1_제한된타입파라미터 {
 		// - 매개변수 타입 확인 
 		System.out.println( t1.getClass().getSimpleName() );
 		System.out.println( t2.getClass().getSimpleName() );
-		-
+		
 		double v1 = t1.doubleValue();	System.out.println( v1 );
 		double v2 = t2.doubleValue();	System.out.println( v2 );
 	

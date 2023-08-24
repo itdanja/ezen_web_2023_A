@@ -11,6 +11,9 @@
 	
 </head>
 <body>
+
+	<%@include file ="../header.jsp" %>
+	
 	<!-- CRUD 기반의 비회원 게시판/방문록 구현 -->
 	<div class="visitwrap" > <!-- 전체구역 -->
 	
@@ -28,8 +31,6 @@
 		</div>
 	</div>
 	
-	<!-- 최신 JQUERY import ( ajax() 사용할 js파일부터 위에서 호출)  -->
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- js import -->
 	<script src="visitlog.js" type="text/javascript"></script>
 	
