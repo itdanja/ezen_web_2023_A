@@ -3,7 +3,9 @@ package java2.day26_컬렉션프레임워크.Ex1_ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ex1_예제1 {
+import java2.day26_컬렉션프레임워크.Board;
+
+public class Ex1_예제 {
 	
 	public static void main(String[] args) {
 		
@@ -37,6 +39,29 @@ public class Ex1_예제1 {
 		System.out.println("---------- 3 contains() : " + list.contains( board2 ) );
 		System.out.println("---------- 3 isEmpty() : " + list.isEmpty() );
 		
+			// 리스트와 반복문 활용 : 여러개 데이터를 순차적으로 순회 하는 방법
+			// 1. for문 [ i를 인덱스로 활용해서 사용 ] 
+			System.out.println("\n =================== 1. for문  ====================== \n ");
+			for( int i = 0 ; i<list.size() ; i++ ) {  				// for( int i = 0 ; i<배열명.length ; i++ ) {
+				System.out.print(" 인덱스 : "+i+" " + list.get(i) );
+			}
+			System.out.println("\n ========================================= \n ");
+				
+			// 2. 향상된 for 
+			System.out.println("\n =================== 2. 향상된 for 문  ====================== \n ");
+			int index = 0; // 인덱스로 사용할 변수 선언 
+			for( Board b : list ) { // 리스트내 객체를 자동으로 처음부터 끝까지 반복변수에 하나씩 대입하면 반복
+				System.out.println(" 인덱스 : "+index+" " + b );
+				index++; // 인덱스 증가.
+			}
+			System.out.println("\n ========================================= \n ");
+			
+			// 3. .forEach( 반복변수명 -> { 실행코드 } )  // 화살표함수 : java[ 매개변수 -> { 실행코드 } ] , js[ 매개변수 => { 실행코드 } ]
+				// 리스트내 객체를 자동으로 처음부터 끝까지 매개변수 b에 하나씩 대입하고 { } 실행 
+			System.out.println("\n =================== 3. .forEach( )  ====================== \n ");
+			list.forEach( b -> { System.out.println( b );} );
+			System.out.println("\n ========================================= \n ");
+		
 		// 4. ArrayList 객체 안에 특정 객체 삭제 
 			// 리스트객체명.remove( 인덱스 ) 	: 리스트내 해당 인덱스 위치에 객체 삭제 / 1칸씩 당겨짐 
 			// 리스트객체명.remove( 객체 ) 		: 리스트내 해당 객체가 존재하면 삭제 
@@ -46,7 +71,6 @@ public class Ex1_예제1 {
 		System.out.println("---------- 4 remove() : " + list );	 
 		list.clear();
 		System.out.println("---------- 4 clear() : " + list );	 
-		
 		
 	}
 }
