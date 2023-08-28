@@ -8,7 +8,7 @@
 
 	<link href="../css/member.css" rel="stylesheet">
 
-</head>
+</head> 
 <body>
 
 	<%@include file = "../header.jsp" %>
@@ -18,8 +18,12 @@
 		<span class="idcheckbox"></span>
 		<br/>
 		
-		비밀번호 : <input class="mpwd" type="password" /> <br/>
-		비밀번호 확인 : <input class="mpwdconfirm" type="password" /> <br/>
+		비밀번호 : <input onkeyup="pwcheck()" class="mpwd" type="password" /> <br/>
+		비밀번호 확인 : <input onkeyup="pwcheck()"  class="mpwdconfirm" type="password" />
+		
+		<span class="pwcheckbox"></span>
+		<br/>
+		
 		이메일 : <input class="memail" type="text" /> <br/>
 		이메일 인증코드 : <input class="ecode" type="text" /> <br/>
 		프로필 : 	<input class="mimg" type="file" /> <br/>
