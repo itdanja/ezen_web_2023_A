@@ -156,15 +156,20 @@ function authReq(){ console.log('인증요청');
 	// 2. auth html 구성 
 	let html = `<span class="timebox">02:00</span>
 				<input class="ecode" type="text" /> 
-				<button type="button">인증</button> `
+				<button onclick="auth()" type="button">인증</button> `
 	// 3. auth html 대입 
 	authbox.innerHTML = html;
 	// 4. 타이머 실행
-	timer = 10;
-	settimer();
+	authcode = '1234';  // [ 테스트용 ] 임의로 인증 코드를 '1234'
+	timer = 10; 		// [ 테스트용 ] 인증 제한시간 10초 
+	settimer();			// 타이머 실행 
 } // f end 
-let timer = 0; // 인증 시간(초) 변수 
-let timerInter; // setInterval() 함수를 가지고 있는 변수 [ setInterval 종료시 필요. ]
+
+// 4번,5번,6번 함수에서 공통적으로 사용할 변수[전역변수]
+let authcode = ''; 	// 인증코드 
+let timer = 0; 		// 인증 시간(초) 변수 
+let timerInter; 	// setInterval() 함수를 가지고 있는 변수 [ setInterval 종료시 필요. ]
+
 // 5. 타이머 함수 만들기 
 function settimer(){
 	timerInter = setInterval( () => {
@@ -189,21 +194,22 @@ function settimer(){
 			document.querySelector('.authbox').innerHTML=``;
 		}
 	} , 1000 ); // 1초에 한번씩 실행되는 함수
-}
+} // f end 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 6. 인증요청후 인증코드를 입력하고 인증하는 함수
+function auth(){ console.log('auth() open')
+	// 1. 입력받은 인증코드
+	let ecode = document.querySelector('.ecode').value;
+	// 2. 비교[ 인증코드 와 입력받은 인증코드 ]
+	if( authcode == ecode ){
+		clearInterval( timerInter ); // 1. setInterval 종료
+		document.querySelector('.emailcheckbox').innerHTML =`인증성공`; // 2. 인증성공 알림
+		document.querySelector('.authbox').innerHTML=``; // 3. authbox 구역 HTML 초기화 
+	}else{
+		// 1. 인증코드 불일치 알림
+		document.querySelector('.emailcheckbox').innerHTML =`인증코드 불일치`;
+	}
+} // f end 
 
 
 

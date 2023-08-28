@@ -25,7 +25,9 @@
 		<br/>
 		
 		이메일 : <input onkeyup="emailcheck()" class="memail" type="text" /> 
-		<button class="authReqBtn" onclick="authReq()" disabled type="button">인증요청</button> <br/>
+		<!-- 이메일 인증요청 버튼 -> 유효성검사 통과시 사용가능 -->
+		<button disabled class="authReqBtn" onclick="authReq()"  type="button">인증요청</button> <br/>
+		
 		<div class="authbox">
 			<!-- 인증요청 버튼 클릭시 보이는 구역  -->
 		</div>
