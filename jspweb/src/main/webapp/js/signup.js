@@ -43,6 +43,14 @@
 			1. 	/^[a-z0-9]{5,30}$/								: 영문(소) + 숫자 조합 5~30글자 패턴
 			2. 	/^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{5,20}$/	: 영대소문자(1개이상필수) + 숫자(1개이상필수) 조합 5~20글자 패턴 
 				/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,20}$/
+			3.  /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z]+$/	: 패턴@패턴.패턴
+					// itdanja@kakao.com
+					// 1. itdanja  	: 이메일 아이디부분 은 영대소문자 , 숫자 , _- 패턴 
+					// 2. @ 		: +@   @ 앞에 패턴이 1개이상 필수 
+					// 3. 도메인
+						// 회사명		: @ 뒤에 그리고 . 앞에 패턴은 a-zA-Z0-9_-
+						// .		: +\. : . 앞에 패턴이 1개이상 필수 
+						// 도메인		: . 뒤에 패턴은 a-zA-Z
 			
 		패턴 검사 
 			"패턴".test( 검사할데이터 )	: 해당 데이터가 패턴에 일치하면 true / 아니면 false
@@ -65,7 +73,7 @@ function idcheck(){ /* 실행조건 : 아이디 입력창에 입력할때마다 
 			$.ajax({
 				url : "/jspweb/MemberFindController" ,
 				method : "get" ,
-				data : { mid : mid },
+				data : { type : "mid" , data : mid },
 				success : r => { 
 					if( r ){  idcheckbox.innerHTML = '사용중인 아이디 입니다.' }
 					else { idcheckbox.innerHTML = '사용가능한 아이디 입니다.' } 
@@ -106,6 +114,49 @@ function pwcheck(){	console.log('패스워드 입력중');
 			pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`
 		}
 } // f end 
+
+// 3. 이메일 유효성검사 [ 1. 정규표현식 2. 중복검사 ]
+function emailcheck(){
+	let emailcheckbox = document.querySelector('.emailcheckbox');
+	// 1. 입력된 값 호출 
+	let memail = document.querySelector('.memail').value 
+	// 2. 이메일 정규표현식 [  영대소문자,숫자,_-  @  ]
+	let memailj = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z]+$/
+	// 3. 유효성검사 
+	if( memailj.test( memail) ) {
+		$.ajax({
+			url : "/jspweb/MemberFindController" , 
+			method : "get" , 
+			// *type 사용하는 이유 : 서로 다른 ajax가 동일한 서블릿과 동일한 get메소드 사용할때.
+			data :  { type : "memail" , data : memail }, // : 이메일 중복검사
+			// data :  { type : "mid" , data : mid }, : 아이디 중복검사  
+			success : r => {  
+				if( r ){
+					emailcheckbox.innerHTML =`사용중인 이메일입니다.`;
+				}else{
+					emailcheckbox.innerHTML =`사용가능한 이메일입니다.`;
+				}
+			} ,
+			error : r => { console.log(r); } 
+		})
+	}else{
+		emailcheckbox.innerHTML = `이메일형식에 맞게 입력해주세요.`;
+	}
+} // f end 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // -- . 회원가입 메소드
