@@ -13,18 +13,18 @@
 
 	<%@include file = "../header.jsp" %>
 
-	<div> <!-- 회원가입 전체 구역  -->
-		아이디 : <input onkeyup="idcheck() " class="mid" type="text" /> 
+	<form class="signupForm"> <!-- 회원가입 전체 구역  -->
+		아이디 : <input onkeyup="idcheck() " name="mid" class="mid" type="text" /> 
 		<span class="idcheckbox"></span>
 		<br/>
 		
-		비밀번호 : <input onkeyup="pwcheck()" class="mpwd" type="password" /> <br/>
+		비밀번호 : <input onkeyup="pwcheck()" name="mpwd" class="mpwd" type="password" /> <br/>
 		비밀번호 확인 : <input onkeyup="pwcheck()"  class="mpwdconfirm" type="password" />
 		
 		<span class="pwcheckbox"></span>
 		<br/>
 		
-		이메일 : <input onkeyup="emailcheck()" class="memail" type="text" /> 
+		이메일 : <input onkeyup="emailcheck()" name="memail" class="memail" type="text" /> 
 		<!-- 이메일 인증요청 버튼 -> 유효성검사 통과시 사용가능 -->
 		<button disabled class="authReqBtn" onclick="authReq()"  type="button">인증요청</button> <br/>
 		
@@ -34,9 +34,17 @@
 		
 		<span class="emailcheckbox"></span> <br/>
 		
-		프로필 : 	<input class="mimg" type="file" /> <br/>
+		<div class="pimgbox">
+			<input onchange="premimg(this)" type="file" name="mimg"	 		class="mimg">		
+			<img class="premimg" alt="" src="/jspweb/img/member/default.webp">
+		</div>
+		
+		<div class="signupbox">
+		
+		</div>
+		
 		<button onclick="signup()" type="button">회원가입</button>
-	</div>
+	</form>
 	
 	<script src="../js/signup.js" type="text/javascript"> </script>
 	

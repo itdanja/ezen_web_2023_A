@@ -55,6 +55,9 @@
 		패턴 검사 
 			"패턴".test( 검사할데이터 )	: 해당 데이터가 패턴에 일치하면 true / 아니면 false
 */
+
+let checkCount = [ false , false , false ];
+
 // 1. 아이디 유효성검사.
 function idcheck(){ /* 실행조건 : 아이디 입력창에 입력할때마다 */
 	// 1. 값 호출 
@@ -75,13 +78,13 @@ function idcheck(){ /* 실행조건 : 아이디 입력창에 입력할때마다 
 				method : "get" ,
 				data : { type : "mid" , data : mid },
 				success : r => { 
-					if( r ){  idcheckbox.innerHTML = '사용중인 아이디 입니다.' }
-					else { idcheckbox.innerHTML = '사용가능한 아이디 입니다.' } 
+					if( r ){  idcheckbox.innerHTML = '사용중인 아이디 입니다.'; checkCount[0] = false; }
+					else { idcheckbox.innerHTML = '사용가능한 아이디 입니다.'; checkCount[0] = true; } 
 				} ,
 				error : e => { }
 			})
 		}else{ // 입력한 값이 패턴과 일치하지 않으면
-			idcheckbox.innerHTML ='영문(소문자)+숫자 조합의 5~30글자 가능합니다.';
+			idcheckbox.innerHTML ='영문(소문자)+숫자 조합의 5~30글자 가능합니다.';checkCount[0] = false;
 		}
 	// 3. 결과 출력 
 }
@@ -103,15 +106,15 @@ function pwcheck(){	console.log('패스워드 입력중');
 			if( mpwdj.test( mpwdconfirm) ){
 				// 3. 비밀번호 와 비밀번호 확인 일치여부
 				if( mpwd == mpwdconfirm ){
-					pwcheckbox.innerHTML = `사용가능한 비밀번호`;
+					pwcheckbox.innerHTML = `사용가능한 비밀번호`; checkCount[1] = true;
 				}else{
-					pwcheckbox.innerHTML = `비밀번호가 일치하지 않습니다.`;
+					pwcheckbox.innerHTML = `비밀번호가 일치하지 않습니다.`; checkCount[1] = false;
 				}
 			}else{
-				pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`
+				pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`; checkCount[1] = false;
 			}
 		}else{
-			pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`
+			pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`; checkCount[1] = false;
 		}
 } // f end 
 
@@ -135,9 +138,11 @@ function emailcheck(){
 				if( r ){
 					emailcheckbox.innerHTML =`사용중인 이메일입니다.`;
 					authReqBtn.disabled = true; // 해당 버튼의 disabled 속성 적용
+					checkCount[2] = false;
 				}else{
 					emailcheckbox.innerHTML =`사용가능한 이메일입니다.`;
 					authReqBtn.disabled = false; // 해당 버튼의 disabled 속성 해제 
+					checkCount[2] = false;
 				}
 			} ,
 			error : r => { console.log(r); } 
@@ -145,24 +150,49 @@ function emailcheck(){
 	}else{
 		emailcheckbox.innerHTML = `이메일형식에 맞게 입력해주세요.`;
 		authReqBtn.disabled = true; // 해당 버튼의 disabled 속성 적용
+		checkCount[2] = false;
 	}
+	
 } // f end 
 
 // 4. 인증요청 버튼을 눌렀을때.
 function authReq(){ console.log('인증요청');
-	// 1. 'authbox' div 호출 
-	let authbox = document.querySelector('.authbox')
+
 	
-	// 2. auth html 구성 
-	let html = `<span class="timebox">02:00</span>
-				<input class="ecode" type="text" /> 
-				<button onclick="auth()" type="button">인증</button> `
-	// 3. auth html 대입 
-	authbox.innerHTML = html;
+	$.ajax({
+		url : "/jspweb/EmailController" , 
+		method :"get",
+		data : { "memail" : document.querySelector('.memail').value } ,
+		success : (r)=>{ console.log( r );
+		
+			// 1. 'authbox' div 호출 
+			let authbox = document.querySelector('.authbox')
+			
+			// 2. auth html 구성 
+			let html = `<span class="timebox">02:00</span>
+						<input class="ecode" type="text" /> 
+						<button onclick="auth()" type="button">인증</button> `
+			// 3. auth html 대입 
+			authbox.innerHTML = html;
+		
+			// 4. 타이머 실행
+			authcode = r;  // [ 테스트용 ] 임의로 인증 코드를 '1234'
+				
+			timer = 120; 		// [ 테스트용 ] 인증 제한시간 10초 
+			settimer();			// 타이머 실행 
+	
+		} // success end 
+	}) // ajax end 
+
+
 	// 4. 타이머 실행
-	authcode = '1234';  // [ 테스트용 ] 임의로 인증 코드를 '1234'
-	timer = 10; 		// [ 테스트용 ] 인증 제한시간 10초 
-	settimer();			// 타이머 실행 
+	//authcode = '1234';  // [ 테스트용 ] 임의로 인증 코드를 '1234'
+	//timer = 10; 		// [ 테스트용 ] 인증 제한시간 10초 
+	//settimer();			// 타이머 실행 
+	
+	
+	
+
 } // f end 
 
 // 4번,5번,6번 함수에서 공통적으로 사용할 변수[전역변수]
@@ -192,6 +222,7 @@ function settimer(){
 			document.querySelector('.emailcheckbox').innerHTML =`인증실패`;
 			// 3. authbox 구역 HTML 초기화 
 			document.querySelector('.authbox').innerHTML=``;
+			checkCount[2] = false;
 		}
 	} , 1000 ); // 1초에 한번씩 실행되는 함수
 } // f end 
@@ -205,22 +236,75 @@ function auth(){ console.log('auth() open')
 		clearInterval( timerInter ); // 1. setInterval 종료
 		document.querySelector('.emailcheckbox').innerHTML =`인증성공`; // 2. 인증성공 알림
 		document.querySelector('.authbox').innerHTML=``; // 3. authbox 구역 HTML 초기화 
+		checkCount[2] = true;
 	}else{
 		// 1. 인증코드 불일치 알림
 		document.querySelector('.emailcheckbox').innerHTML =`인증코드 불일치`;
+		checkCount[2] = false;
 	}
 } // f end 
 
+// 7.
+function premimg( object ){	//  object : 해당 함수를 실행시킨 태그의 객체
+	console.log( '첨부파일 바뀜'+object );
+	console.log( object.files[0] );	// 현재 이벤트를 실행한 input의 등록한 파일명 호출 
+	// 해당 class의 input 에 등록한 파일명 호출 
+	console.log( document.querySelector('.mimg').files[0] )
+	
+	// 1. JS 파일클래스 선언  
+	let file = new FileReader();	// 파일 읽기 클래스 
+	// 2. 해당 첨부된 파일 읽어오기 ( file.readAsDataURL(첨부파일)  )
+	file.readAsDataURL( object.files[0] )	// 해당 파일 읽어오기   / files[0] : 첨부파일 1개
+	// 3. 읽어온 파일 꺼내기 바이트단위
+	file.onload = (e)=>{ 
+		console.log( e.target.result )	
+		// e.target -> file.onload	: 읽어온 파일 
+		// e.target.result		  	: 읽어온 파일의 바이트 결과 
+		// 4. 이미지 태그의 src 이미지 바이트 대입 
+		document.querySelector('.premimg').src = e.target.result;
+	}
+}
 
 
+// 8.
+function signup(){
 
-
+	if( checkCount[0] &&checkCount[1] && checkCount[2] ){
+			
+	let signupForm = document.querySelectorAll('.signupForm')[0];	// 첫번째 form 가져오기 
+		// 2. form 안에 있는 data 객체 호출  [ js api 클래스 = FormData ]
+	let signupFormData = new FormData( signupForm );
+	
+	$.ajax({ 
+		url : "/jspweb/MemberInfoController" , 
+		method:"post" , 
+		data : signupFormData , 			// FormData 객체 전송 
+		// 첨부파일 있을때 추가되는 속성 
+		contentType : false ,			
+		processData : false , 
+		success : r => { 
+			if( r == true ){
+				document.querySelector('.signupbox').innerHTML = `회원가입이 되셨습니다.`
+			}else{
+				document.querySelector('.signupbox').innerHTML = `회원가입이 실패했습니다.`
+			}
+		} ,
+		error : e => { console.log('통신실패'); }
+	})
+		
+	}else{
+		document.querySelector('.signupbox').innerHTML = `불가능한 정보가 있습니다.`
+	}
+		
+	
+}	
+/*
 // -- . 회원가입 메소드
 function signup(){
+	
 	// 1. HTML에 가져올 데이터의 tag객체 호출 [ DOM객체 : html 태그를 객체화 ]
 	let midInput = document.querySelector('.mid'); 
 	let mpwdInput = document.querySelector('.mpwd'); 
-	let mpwdconfirmInput = document.querySelector('.mpwdconfirm'); 
 	let memailInput = document.querySelector('.memail'); 
 	let mimgInput = document.querySelector('.mimg'); 
 	
@@ -232,28 +316,32 @@ function signup(){
 		mimg : mimgInput.value 
 	}
 	// 3. 유효성검사
-	
-	
-	// 4. AJAX메소드를 이용한 Servlet 와 통신 
+	if( checkCount[0] &&checkCount[1] && checkCount[2] ){
+		
+		// 4. AJAX메소드를 이용한 Servlet 와 통신 
 	$.ajax({ 
 		url : "/jspweb/MemberInfoController" , 
 		method:"post" , 
 		data : info , 
 		success : r => { 
-			
 			if( r == true ){
-				console.log('회원가입 성공');
+				document.querySelector('.signupbox').innerHTML = `회원가입이 되셨습니다.`
 			}else{
-				console.log('회원가입 실패');
+				document.querySelector('.signupbox').innerHTML = `회원가입이 실패했습니다.`
 			}
 			
 		} ,
 		error : e => { console.log('통신실패'); }
 	})
 		// 5. Servlet 의 응답에 따른 제어 
+		
+		
+	}else{
+		document.querySelector('.signupbox').innerHTML = `불가능한 정보가 있습니다.`
+	}
 	
 }
-
+*/
 
 /*
 
