@@ -24,10 +24,13 @@
 		<span class="pwcheckbox"></span>
 		<br/>
 		
-		이메일 : <input onkeyup="emailcheck()" class="memail" type="text" /> <button type="button">인증요청</button> <br/>
-		인증코드 : <input class="ecode" type="text" /> <button type="button">인증</button> <br/>
-		<span class="emailcheckbox"></span>
-		<br/>
+		이메일 : <input onkeyup="emailcheck()" class="memail" type="text" /> 
+		<button class="authReqBtn" onclick="authReq()" disabled type="button">인증요청</button> <br/>
+		<div class="authbox">
+			<!-- 인증요청 버튼 클릭시 보이는 구역  -->
+		</div>
+		
+		<span class="emailcheckbox"></span> <br/>
 		
 		프로필 : 	<input class="mimg" type="file" /> <br/>
 		<button onclick="signup()" type="button">회원가입</button>
