@@ -294,7 +294,7 @@ function signup(){
 					url : "/jspweb/MemberInfoController" , 
 					method: "post" ,			// 첨부파일 form 전송은 무조건 post 방식 
 					data : signupData ,			// FormData 객체를 전송 
-					contentType : false ,
+					contentType : false ,		// form 객체 전송타입 		
 					processData : false ,
 					success : r => { console.log(r) } ,
 					error : e => { console.log(e) } ,
