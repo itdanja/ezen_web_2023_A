@@ -149,20 +149,35 @@ function emailcheck(){
 } // f end 
 
 // 4. 인증요청 버튼을 눌렀을때.
-function authReq(){ console.log('인증요청');
-	// 1. 'authbox' div 호출 
-	let authbox = document.querySelector('.authbox')
+function authReq(){
 	
-	// 2. auth html 구성 
-	let html = `<span class="timebox">02:00</span>
-				<input class="ecode" type="text" /> 
-				<button onclick="auth()" type="button">인증</button> `
-	// 3. auth html 대입 
-	authbox.innerHTML = html;
-	// 4. 타이머 실행
-	authcode = '1234';  // [ 테스트용 ] 임의로 인증 코드를 '1234'
-	timer = 10; 		// [ 테스트용 ] 인증 제한시간 10초 
-	settimer();			// 타이머 실행 
+	// -- 인증요청시 서블릿 통신[ 인증코드 생성 , 이메일전송 ]
+	$.ajax({
+		url : "/jspweb/AuthSendEmailController" , 
+		method : "get" ,
+		data : { memail : document.querySelector('.memail').value } , 
+		success : r => {  console.log( r );
+			
+			// 1. 'authbox' div 호출 
+			let authbox = document.querySelector('.authbox')
+			
+			// 2. auth html 구성 
+			let html = `<span class="timebox">02:00</span>
+						<input class="ecode" type="text" /> 
+						<button onclick="auth()" type="button">인증</button> `
+			// 3. auth html 대입 
+			authbox.innerHTML = html;
+			// 4. 타이머 실행
+			// authcode = "1234" ; 		 // [ 테스트용 ] 임의로 인증 코드를 '1234'
+			authcode = r ;				 // [ 이메일전송 ] Controller(서블릿) 에게 전달받은 값이 인증코드 
+			timer = 120; 		// [ 테스트용 ] 인증 제한시간 10초 
+			settimer();			// 타이머 실행 
+			
+		} ,
+		error : e => { console.log(e); } 
+	})
+
+	
 } // f end 
 
 // 4번,5번,6번 함수에서 공통적으로 사용할 변수[전역변수]
@@ -210,9 +225,6 @@ function auth(){ console.log('auth() open')
 		document.querySelector('.emailcheckbox').innerHTML =`인증코드 불일치`;
 	}
 } // f end 
-
-
-
 
 
 // -- . 회원가입 메소드
