@@ -5,23 +5,43 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<link href="/jspweb/css/index.css" rel="stylesheet">
+
 </head>
 <body>
 
 	<!-- 헤더 -->
-	<div>	
-		<ul>	
-			<li> <a href="/jspweb/index.jsp">홈으로</a> </li>
-			<li> <a href="/jspweb/visitlog/visitlog.jsp">방문록</a> </li>
+	<div class="header">	
+	
+		<div class="mainlogo">
+			<a href="/jspweb/index.jsp">
+				<img  src="/jspweb/img/ezenlogo.png" >
+			</a>
+		</div>
+		<!-- 본메뉴 -->
+		<ul class="mainmenu">
+			<li> <a href="/jspweb/visitlog/visitlog.jsp">방문록</a></li>
+			<li> <a href="#">게시판</a></li>
+			<li> <a href="#">채팅</a></li>
+			<li> <a href="#">제품</a></li>
+			<li> <a href="#">API</a></li>
+			<li> <a href="#">과제1:가계부</a></li>
+			<li> <a href="#">과제2:열람실</a></li>
+		</ul>
+			
+		<ul class="submenu">	
 			<li> <a href="/jspweb/member/signup.jsp">회원가입</a> </li>
-			<li> <a href="#">과제1:가계부</a> </li>
-			<li> <a href="#">과제2:독서관열람실</a> </li>
+			<li> <a href="/jspweb/member/login.jsp">로그인</a> </li>
+			<li> <img src="/jspweb/member/img/default.webp" class="hpimg" ></li>
+			<li> <a href="#">내정보</a> </li>
+			<li> <a href="#">로그아웃</a> </li>
 		</ul>
 	</div>
 	
 	<!-- 최신 JQUERY import ( ajax() 사용할 js파일부터 위에서 호출)  -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+	<script src="/jspweb/js/index.js" type="text/javascript"> </script>
 </body>
 </html>
 
