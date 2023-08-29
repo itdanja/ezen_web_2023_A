@@ -43,7 +43,6 @@ public class MemberInfoController extends HttpServlet {
 		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().print(result);
 		
-		
 	}
 	
 	// 2. 

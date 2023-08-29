@@ -75,13 +75,13 @@ function idcheck(){ /* 실행조건 : 아이디 입력창에 입력할때마다 
 				method : "get" ,
 				data : { type : "mid" , data : mid },
 				success : r => { 
-					if( r ){  idcheckbox.innerHTML = '사용중인 아이디 입니다.' }
-					else { idcheckbox.innerHTML = '사용가능한 아이디 입니다.' } 
+					if( r ){  idcheckbox.innerHTML = '사용중인 아이디 입니다.'; checkList[0] = false; }
+					else { idcheckbox.innerHTML = '사용가능한 아이디 입니다.'; checkList[0] = true; } 
 				} ,
 				error : e => { }
 			})
 		}else{ // 입력한 값이 패턴과 일치하지 않으면
-			idcheckbox.innerHTML ='영문(소문자)+숫자 조합의 5~30글자 가능합니다.';
+			idcheckbox.innerHTML ='영문(소문자)+숫자 조합의 5~30글자 가능합니다.'; checkList[0] = false;
 		}
 	// 3. 결과 출력 
 }
@@ -102,16 +102,16 @@ function pwcheck(){	console.log('패스워드 입력중');
 			// 2.비밀번호 확인 정규표현식 검사 
 			if( mpwdj.test( mpwdconfirm) ){
 				// 3. 비밀번호 와 비밀번호 확인 일치여부
-				if( mpwd == mpwdconfirm ){
-					pwcheckbox.innerHTML = `사용가능한 비밀번호`;
+				if( mpwd == mpwdconfirm ){ 
+					pwcheckbox.innerHTML = `사용가능한 비밀번호`; checkList[1] = true;
 				}else{
-					pwcheckbox.innerHTML = `비밀번호가 일치하지 않습니다.`;
+					pwcheckbox.innerHTML = `비밀번호가 일치하지 않습니다.`; checkList[1] = false;
 				}
 			}else{
-				pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`
+				pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`; checkList[1] = false;
 			}
 		}else{
-			pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`
+			pwcheckbox.innerHTML = `영대소문자1개이상+숫자1개이상 조합 5~20글자 사이로 입력해주세요.`;checkList[1] = false;
 		}
 } // f end 
 
@@ -135,9 +135,11 @@ function emailcheck(){
 				if( r ){
 					emailcheckbox.innerHTML =`사용중인 이메일입니다.`;
 					authReqBtn.disabled = true; // 해당 버튼의 disabled 속성 적용
+					checkList[2] = false;
 				}else{
 					emailcheckbox.innerHTML =`사용가능한 이메일입니다.`;
 					authReqBtn.disabled = false; // 해당 버튼의 disabled 속성 해제 
+					checkList[2] = false;
 				}
 			} ,
 			error : r => { console.log(r); } 
@@ -145,6 +147,7 @@ function emailcheck(){
 	}else{
 		emailcheckbox.innerHTML = `이메일형식에 맞게 입력해주세요.`;
 		authReqBtn.disabled = true; // 해당 버튼의 disabled 속성 적용
+		checkList[2] = false;
 	}
 } // f end 
 
@@ -222,6 +225,7 @@ function settimer(){
 			document.querySelector('.emailcheckbox').innerHTML =`인증실패`;
 			// 3. authbox 구역 HTML 초기화 
 			document.querySelector('.authbox').innerHTML=``;
+			checkList[2] = false;
 		}
 	} , 1000 ); // 1초에 한번씩 실행되는 함수
 } // f end 
@@ -235,9 +239,10 @@ function auth(){ console.log('auth() open')
 		clearInterval( timerInter ); // 1. setInterval 종료
 		document.querySelector('.emailcheckbox').innerHTML =`인증성공`; // 2. 인증성공 알림
 		document.querySelector('.authbox').innerHTML=``; // 3. authbox 구역 HTML 초기화 
+		checkList[2] = true;
 	}else{
 		// 1. 인증코드 불일치 알림
-		document.querySelector('.emailcheckbox').innerHTML =`인증코드 불일치`;
+		document.querySelector('.emailcheckbox').innerHTML =`인증코드 불일치`; checkList[2] = false;
 	}
 } // f end 
 
@@ -265,7 +270,43 @@ function preimg( o ){ console.log('사진 선택 변경');
 } // f end 
 
 
-// -- . 회원가입 메소드
+let checkList = [ false , false , false ] // [0] : 아이디통과여부 , [1] : 패스워드통과여부 , [2] : 이메일통과여부 
+	// true 통과 , false 비통과 
+// 8. 회원가입 메소드 
+function signup(){
+	// 1. 아이디/비밀번호/이메일 유효성검사 통과 여부 체크 
+		console.log( checkList )
+	if( checkList[0] && checkList[1] && checkList[2] ){ // checkList 에 저장된 논리가 모두 true 이면 
+		console.log('회원가입 진행가능');
+		
+		// 2. 입력받은 데이터를 한번에 가져오기 form 태그 이용 
+			// <form> 각종 input/button </from>
+			// 1. form 객체 호출  document.querySelectorAll( 폼태그식별자 )
+			let signupForm = document.querySelectorAll('.signupForm')[0];
+				console.log( signupForm );
+			// 2. form 데이터 객체화
+				// 일반객체로 첨부파일 전송X -> FormData객체 이용시 첨부파일 전송 가능 
+			let signupData = new FormData( signupForm ); // 첨부파일 [ 대용량 ] 시 필수..
+				console.log( signupData );
+			// 3. AJAX 에게 첨부파일[대용량] 전송 하기 
+				// 2. 첨부파일 있을때. [ 기존 json형식의 전송x form객체 전송 타입으로 변환 ]
+				$.ajax({
+					url : "/jspweb/MemberInfoController" , 
+					method: "post" ,			// 첨부파일 form 전송은 무조건 post 방식 
+					data : signupData ,			// FormData 객체를 전송 
+					contentType : false ,
+					processData : false ,
+					success : r => { console.log(r) } ,
+					error : e => { console.log(e) } ,
+				})
+	}else{
+		console.log('회원가입 진행불가능');
+	}
+} // f end 
+
+
+// 0. 유효성검사가 없는 회원가입 메소드
+/*
 function signup(){
 	// 1. HTML에 가져올 데이터의 tag객체 호출 [ DOM객체 : html 태그를 객체화 ]
 	let midInput = document.querySelector('.mid'); 
@@ -303,7 +344,7 @@ function signup(){
 		// 5. Servlet 의 응답에 따른 제어 
 	
 }
-
+*/
 
 /*
 
