@@ -9,11 +9,11 @@ public class Ex3_예제 {
 		// - Integer , String , Double 정렬 기준이 명확( 숫자 ,문자 이므르 )
 		// - 사용자정의 클래스인 MemberDto( 여러개 필드 ) 정렬 기준이 ???????? 명확하지 않음
 		
-		// -. compareTo메소드[ Comparable 인터페이스 로부터 구현] 이용한 정렬 기준 만들기.
+		// - compareTo메소드[ Comparable 인터페이스 로부터 구현] 이용한 정렬 기준 만들기.
 		
 		// 1. Tree
 		TreeSet<Person> treeSet = new TreeSet<>();
-			// Comparable 로 부터 구현된 클래스의 객체만 저장 가능 
+			// TreeSet<> 제네릭에는 Comparable 로 부터 구현된 클래스의 객체만 저장 가능 
 		
 		// 2. 무작위 person 객체 대입 
 		treeSet.add( new Person("홍길동", 45) );
