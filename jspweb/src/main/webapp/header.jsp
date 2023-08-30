@@ -10,7 +10,7 @@
 <body>
 	<!-- 헤더 -->
 	<div id="header">	
-	
+		
 		<div class=mainlogo> <!-- 로고 -->
 			<a href="/jspweb/index.jsp">
 				<img alt="" src="/jspweb/img/ezenlogo.png" />

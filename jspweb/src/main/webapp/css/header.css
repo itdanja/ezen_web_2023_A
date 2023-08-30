@@ -32,24 +32,23 @@ a{ color: black; text-decoration: none; }
 */
 
 /* ------------------------------------------------- */
-
+/* 헤더구역 */
 #header{
 	display: flex; /* 하위요소 가로배치 */
 	align-items: center;	/* 세로 정렬 */
 	justify-content: space-around; /* 가로 정렬 */
 	margin: 20px 0px 50px 0px ; /*바깥여백 */
 }
-
-.mainlogo{ width: 5%; }			/* 로고구역 */
+/* 로고구역 */
+.mainlogo{ width: 5%; }			
 .mainlogo img{ width: 100%; }
-
-.mainmenu{ display: flex; font-size: 20px; }		/* 본메뉴 구역 */
+/* 본메뉴 구역 */
+.mainmenu{ display: flex; font-size: 20px; width: 50%; }		
 .mainmenu li{ margin-right: 20px; }
-
-.submenu{ display: flex;  font-size: 13px; align-items: center;}		/* 서브메뉴  구역 */
+/* 서브메뉴  구역 */
+.submenu{ display: flex;  font-size: 13px; align-items: center;}	
 .submenu li{ margin-right: 10px; }
-
-.hmimg{ /* 회원 프로필 이미지 */
+.hmimg{/* 회원 프로필 이미지 */
 	width: 50px; height: 50px; /* 가로세로 같으면 정사각형 */
 	border: solid 1px #e8e8e8; 
 	border-radius: 50%; /* 둥근모서리 */
