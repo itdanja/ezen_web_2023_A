@@ -52,6 +52,8 @@ a{ color: black; text-decoration: none; }
 	width: 50px; height: 50px; /* 가로세로 같으면 정사각형 */
 	border: solid 1px #e8e8e8; 
 	border-radius: 50%; /* 둥근모서리 */
+	object-fit: cover;
+	
 	
 }
 

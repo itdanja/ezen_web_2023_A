@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.MemberDao;
+import model.dto.MemberDto;
 
 /**
  * Servlet implementation class MemberFindController
@@ -41,6 +42,12 @@ public class MemberFindController extends HttpServlet {
 		// 2. (객체화/유효성검사)
 		// 3. DAO 에게 전달후 결과 받기 
 		boolean result = MemberDao.getInstance().login(mid, mpwd);
+		
+		if( result ) {
+			MemberDto loginDto = MemberDao.getInstance().getInfo(mid);
+			request.getSession().setAttribute( "login" , loginDto );
+		}
+		
 		// 4. 결과를 응답한다.
 		response.setContentType("application/json;charset=utf-8");
 		response.getWriter().print(result); 

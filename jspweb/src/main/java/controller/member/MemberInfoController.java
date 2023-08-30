@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -104,24 +105,62 @@ public class MemberInfoController extends HttpServlet {
 	
 	// 2. 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String type = request.getParameter("type");
+		
+		if( type.equals("info") ) {
+			
+			Object object = request.getSession().getAttribute("login");
+			MemberDto memberDto = null;
+			if( object != null ) {
+				memberDto = (MemberDto)object;
+			}
+			ObjectMapper objectMapper = new ObjectMapper();
+			String json = objectMapper.writeValueAsString( memberDto );
+			
+			response.setContentType("application/json;charset=utf-8");
+			response.getWriter().print(json);
+			
+		}else if (type.equals("logout")) {
+			request.getSession().setAttribute("login" , null);
+		}
+		
+		
 	}
 
-
-
-	/**
-	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
-	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String uploadpath = request.getServletContext().getRealPath("/member/img");
+		// 첨부파일 전송 했을때.
+			// 1. 첨부파일 서버PC에 업로드( COS.jar 라이브러리 ) 
+				// MultipartRequest : 파일 업로드 클래스 
+			MultipartRequest multi = new MultipartRequest(
+					request , 		// 1. HttpServletRequest 요청방식 
+					uploadpath , 	// 2. 첨부파일을 저장할 폴더 경로 
+					1024*1024*10,	// 3. 첨부파일 용량 허용 범위 [ 바이트단위 ] 10MB
+					"UTF-8" , 		// 4. 한글인코딩타입 
+					new DefaultFileRenamePolicy()	// 5. [파일명중복제거] 만약에 서버내 첨부파일의 동일한 이름이 있을때 이름뒤에 숫자를 자동으로 붙이기 
+					);
+			
+		// ----------------------------------------------- DB처리 : 업로드된 파일명  --------------------------------------------- //	
+			// 2. form 안에 있는 각 데이터 호출 
+		// 일반input : multi.getParameter("form객체전송시input name");		
+		// 첨부파일input : multi.getFilesystemName( );
+		String mpwd =  multi.getParameter("mpwd");			System.out.println("mpwd : "  + mpwd);
+		String newmpwd =  multi.getParameter("newmpwd");	System.out.println("newmpwd : "  + newmpwd);
+		String mimg =  multi.getFilesystemName("mimg");		System.out.println("mimg : "  + mimg);
+		
+		// 2. (선택) 객체화.
+		MemberDto memberDto = new MemberDto( null , mpwd, null, mimg);	
+		System.out.println( memberDto );
+		System.out.println( newmpwd );
+		
+		
+		
 	}
 
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

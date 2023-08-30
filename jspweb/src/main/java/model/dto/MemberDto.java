@@ -6,7 +6,7 @@ public class MemberDto {
     private String mid; 
     private String mpwd; 
     private String memail ;
-    private String  mimg ;
+    private String mimg ;
     
     // 2. 생성자 
     public MemberDto() { }

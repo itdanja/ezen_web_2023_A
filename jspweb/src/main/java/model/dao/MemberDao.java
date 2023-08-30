@@ -38,6 +38,23 @@ public class MemberDao extends Dao {
 	// 4. 비밀번호찾기 
 	
 	// 5. 내정보 호출 
+	public MemberDto getInfo( String mid ) {
+		try {
+			String sql = "select * from member where mid = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , mid );
+			rs = ps.executeQuery();
+			// [ while : 결과 레코드 여러개 검사 vs if : 결과 레코드 한개 검사 ]
+			if( rs.next() ) {
+				
+				MemberDto memberDto = new MemberDto(
+						rs.getInt(1), rs.getString(2) , null, 
+						rs.getString(4), rs.getString(5));
+				return memberDto;
+			}
+		}catch (Exception e) {System.out.println(e);}
+		return null;
+	}
 	
 	// 6. 아이디/이메일 중복검사 [ 인수 : 검사할아이디 / 반환 : true(중복있어) , false(중복없어) 
 		// - type(mid,memail) : 필드명 / data(입력받은mid,memail) : 필드에서 찾을 값 
