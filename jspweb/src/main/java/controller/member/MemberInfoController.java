@@ -32,8 +32,17 @@ public class MemberInfoController extends HttpServlet {
    		
    	// ----------------------------------------------- 파일 업로드 : 서버폴더에 --------------------------------------------- //	
    		// 첨부파일 저장할 폴더의 절대경로
-   		String uploadpath ="C:\\Users\\504-t\\git\\ezen_web_2023_A\\jspweb\\src\\main\\webapp\\member\\img"; // 첨부파일 저장할 경로
-   		
+   		// 1. 개발자 pc 경로 업로드 [ 문제발생 : 개발자pc에 업로드하면 업로드파일을 서버로 빌드 ]
+   		//String uploadpath ="C:\\Users\\504-t\\git\\ezen_web_2023_A\\jspweb\\src\\main\\webapp\\member\\img"; // 첨부파일 저장할 경로
+   		// 2. 서버 pc 경로 업로드  [ 사용자는 바로 서버pc 업로드 ]
+   		//String uploadpath ="C:\\Users\\504-t\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\jspweb\\member\\img";
+   		// 3. 서버 pc 경로 ( 상대경로 = 서버경로 찾아주는 함수 )
+   			// 서버에 build(배포)된 파일/폴더 의 경로 찾기
+   			// request.getServletContext().getRealPath("프로젝트명이하 경로");
+   		String uploadpath = request.getServletContext().getRealPath("/member/img");
+   			// RealPath : C:\\Users\\504-t\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\jspweb\\member\\img
+   			// HttpPath : http://localhost/jspweb/member/img/
+   		System.out.println( "member 폴더 img 폴더 실제(서버) 경로 : " + uploadpath ); 
    		// 첨부파일 전송 했을때.
    			// 1. 첨부파일 서버PC에 업로드( COS.jar 라이브러리 ) 
    				// MultipartRequest : 파일 업로드 클래스 
@@ -54,6 +63,9 @@ public class MemberInfoController extends HttpServlet {
    		String memail =  multi.getParameter("memail");	System.out.println("memail : "  + memail);
    		//String mimg =  multi.getParameter("mimg");		System.out.println("mimg : "  + mimg);
    		String mimg =  multi.getFilesystemName("mimg");		System.out.println("mimg : "  + mimg);
+   		
+   		// *만약에 사진업로드 안했으면 기본프로필 사용하도록 변경 = default.webp
+   		if( mimg == null ) {mimg = "default.webp";}
    		
    		// 2. (선택) 객체화.
    		MemberDto memberDto = new MemberDto(mid, mpwd, memail, mimg);
