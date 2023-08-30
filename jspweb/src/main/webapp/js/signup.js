@@ -296,11 +296,19 @@ function signup(){
 					data : signupData ,			// FormData 객체를 전송 
 					contentType : false ,		// form 객체 [ 대용량 ]  전송타입 		
 					processData : false ,
-					success : r => { console.log(r) } ,
+					success : r => { 
+						if( r ){ // 회원가입성공 [ 1.알린다 2.페이지전환]
+							alert('회원가입성공');
+							location.href = '/jspweb/member/login.jsp';
+						}
+						else{ // 회원가입실패
+							alert('회원가입실패[관리자문의]');
+						}
+					} ,
 					error : e => { console.log(e) } ,
 				})
 	}else{
-		console.log('회원가입 진행불가능');
+		alert('정상적으로 입력 안된 내용이 있습니다.');
 	}
 } // f end 
 

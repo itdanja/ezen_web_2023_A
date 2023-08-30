@@ -23,7 +23,16 @@ public class MemberDao extends Dao {
 		return false;
 	}
 	// 2. 로그인 
-	
+	public boolean login( String mid , String mpwd ) {
+		try {
+			String sql ="select * from member where mid =  ? and mpwd = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , mid ); ps.setString( 2 , mpwd );
+			rs = ps.executeQuery();
+			if( rs.next() ) return true;
+		}catch (Exception e) { System.out.println(e);}
+		return false;
+	}
 	// 3. 아이디찾기
 	
 	// 4. 비밀번호찾기 

@@ -27,7 +27,7 @@
 		</ul>
 		<ul class="submenu"> <!-- 서브메뉴 -->
 			<li> <a href="/jspweb/member/signup.jsp">회원가입</a> </li>
-			<li> <a href="#">로그인</a> </li>
+			<li> <a href="/jspweb/member/login.jsp">로그인</a> </li>
 			<li> <a href="#">로그아웃</a> </li>
 			<li> <a href="#">마이페이지</a> </li>
 			<li> <img class="hmimg" src="/jspweb/member/img/default.webp" /> </li>
