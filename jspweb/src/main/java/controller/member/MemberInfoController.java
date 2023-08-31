@@ -137,7 +137,17 @@ public class MemberInfoController extends HttpServlet {
 	}
 	// 4. 회원삭제 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String mpwd = request.getParameter("mpwd"); // 1. 요청한다.
+		// 2. 유효성검사/객체화 
+		// 3. DAO 처리 [ 현재로그인된 회원번호[pk] , 입력받은 패스워드[mpwd] ]
+			// 1. 현재로그인된 회원정보 => 세션 
+				// int loginMno = ( (MemberDto)request.getSession().getAttribute("loginDto") ).getMno();
+			Object object = request.getSession().getAttribute("loginDto");	// 1. 로그인 세션 호출 한다.
+			MemberDto memberDto = (MemberDto)object; // 2. 타입 변환한다.
+			int loginMno = memberDto.getMno(); // 3. 로그인객체에 회원번호만 호출한다.
+			
+			boolean result = MemberDao.getInstance().mdelete(loginMno, mpwd); // 2. Dao 전달해서 결과 받기 
+			response.setContentType("application/json;charset=utf-8"); response.getWriter().print(result); // 4. 응답한다.
 	}
 
 }

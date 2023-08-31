@@ -1,4 +1,6 @@
 
+console.log( 헤더변수 );
+
 // 1.로그인된 회원의정보 호출
 getInfo();
 function getInfo(){
@@ -27,9 +29,34 @@ function mdelete(){
 	// 2. 확인 버튼을 눌렀을때.
 	if( dconfirm == true ){
 		let mpwd = prompt('비밀번호 확인');
-		// 3. ajax  [ 입력받은 패스워드 전송해서 로그인된 회원의 패스워드 와 입력받은 패스워드가 일치하면 탈퇴]
+		// 3. ajax  [ 입력받은 패스워드 전송해서 로그인된회원(서블릿세션) 의 패스워드 와 입력받은 패스워드가 일치하면 탈퇴]
+		$.ajax({
+			url : "/jspweb/MemberInfoController" , 
+			method : "delete" , 
+			data : { mpwd : mpwd } ,
+			success : r => { 
+				if(r){ alert('회원탈퇴 했습니다.'); logout(); }
+				else{ alert('패스워드가 일치하지 않습니다'); } 
+			}
+		})
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
