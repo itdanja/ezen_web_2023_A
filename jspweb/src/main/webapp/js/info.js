@@ -25,12 +25,9 @@ function mupdate(){
 	
 	// 첨부파일 전송할때.
 		// 1. form 가져오기
-	let form = document.querySelectorAll(".signupForm")[0];
-		console.log( form );
+	let form = document.querySelectorAll(".signupForm")[0]; console.log( form );
 		// 2. form 데이터 객체화 하기
-	let formdata =new FormData( form );
-		console.log( formdata );
-	
+	let formdata =new FormData( form ); console.log( formdata );
 	// * form 전송 ajax 
 	$.ajax({
 		url : "/jspweb/MemberInfoController" , 
@@ -39,7 +36,14 @@ function mupdate(){
 		// 폼 전송타입 : 문자X jsonX , 첨부파일[o]
 		contentType : false , 
 		processData : false , 	
-		success : r => { } ,
+		success : r => {
+		
+			if( r ){ // 
+				alert('수정 성공[다시 로그인해주세요.]'); logout();
+			}else{
+				alert('수정 실패');
+			}
+		} ,
 		error : e => { }
 	})
 	
