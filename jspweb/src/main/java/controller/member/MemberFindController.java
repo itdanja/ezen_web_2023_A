@@ -34,7 +34,7 @@ public class MemberFindController extends HttpServlet {
 		response.getWriter().print(result);
 	}
 	
-	// 로그인 
+	// 로그인 ( 세션저장 )
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 매개변수 요청 
 		String mid = request.getParameter("mid");
@@ -94,6 +94,11 @@ public class MemberFindController extends HttpServlet {
  			세션타입 : Object 	( 타입변환 필수! )
  			세션저장 : request.getSession().setAttribute( "속성명" , 데이터 );
  			세션호출 : request.getSession().getAttribute( "속성명" );
+ 			세션내 속서초기화
+ 				1. 방법1 : (세션의 모든 속성) 초기화하는 함수 
+					request.getSession().invalidate();
+				2. 방법2 : (세션의 특정 속성) 초기화하는 방법 
+					request.getSession().setAttribute("초기화할속성명", null); / 삭제할 세션속성명과 동일하게 null 대입
  			
 	서블릿 클래스
 		내장객체
