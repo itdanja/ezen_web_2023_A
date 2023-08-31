@@ -130,7 +130,6 @@ public class MemberInfoController extends HttpServlet {
 					// 삭제할 세션속성명과 동일하게 null 대입
 				request.getSession().setAttribute("loginDto", null);
 			}
-	
 	}
 	// 3. 회원수정 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
