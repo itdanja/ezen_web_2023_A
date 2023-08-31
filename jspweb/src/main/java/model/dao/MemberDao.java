@@ -72,6 +72,16 @@ public class MemberDao extends Dao {
 		return false;
 	}
 	// 7. 회원수정
+	public boolean mupdate( int mno , String mimg ) {
+		try {
+			String sql = "update member set mimg = ? where mno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , mimg ); ps.setInt( 2 , mno);
+			int count = ps.executeUpdate();
+			if( count == 1 ) return true ;
+		}catch (Exception e) {System.out.println(e);	}
+		return false;
+	}
 	
 	// 8. 회원탈퇴 [ 삭제할회원번호 , 검증할패스워드 ]
 	public boolean mdelete( int mno , String mpwd ) {

@@ -21,7 +21,29 @@ function getInfo(){
 	});
 } // f end 
 // 2. 수정 
-function mupdate(){}
+function mupdate(){
+	
+	// 첨부파일 전송할때.
+		// 1. form 가져오기
+	let form = document.querySelectorAll(".signupForm")[0];
+		console.log( form );
+		// 2. form 데이터 객체화 하기
+	let formdata =new FormData( form );
+		console.log( formdata );
+	
+	// * form 전송 ajax 
+	$.ajax({
+		url : "/jspweb/MemberInfoController" , 
+		method : "put" , 
+		data : formdata ,
+		// 폼 전송타입 : 문자X jsonX , 첨부파일[o]
+		contentType : false , 
+		processData : false , 	
+		success : r => { } ,
+		error : e => { }
+	})
+	
+}
 // 3. 탈퇴
 function mdelete(){
 	// 1. 탈퇴여부 확인    confirm() 확인true/취소false 버튼 알림창 
@@ -44,7 +66,14 @@ function mdelete(){
 
 
 
-
+		/*
+			HTTP 전송타입 
+					1. text/html 			: 문자타입 [ 기본값 ]
+					2. application/json 	: json타입 
+					3. multipart/form-data	: 대용량 form 전송 타입 
+						contentType : false  
+						processData : false 
+		*/
 
 
 
