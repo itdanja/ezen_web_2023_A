@@ -8,3 +8,25 @@ function onWrite(){
 		location.href="/jspweb/member/login.jsp";
 	}
 }
+
+// 2. 모든 글 조회 [ js열렸을때 1회 자동실행 ]
+getList();
+function getList(){
+	$.ajax({
+		url : "/jspweb/BoardInfoController" , 
+		method : "get" ,
+		data : {} , 
+		success : r => {}, 
+		error : e => {}
+	})
+}
+
+
+
+
+
+
+
+
+
+

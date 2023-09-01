@@ -1,6 +1,8 @@
 package controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +32,15 @@ public class BoardInfoController extends HttpServlet {
     }
     // 1. 전체조회 , 2.개별조회 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 1. 요청 
+		
+		// 2. 유효성검사/객체화
+		
+		// 3. DAO 
+		ArrayList<BoardDto> result = BoardDao.getInstance().getList();
+			System.out.println( result );
+		// 4. 응답 
+		
 	}
 	// 2. 쓰기 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
