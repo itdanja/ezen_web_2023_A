@@ -29,10 +29,25 @@ public class BoardDto { /* 게시물 , 카테고리 */
 		this.mid = mid;
 		this.bcname = bcname;
 	}
+	// - 글등록시 사용되는 생성자 [ btitle , bcontent , bfile , mno , bcno ]
+	public BoardDto(String btitle, String bcontent, String bfile, int mno, int bcno) {
+		super();
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bfile = bfile;
+		this.mno = mno;
+		this.bcno = bcno;
+	}
+	
+	
+	
+	
+	
 	// 메소드 [ set/get , toString() ]
 	public int getBno() {
 		return bno;
 	}
+
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
