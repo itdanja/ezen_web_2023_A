@@ -15,7 +15,14 @@ function bwrite(){
 		contentType : false , 
 		processData : false ,
 		success : r => {
-			console.log( r );
+			
+			if( r ){
+				alert('글등록 성공');
+				location.href="/jspweb/board/list.jsp";
+			}else{
+				alert('글등록 실패 ');
+			}
+			
 		} , 
 		error : e => { } 
 	})

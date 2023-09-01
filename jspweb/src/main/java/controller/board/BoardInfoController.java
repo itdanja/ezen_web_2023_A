@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import model.dao.BoardDao;
 import model.dto.BoardDto;
 import model.dto.MemberDto;
 
@@ -54,12 +55,11 @@ public class BoardInfoController extends HttpServlet {
 		int bcno = Integer.parseInt( multi.getParameter("bcno") );
 		// 2. 유효성검사/객체화 
 		BoardDto boardDto = new BoardDto(btitle, bcontent, bfile, mno, bcno);	System.out.println( boardDto );
-		
 		// 3. Dao 처리 
-		
+		boolean result = BoardDao.getInstance().bwrite(boardDto);
 		// 4. (Dao 결과) 응답 
-		
-			
+		response.setContentType("application/json; charset=UTF-8"); 
+		response.getWriter().print(result);
 	}
 	// 3. 수정 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
