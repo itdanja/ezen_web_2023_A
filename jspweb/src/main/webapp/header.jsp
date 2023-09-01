@@ -33,6 +33,7 @@
 	<!-- 최신 JQUERY import ( ajax() 사용할 js파일부터 위에서 호출)  -->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script  src="/jspweb/js/header.js"></script>
+	
 </body>
 </html>
 
