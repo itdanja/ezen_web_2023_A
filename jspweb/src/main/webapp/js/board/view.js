@@ -39,8 +39,8 @@ function getBoard(){
 				//. 3. 만약에 본인글 인지 제어 [ 본인글이면 수정/삭제 표시함 / 아니면 표시안함]
 				if( r.ishost ){
 					html += `
-						<button onclick="ondelete()" type="button">삭제</button>
-						<button onclick="onUpdate()" type="button">수정</button>
+						<button onclick="ondelete(${ r.bno })" type="button">삭제</button>
+						<button onclick="onUpdate(${ r.bno })" type="button">수정</button>
 						`
 				}
 			// 3.
@@ -48,8 +48,32 @@ function getBoard(){
 		} , 
 		error : e => { console.log(e) }
 	})
-	
 } // f end 
+// 2. 게시물 삭제 -> 레코드 삭제 -> 레코드 식별 -> pk
+function ondelete( bno ){
+	$.ajax({
+		url : "/jspweb/BoardInfoController" ,
+		method: "delete" , 
+		data : { bno : bno } , 
+		success : r => { console.log(r); 
+			if( r ){
+				alert('삭제 성공');
+				location.href="/jspweb/board/list.jsp";
+			}else{ alert('삭제 실패'); }
+		} , 
+		error : e => { console.log(e); }
+	})
+} // f end 
+// 3. 게시물 수정 페이지로 이동 
+function onUpdate( bno ){
+	// 1. 수정페이지로 이동
+	location.href=`/jspweb/board/update.jsp?bno=${ bno }`;
+} // f end 
+
+
+
+
+
 
 
 

@@ -97,14 +97,34 @@ public class BoardInfoController extends HttpServlet {
 	}
 	// 3. 수정 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
+	
 	// 4. 삭제 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// 1. 요청 
+		int bno = Integer.parseInt( request.getParameter("bno") );
+		// 2. DAO
+		boolean result = BoardDao.getInstance().ondelete(bno);
+		// 3. 응답 
+		response.setContentType("application/json; charset=UTF-8"); 
+		response.getWriter().print(result);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

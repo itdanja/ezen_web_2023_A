@@ -80,6 +80,16 @@ public class BoardDao extends Dao {
 	// 4. 게시물 수정 
 	
 	// 5. 게시물 삭제 
+	public boolean ondelete( int bno ) {
+		try {
+			String sql ="delete from board where bno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , bno);
+			int count = ps.executeUpdate();
+			if( count == 1 ) return true;
+		}catch (Exception e) {System.out.println(e);}
+		return false;
+	}
 	
 	// 6. 조회수 증가 
 	public boolean viewIncre( int bno ) {
