@@ -97,7 +97,33 @@ public class BoardInfoController extends HttpServlet {
 	}
 	// 3. 수정 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 수정할 첨부파일 업로드 
+		MultipartRequest multi = new MultipartRequest(
+				request,request.getServletContext().getRealPath("/board/upload"), 
+				1024 * 1024 *1024 ,  "UTF-8" , new DefaultFileRenamePolicy() );
 		
+		// 2. 수정할 데이터 내용 요청 
+		int bcno = Integer.parseInt( multi.getParameter("bcno") );
+		String btitle = multi.getParameter("btitle") ;
+		String bcontent = multi.getParameter("bcontent") ;
+		String bfile = multi.getFilesystemName("bfile") ; // 파일명 호출 !![ getFilesystemName ]
+		
+		// 2* 수정할 게시물 식별키 
+		int bno = Integer.parseInt( multi.getParameter("bno") );
+		BoardDto updateDto = 
+				new BoardDto(bno, btitle, bcontent, bfile, bcno); System.out.println("수정dto : " + updateDto );
+		// * 만약에 수정할 첨부파일이 없으면 기존 첨부파일 그대로 사용
+		if( updateDto.getBfile() == null ) {
+			// 기존첨부파일 호출해서 수정dto에 저장하기.
+			updateDto.setBfile( 
+					BoardDao.getInstance().getBoard(bno).getBfile() 
+					) ;
+		}
+		// 3. DAO
+		boolean result = BoardDao.getInstance().onUpdate( updateDto );
+		// 4. 응답 
+		response.setContentType("application/json; charset=UTF-8"); 
+		response.getWriter().print(result);
 	}
 	
 	// 4. 삭제 
