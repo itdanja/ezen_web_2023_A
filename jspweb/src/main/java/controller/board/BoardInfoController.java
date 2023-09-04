@@ -31,18 +31,31 @@ public class BoardInfoController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    // 1. 전체조회 , 2.개별조회 
+    // type : 1. 전체조회 , 2.개별조회 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 요청 
-		// 2. 유효성검사/객체화
-		// 3. DAO 
-		ArrayList<BoardDto> result = BoardDao.getInstance().getList();   System.out.println( result );
-			// * java객체 --> js객체[JSON] 형식 의 문자열 으로 변환
+		String type = request.getParameter("type");
+		
 		ObjectMapper objectMapper = new ObjectMapper();
-		String jsonArray = objectMapper.writeValueAsString( result );
-		// 4. 응답 
+		String json = "";
+
+		if( type.equals("1") ) { // 전체 조회 로직 
+			
+			ArrayList<BoardDto> result = BoardDao.getInstance().getList();
+			json = objectMapper.writeValueAsString( result );
+
+			
+		}else if( type.equals("2") ) {// 개별 조회 로직 
+			//1.매개변수 요청 
+			int bno = Integer.parseInt( request.getParameter("bno") ) ;
+			//2. DAO 처리 
+			BoardDto result = BoardDao.getInstance().getBoard( bno );
+			json = objectMapper.writeValueAsString( result );
+		}
+		
+		// 공통 로직 // 1. 전체조회 , 개별조회 하던 응답 로직 공통
 		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().print(  jsonArray );
+		response.getWriter().print( json );
 		
 	}
 	// 2. 쓰기 
