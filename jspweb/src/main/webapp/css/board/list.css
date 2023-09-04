@@ -1,1 +1,68 @@
 @charset "UTF-8";
+
+.boardTable{
+	border-collapse : collapse;
+	width: 100%;
+	margin-top: 30px;
+}
+.boardTable td , th {
+    padding: 13px 0px;
+    text-align: center;
+    
+    white-space : nowrap; /* 자동 줄바꿈 해제 */
+	overflow: hidden;	/* 넘쳤을때 숨김 */
+	text-overflow: ellipsis; /* ... 표시 */
+	max-width: 150px;
+}
+.boardTable th{
+	background-color: #75C1CF;;
+	color: white;
+	padding: 15px 0px;
+}
+.boardTable th:nth-child(1) {width: 5%; }
+.boardTable th:nth-child(2) {width: 10%; }
+.boardTable th:nth-child(3) {width: 60%; }
+.boardTable th:nth-child(4) {width: 10%; }
+.boardTable th:nth-child(5) {width: 5%; }
+.boardTable th:nth-child(6) {width: 10%; }
+
+.seachcount{
+	margin-right: 20px
+}
+
+.boardtop{
+	text-align: center;
+}
+
+.boardtopetc{ 
+	display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.bbtn{ /* 게시물에서 사용되는 버튼 */
+    border: none;
+    background-color: black;;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: white;
+    width: 100px;
+}
+
+/* 게시물 아래 버튼들 */
+.boardbottom{
+	border-top : 1px solid #e8e8e8;
+    text-align: center;
+    padding-top: 30px;
+    margin: 20px 0px;
+}
+.pagebtn{
+	border: none;
+    background-color: transparent;
+    font-weight: bold;
+    margin: 15px 10px;
+}
+.keyword{
+	border: 1px solid #e8e8e8;
+	padding: 5px 10px;
+	border-radius: 15px;
+}

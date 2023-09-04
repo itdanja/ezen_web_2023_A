@@ -23,18 +23,63 @@ public class BoardDao extends Dao {
 		}catch (Exception e) {System.out.println(e);	}
 		return false;
 	}
+	
+	// 2-2 게시물/레코드 수 구하기 
+	public int gettotalsize(   String key , String keyword , int bcno ) {
+		
+		String sql = "";
+		if( bcno == 0 ) {
+			sql = " select count(*) from board b natural join member m ";
+			 if( key.equals("") && keyword.equals("") ) { 
+				 sql +=" ";
+			 }else {
+				 sql +=" where "+key+" like '%"+keyword+"%'";
+			 }
+		}else {
+			sql = " select count(*) from board b natural join member m where bcno = "+bcno;
+			 if( key.equals("") && keyword.equals("") ) { 
+				 sql +=" ";
+			 }else {
+				 sql +=" and "+key+" like '%"+keyword+"%'";
+			 }
+		}
+		
+		try {
+			ps =conn.prepareStatement(sql); rs = ps.executeQuery();
+			if( rs.next() )return rs.getInt(1);
+		}catch (Exception e) {System.err.println(e);} return 0;
+	}
+	
 	// 2. 모든 글 출력
-	public ArrayList<BoardDto> getList( ){
+	public ArrayList<BoardDto> getList(  int startrow , int listsize , String key , String keyword , int bcno ){
 		// * 게시물 레코드 정보의 DTO를 여러개 저장하는 리스트 선언
 		ArrayList<BoardDto> list = new ArrayList<>();
 		try {
-			String sql = " select b.* , m.mid , m.mimg , bc.bcname "
-					+ " from board b "
-					+ "		natural join bcategory bc "
-					+ "		natural join member m "
-					+ " order by b.bdate desc ";
+			String sql = "";
+			if( bcno == 0 ) {
+				 sql = " select b.* , m.mid , m.mimg , bc.bcname from board b natural join bcategory bc natural join member m ";
+				 if( key.equals("") && keyword.equals("") ) { 
+					 sql +=" order by b.bdate desc limit ? , ? ";
+				 }else {
+					 sql +=" where "+key+" like '%"+keyword+"%' order by b.bdate desc limit ? , ? ";
+				 }
+				 
+			}else {
+				 sql = " select b.* , m.mid , m.mimg , bc.bcname from board b natural join bcategory bc natural join member m where b.bcno =  "+ bcno+" ";
+				 if( key.equals("") && keyword.equals("") ) { 
+					 sql +=" order by b.bdate desc limit ? , ? ";
+				 }else {
+					 sql +=" and "+key+" like '%"+keyword+"%' order by b.bdate desc limit ? , ? ";
+				 }
+			}
+			
 			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , startrow ); ps.setInt( 2 , listsize);
+			System.out.println( sql );
+			System.out.println( ps );
+			
 			rs = ps.executeQuery();
+			
 			while( rs.next() ) { // 여러 레코드 조회 while
 				BoardDto boardDto = new BoardDto(
 						rs.getInt("bno"), 
@@ -118,6 +163,10 @@ public class BoardDao extends Dao {
 		}catch (Exception e) {System.out.println(e);}
 		return false;
 	}
+	
+	
+
+		
 	
 }
 

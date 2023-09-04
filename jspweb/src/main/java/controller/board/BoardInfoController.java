@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.dao.BoardDao;
 import model.dto.BoardDto;
 import model.dto.MemberDto;
+import model.dto.PageDto;
 
 /**
  * Servlet implementation class BoardInfoController
@@ -41,8 +42,45 @@ public class BoardInfoController extends HttpServlet {
 
 		if( type.equals("1") ) { // 전체 조회 로직 
 			
-			ArrayList<BoardDto> result = BoardDao.getInstance().getList();
-			json = objectMapper.writeValueAsString( result );
+			int bcno = Integer.parseInt( request.getParameter("bcno") ) ;
+			
+			// -------------- 검색 처리 -----------------//
+						// 1. 검색에 필요한 매개변수 요청[ key, keyword ]   2.gettotalsize/getBoardList 조건 전달
+						String key = request.getParameter("key");			
+						String keyword = request.getParameter("keyword");
+						
+			
+			// ------------- page 처리 --------------- //
+			// 1. 현재페이지[요청] , 2.페이지당 표시할게시물수 3.현재페이지[ 게시물시작  ]
+			int page = Integer.parseInt( request.getParameter("page") );
+			//int listsize = 3;
+			int listsize = Integer.parseInt( request.getParameter("listsize") ) ; // 화면에 표시할 게시물수 요청
+			int startrow = (page-1)*listsize; // 해당 페이지에서의 게시물 시작번호 = 검색된 결과의 레코드중 인덱스번호
+			// ------------- page 버튼 만들기 ------------ //
+			// 1. 전체페이지수[ 총게시물레코드수/페이지당 표시수 ] 2. 페이지 표시할 최대버튼수 3. 시작버튼/마지막버튼 번호 
+				// 1. 검색이 없을때 
+			// int totalsize = BoardDao.getInstance().gettotalsize();
+				// 2. 검색이 있을때
+			int totalsize = BoardDao.getInstance().gettotalsize( key , keyword , bcno );
+			
+			int totalpage = totalsize % listsize == 0 ? 	// 만약에 나머지가 0 이면 
+							totalsize/listsize :  totalsize/listsize+1;
+			int btnsize = 5; // 최대 페이징버튼 출력수
+			int startbtn = ( (page-1) / btnsize ) * btnsize +1 ; 
+			int endbtn = startbtn + (btnsize-1);
+			// * 단 마지막버튼수가 총페이지수보다 커지면 마지막버튼수 총페이지수로 대입 
+			if( endbtn > totalpage ) endbtn = totalpage;
+			
+			// ArrayList<BoardDto> result = BoardDao.getInstance().getBoardList( startrow , listsize );
+			ArrayList<BoardDto> result 
+			= BoardDao.getInstance().getList( startrow , listsize , key , keyword , bcno );
+		
+			// page Dto 만들기 
+			PageDto pageDto 
+				= new PageDto(page, listsize, startrow, totalsize, totalpage, btnsize, startbtn, endbtn, result);
+				
+				
+			json = objectMapper.writeValueAsString( pageDto );
 
 		}else if( type.equals("2") ) {// 개별 조회 로직 
 			//1.매개변수 요청 
