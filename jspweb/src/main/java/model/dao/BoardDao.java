@@ -52,6 +52,7 @@ public class BoardDao extends Dao {
 	
 	// 3. 개별 글 출력 
 	public BoardDto getBoard( int bno ) {
+		viewIncre( bno );
 		try {
 			String sql = " select b.* , m.mid , m.mimg , bc.bcname "
 					+ "	from board b "
@@ -62,6 +63,7 @@ public class BoardDao extends Dao {
 			ps.setInt( 1 , bno); 
 			rs = ps.executeQuery();
 			if( rs.next()  ) { // 한개 레코드 조회 if
+				
 				BoardDto boardDto = new BoardDto(
 						rs.getInt("bno"), 
 						rs.getString("btitle"), rs.getString("bcontent"), 
@@ -80,6 +82,17 @@ public class BoardDao extends Dao {
 	// 5. 게시물 삭제 
 	
 	// 6. 조회수 증가 
+	public boolean viewIncre( int bno ) {
+		try {
+			String sql = "update board set bview = bview+1 where bno = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , bno );	
+			int count = ps.executeUpdate();
+			if( count == 1 ) return true;
+		}catch (Exception e) {System.out.println(e);}
+		return false;
+	}
+	
 }
 
 

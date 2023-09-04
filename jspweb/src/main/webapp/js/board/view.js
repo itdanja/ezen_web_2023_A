@@ -33,10 +33,16 @@ function getBoard(){
 						제목 : <div> ${ r.btitle } </div>
 						내용 : <div> ${ r.bcontent } </div>
 						첨부파일 : <div> ${ r.bfile } </div>
-						<button type="button">삭제</button>
-						<button type="button">수정</button>
-						<a href="list.jsp"><button type="button">목록보기</button></a>
 						`
+				
+				html += '<a href="list.jsp"><button type="button">목록보기</button></a>';
+				//. 3. 만약에 본인글 인지 제어 [ 본인글이면 수정/삭제 표시함 / 아니면 표시안함]
+				if( r.ishost ){
+					html += `
+						<button onclick="ondelete()" type="button">삭제</button>
+						<button onclick="onUpdate()" type="button">수정</button>
+						`
+				}
 			// 3.
 			boardBox.innerHTML = html;
 		} , 

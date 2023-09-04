@@ -44,12 +44,21 @@ public class BoardInfoController extends HttpServlet {
 			ArrayList<BoardDto> result = BoardDao.getInstance().getList();
 			json = objectMapper.writeValueAsString( result );
 
-			
 		}else if( type.equals("2") ) {// 개별 조회 로직 
 			//1.매개변수 요청 
 			int bno = Integer.parseInt( request.getParameter("bno") ) ;
 			//2. DAO 처리 
 			BoardDto result = BoardDao.getInstance().getBoard( bno );
+			
+				// 3. 만약에 ( 로그인 혹은 비로그인 )요청한한사람과 게시물작성한사람과 동일하면 
+			Object object = request.getSession().getAttribute("loginDto");
+			if( object == null ) { // 비로그인 
+				result.setIshost(false); // 남이 쓴 글 
+			}else { // 로그인 
+				MemberDto login = (MemberDto)object;
+				if( login.getMno() == result.getMno() ) { result.setIshost(true); } 	// 내가 쓴 글 
+				else { result.setIshost(false);  } 	// 남이 쓴 글 
+			}
 			json = objectMapper.writeValueAsString( result );
 		}
 		
