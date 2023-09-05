@@ -32,8 +32,8 @@ function getList(){
 								<td> ${ b.bcname } </td>
 								<td> <a href="/jspweb/board/view.jsp?bno=${ b.bno }"> ${ b.btitle } </a> </td> 
 								<td> 
-									${ b.mid }  
 									<img src="/jspweb/member/img/${ b.mimg }"/>
+									${ b.mid } 
 								</td> 
 								<td> ${ b.bview } </td>
 								<td> ${ b.bdate } </td> 

@@ -1,8 +1,7 @@
 @charset "UTF-8";
 /* 1. 테이블 CSS */
 	/* 1-1. 테이블 전체구역 */
-.boardTable{ 
-	width: 100%; margin-top: 30px; 
+.boardTable{ width: 100%; margin-top: 30px; 
 	border-collapse: collapse; /* 테두리 병합 */ 
 }
 	/* 1-2. 테이블 헤더(제목) , 데이터(셀) 구역 */
@@ -15,9 +14,7 @@
 	max-width: 150px;
 }
 	/* 1-3. 테이블 헤더(제목) 구역 */
-.boardTable th{
-	background-color: #75C1CF; color: white;
-}
+.boardTable th{ background-color: #75C1CF; color: white; }
 	/* 1-4. 테이블 각 열 길이 */
 .boardTable th:nth-child(1){ width: 5%; }	/* 1번째 열  	= 1번째 th */
 .boardTable th:nth-child(2){ width: 10%; }	/* 2째 열  	= 2번째 th */
@@ -29,7 +26,7 @@
 .boardTable tr:nth-child(odd){ background-color: #e8fdfd; }
 .boardTable tr:nth-child(even){ background-color: #ffffff; }
 	/* 1-6 행 호버(마우스 올렸을때)  */
-.boardTable tr:hover{ background-color: #75C1CF; }
+.boardTable tr:hover{ background-color: #d9eef2; }
 	/* 1-7 작성자 프로필  */
 .boardTable img{ width: 20px; vertical-align: middle; }
  
@@ -43,9 +40,69 @@
 			form input:nth-child( 3 )	: form태그 하위요소의 세번째 input 요소 식별
 		- 
 			상위요소 하위요소:nth-child( odd )	: 형제 목록중에 홀수 번째 요소 식별 
-			상위요소 하위요소:nth-child( even ) : 형제 목록중에 짝수 번째 요소 식별 \
+			상위요소 하위요소:nth-child( even ) : 형제 목록중에 짝수 번째 요소 식별
 */
 	
+	
+/* 2. 상단 구역 */
+.boardtop{ text-align: center; }
+.boardtopetc{ 
+	display: flex; justify-content: space-between; margin: 20px 0px; 
+}
+.bbtn{
+	border: none; background-color: black;	color: white;
+	width: 100px; padding: 5px 20px; border-radius: 8px;
+	font-size: 15px;
+}
+.boardcount{ margin-left: 20px; }
+
+/* 3. 하단 구역 */
+.boardbottom{
+	border-top : 1px solid #e8e8e8;
+	padding-top: 30px; margin: 50px 0px;
+	text-align: center;
+}
+.pagebox button{
+	border: none;  background-color: transparent; /* 투명색 */
+	font-size: 20px; margin: 15px 10px;
+}
+.keyword{
+	border: 1px solid #e8e8e8; padding: 5px 10px;
+	border-radius : 10px; width: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
