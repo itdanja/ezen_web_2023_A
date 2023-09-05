@@ -14,7 +14,7 @@ public class Dao { // DB에 연동하는 상위 클래스
 	public Dao() { // 자식객체가 생성되면 부모객체 도 같이 생성!!! [ * 자식객체가 생성되면 부모클래스의 생성자 호출된다. ]
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver"); // * 프로젝트마다 mysql-connector-j-8.1.0 빌드 등록
-			this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jspweb0" , "root" , "1234");
+			this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jspweb" , "root" , "1234");
 			System.out.println("[DB연동]");
 		}catch (Exception e) { System.out.println(e); }
 	}

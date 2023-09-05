@@ -26,6 +26,11 @@
 .boardTable th:nth-child(5) {width: 5%; }
 .boardTable th:nth-child(6) {width: 10%; }
 
+.boardTable tr:nth-child(odd){ background-color: #e8fdfb; }
+.boardTable tr:nth-child(even){ background-color: #ffffff; }
+
+.boardTable tr:hover { background-color: lightyellow; }
+
 .seachcount{
 	margin-right: 20px
 }

@@ -27,22 +27,20 @@ public class BoardDao extends Dao {
 	// 2-2 게시물/레코드 수 구하기 
 	public int gettotalsize(   String key , String keyword , int bcno ) {
 		
-		String sql = "";
-		if( bcno == 0 ) {
-			sql = " select count(*) from board b natural join member m ";
-			 if( key.equals("") && keyword.equals("") ) { 
-				 sql +=" ";
-			 }else {
-				 sql +=" where "+key+" like '%"+keyword+"%'";
-			 }
-		}else {
-			sql = " select count(*) from board b natural join member m where bcno = "+bcno;
-			 if( key.equals("") && keyword.equals("") ) { 
-				 sql +=" ";
-			 }else {
-				 sql +=" and "+key+" like '%"+keyword+"%'";
-			 }
-		}
+	    String sql = "SELECT COUNT(*) FROM board b NATURAL JOIN member m ";
+	    
+	    if (bcno != 0) {
+	        sql += " WHERE bcno = " + bcno;
+	    }
+	    
+	    if (!key.isEmpty() && !keyword.isEmpty()) {
+	        if (bcno != 0) {
+	            sql += " AND";
+	        } else {
+	            sql += " WHERE";
+	        }
+	        sql += " " + key + " LIKE '%" + keyword + "%'";
+	    }
 		
 		try {
 			ps =conn.prepareStatement(sql); rs = ps.executeQuery();
@@ -55,23 +53,25 @@ public class BoardDao extends Dao {
 		// * 게시물 레코드 정보의 DTO를 여러개 저장하는 리스트 선언
 		ArrayList<BoardDto> list = new ArrayList<>();
 		try {
-			String sql = "";
-			if( bcno == 0 ) {
-				 sql = " select b.* , m.mid , m.mimg , bc.bcname from board b natural join bcategory bc natural join member m ";
-				 if( key.equals("") && keyword.equals("") ) { 
-					 sql +=" order by b.bdate desc limit ? , ? ";
-				 }else {
-					 sql +=" where "+key+" like '%"+keyword+"%' order by b.bdate desc limit ? , ? ";
-				 }
-				 
-			}else {
-				 sql = " select b.* , m.mid , m.mimg , bc.bcname from board b natural join bcategory bc natural join member m where b.bcno =  "+ bcno+" ";
-				 if( key.equals("") && keyword.equals("") ) { 
-					 sql +=" order by b.bdate desc limit ? , ? ";
-				 }else {
-					 sql +=" and "+key+" like '%"+keyword+"%' order by b.bdate desc limit ? , ? ";
-				 }
-			}
+		    String sql = "SELECT b.*, m.mid, m.mimg, bc.bcname " +
+	                 " FROM board b " +
+	                 " NATURAL JOIN bcategory bc " +
+	                 " NATURAL JOIN member m ";
+	    
+		    if (bcno != 0) {
+		        sql += " WHERE b.bcno = " + bcno;
+		    }
+		    
+		    if (!key.isEmpty() && !keyword.isEmpty()) {
+		        if (bcno != 0) {
+		            sql += " AND";
+		        } else {
+		            sql += " WHERE";
+		        }
+		        sql += " " + key + " LIKE '%" + keyword + "%'";
+		    }
+		    
+		    sql += " ORDER BY b.bdate DESC LIMIT ?, ?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setInt( 1 , startrow ); ps.setInt( 2 , listsize);
