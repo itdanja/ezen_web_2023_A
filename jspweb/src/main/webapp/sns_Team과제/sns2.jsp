@@ -54,14 +54,18 @@
 		.btnbox button{
 			background: none;
 		    border-radius: 20px;
-		    border: 1px yellow solid;
+		    border: 1px #ae9a9a solid;
 		    padding: 5px 3px;
 		    width: 50px;
-		    box-shadow: 1px 1px 1px yellow;
+		    box-shadow: 1px 1px 1px #ae9a9a;
 		    font-size: 11px;
 		}
 		.date{
 			font-size: 11px; margin-bottom: 5px;
+		}
+		.replybox{
+			border-top: 1px solid #e8e8e8;
+    		padding-top: 10px;
 		}
 		.replybox button{
 			border: none;
@@ -73,6 +77,22 @@
 		    align-items: center;
 		    justify-content: space-between;
 		}
+		.searchbox{
+
+		    margin: 20px 0px;
+		}
+		.searchbox input{
+			border: 1px solid #ae9a9a;
+		    box-shadow: 1px 1px 6px 0px #ae9a9a;
+		    border-radius: 5px;
+		    padding: 5px 10px;
+		    width: 100%;
+	    }
+	    .searchbox .feedcount{
+	    	font-size: 10px;
+		    padding: 10px 5px;
+		    text-align: right;
+	    }
 		
 	</style>
 
@@ -85,8 +105,13 @@
 			<a href="#"> 등록 </a>
 		</div>	
 		
-		<div class="feedbox">
+		<div class="searchbox">
+			<div class="feedcount"> 총 피드 수 : 13 </div>
+			<input type="text" placeholder=" search "> 
+		</div>
 		
+		<div class="feedbox">
+			
 			<div class="feed"> 
 				<div class="img"> <img src="여행2.webp" /> </div>
 				<div class="content"> 
@@ -179,7 +204,7 @@
 					 <div class="reply"> 
 						<span> 서울여행 어떤가요? 마음의 평화가 찾아오는 힐링 여행 </span>
 						<div class="replyrignt">
-							<span> 8분전 </span> 
+							<span> 1일전 </span> 
 							<span> <button type="button">x</button> </span> 
 						</div>
 					 </div>	

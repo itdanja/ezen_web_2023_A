@@ -39,7 +39,7 @@
 			<button onclick="onCategory(0)" class="bbtn" type="button"> 전체보기 </button>
 			<button onclick="onCategory(1)" class="bbtn" type="button"> 공지사항 </button>
 			<button onclick="onCategory(2)" class="bbtn" type="button"> 자유게시판 </button>
-			<button onclick="onCategory(3)" class="bbtn"type="button"> 노하우 </button>
+			<button onclick="onCategory(3)" class="bbtn" type="button"> 노하우 </button>
 		</div>
 		
 		<!-- 4. 테이블 구역  -->
@@ -48,15 +48,7 @@
 		<div class="boardbottom">
 		
 			<!-- 5. 페이징처리 구역 -->
-			<div class="pagebox">
-				<button type="button"> < </button> <!-- 이전버튼  -->
-					<button type="button"> 1 </button>	<!-- 페이징 버튼  -->
-					<button type="button" class="selectpage"> 2 </button>
-					<button type="button"> 3 </button>
-					<button type="button"> 4 </button>
-					<button type="button"> 5 </button>
-				<button type="button"> > </button> <!-- 다음버튼  -->
-			</div>
+			<div class="pagebox"> </div>
 			
 			<!-- 6. 검색 구역 -->
 			<select class="bbtn">	<!-- 검색할 필드명 -->

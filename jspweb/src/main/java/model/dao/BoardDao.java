@@ -24,22 +24,22 @@ public class BoardDao extends Dao {
 		return false;
 	}
 	// 2. 모든 글 출력
-	public ArrayList<BoardDto> getList( int bcno , int listsize ){
-		// * 게시물 레코드 정보의 DTO를 여러개 저장하는 리스트 선언
-		ArrayList<BoardDto> list = new ArrayList<>();
+	public ArrayList<BoardDto> getList( int bcno , int listsize , int startrow ){
+		ArrayList<BoardDto> list = new ArrayList<>(); 	// * 게시물 레코드 정보의 DTO를 여러개 저장하는 리스트 선언
 		try {
 			// +앞부분 공통 SQL 
 			String sql = " select b.* , m.mid , m.mimg , bc.bcname from board b "
 					+ "		natural join bcategory bc "
 					+ "		natural join member m ";
+			
 			// -만약에 카테고리를 선택했으면 [ 전체보기 가 아니면 ]
 			if( bcno != 0) { sql += " where b.bcno = " + bcno; }
-			// +뒤부분 공통 SQL 
-			sql += " order by b.bdate desc limit ?";
-					// order by b.bdate desc :  최신글부터 정렬/출력
-					// limit ? : listsize 개수만큼 게시물 조회
 			
-			ps = conn.prepareStatement(sql);	ps.setInt( 1 , listsize);
+			// +뒤부분 공통 SQL 
+			sql += " order by b.bdate desc limit ? , ?";
+					// order by b.bdate desc :  최신글부터 정렬/출력
+					// limit ? , ? : 시작번호 부터 최대게시물수 만큼 출력
+			ps = conn.prepareStatement(sql);	ps.setInt( 1 , startrow); ps.setInt( 2 , listsize);
 			
 			rs = ps.executeQuery();
 			while( rs.next() ) { // 여러 레코드 조회 while
