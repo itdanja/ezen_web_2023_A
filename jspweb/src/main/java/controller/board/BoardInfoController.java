@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.dao.BoardDao;
 import model.dto.BoardDto;
 import model.dto.MemberDto;
+import model.dto.PageDto;
 
 /**
  * Servlet implementation class BoardInfoController
@@ -49,8 +50,25 @@ public class BoardInfoController extends HttpServlet {
 				// 1. 페이지별 레코드의 시작번호
 			int startrow = ( page-1 )*listsize; // 페이지번호*최대게시물수
 				// 1*10 => 10->0 // 2*10 => 20 -> 10 // 3*10 => 30->20
+			// ----------------------- 4. 마지막 페이지번호 ---------------- // 
+				// 1. 마지막페이지번호/총페이지수 = 전체게시물수 / 페이지별최대게시물수( listsize )
+				// 2. 전체 게시물수
+			int totalsize = BoardDao.getInstance().getTotalSize(bcno);
+				// 3. 마지막페이지번호/총페이지수
+			int totalpage = totalsize%listsize == 0 ? // 만약에 나머지가 없으면 
+							totalsize/listsize : 	  // 몫 
+							totalsize/listsize+1 ;	  // 몫 + 1( 나머지 페이지 수를 표시할 페이지1개 추가 )
+					// 게시물수 : 10 , 페이지별 2개씩 출력  => 총페이지수 5[몫]
+					// 게시물수 : 20 , 페이지별 3개씩 출력  => 총페이지수 6[몫] + 1 ( 나머지[2] )
+
 			ArrayList<BoardDto> result = BoardDao.getInstance().getList( bcno , listsize , startrow );
-			json = objectMapper.writeValueAsString( result );
+			
+			// ----------------------- 6. pageDto 구성  ---------------- // 
+			PageDto pageDto = new PageDto( page, listsize, startrow, 
+					totalsize, totalpage, result );
+			
+			json = objectMapper.writeValueAsString( pageDto );
+			
 
 		}else if( type.equals("2") ) {// 개별 조회 로직 
 			//1.매개변수 요청 

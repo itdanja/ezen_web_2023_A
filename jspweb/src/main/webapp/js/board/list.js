@@ -37,9 +37,7 @@ function getList( page ){ // page : 조회할 페이지번호
 		url : "/jspweb/BoardInfoController" , 
 		metdod : "get" ,
 		data : pageOject , 
-		success : r => { console.log( r ); 
-			
-			
+		success : pageDto => { console.log( pageDto ); 
 			// ------------------------------ 1. 게시물 출력 -------------------- // 
 			// 1. 출력할 위치 
 			let boardTable = document.querySelector('.boardTable');
@@ -49,7 +47,7 @@ function getList( page ){ // page : 조회할 페이지번호
 						<th> 작성일 </th> </tr>` 
 				// * 서블릿으로부터 전달받은 내용[배열] 반복해서 html 구성
 				// 배열명.forEach( 반복변수명 => { 실행코드 } )			 // java ->  ,  js =>
-				r.forEach( b => {
+				pageDto.boardList.forEach( b => {
 					html += `<tr> 
 								<td> ${ b.bno } </td> 
 								<td> ${ b.bcname } </td>
@@ -71,19 +69,25 @@ function getList( page ){ // page : 조회할 페이지번호
 			
 			// 페이지 개수만큼 페이징번호 구성 
 				// page : 조회한 페이지번호 [ 현재 보고 있는 페이지번호 ]
-				// 이전 버튼 [ page <= 1 ? page : page-1 : 만약에 1페이지에서 이전버튼 클릭시 1페이지로 고정 하고 아니면 1차감 ]
+				// 이전 버튼 [ page <= 1 ? page : page-1   만약에 1페이지에서 이전버튼 클릭시 1페이지로 고정 하고 아니면 1차감 ]
 				html += `<button onclick="getList(${ page <= 1 ? page : page-1 })" type="button"> < </button>`
 				
-				// 페이지번호 버튼 [ * 페이지 개수만큼 반복 ]
-				for( let i = 1 ; i<=5 ; i++ ){
-					html += `<button onclick="getList(${i})" type="button"> ${i} </button>`
+				// 페이지번호 버튼 [ * 마지막 페이지 까지 반복 ]
+				for( let i = 1 ; i<= pageDto.totalpage ; i++ ){
+					// class="${ page == i ? 'selectpage' : '' }"
+					// 만약에 현재페이지(page) 와 i 같으면 버튼태그에 class="selectpage" 추가  
+					html += `<button class="${ page == i ? 'selectpage' : '' }" onclick="getList(${i})" type="button"> ${i} </button>`
 				}
 				
-				// 다음 버튼 
-				html += `<button onclick="getList(${ page+1 })" type="button"> > </button>`;
+				// 다음 버튼 [ page >= pageDto.totalpage ? page : page+1  만약에 현재페이지가 마지막페이지이면 고정 아니면 1증가 ]
+				html += `<button onclick="getList(${ page >= pageDto.totalpage ? page : page+1 })" type="button"> > </button>`;
 						
 			// pagebox 구역에 구성된 html 대입 
 			document.querySelector('.pagebox').innerHTML = html;
+			
+			// ------------------------------ 3. 게시물 수 출력   ------------------- // 
+			let boardcount = document.querySelector('.boardcount');
+			boardcount.innerHTML = `총 게시물 수 : ${ pageDto.totalsize }`
 			
 		}, 
 		error : e => {}
