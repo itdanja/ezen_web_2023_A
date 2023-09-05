@@ -14,7 +14,7 @@ getList();
 function getList(){
 	$.ajax({
 		url : "/jspweb/BoardInfoController" , 
-		method : "get" ,
+		metdod : "get" ,
 		data : { type : 1 } , 
 		success : r => { console.log( r ); 
 			// 1. 출력할 위치 
@@ -28,12 +28,15 @@ function getList(){
 				r.forEach( b => {
 					console.log( b );
 					html += `<tr> 
-								<th> ${ b.bno } </th> 
-								<th> ${ b.bcname } </th>
-								<th> <a href="/jspweb/board/view.jsp?bno=${ b.bno }"> ${ b.btitle } </a> </th> 
-								<th> ${ b.mid }  </th> 
-								<th> ${ b.bview } </th>
-								<th> ${ b.bdate } </th> 
+								<td> ${ b.bno } </td> 
+								<td> ${ b.bcname } </td>
+								<td> <a href="/jspweb/board/view.jsp?bno=${ b.bno }"> ${ b.btitle } </a> </td> 
+								<td> 
+									${ b.mid }  
+									<img src="/jspweb/member/img/${ b.mimg }"/>
+								</td> 
+								<td> ${ b.bview } </td>
+								<td> ${ b.bdate } </td> 
 							</tr>`
 				} ); // for end 
 			// 3. 구성된 html내용을 출력 

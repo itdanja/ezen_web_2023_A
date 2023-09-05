@@ -1,1 +1,52 @@
 @charset "UTF-8";
+/* 1. 테이블 CSS */
+	/* 1-1. 테이블 전체구역 */
+.boardTable{ 
+	width: 100%; margin-top: 30px; 
+	border-collapse: collapse; /* 테두리 병합 */ 
+}
+	/* 1-2. 테이블 헤더(제목) , 데이터(셀) 구역 */
+.boardTable th , td{
+	text-align: center; padding: 13px 0px;
+	/* 내용물이 구역보다 커졌을때.  (생략기호) ... 표기하기 */
+	white-space: nowrap; 		/* 자동 줄바꿈 해제 */
+	overflow: hidden;			/* 내용물이 구역보다 커졌을때 내용물 숨기기 */
+	text-overflow: ellipsis; 	/* 넘쳐서 숨겨진 내용물은 ... 표기하기 */
+	max-width: 150px;
+}
+	/* 1-3. 테이블 헤더(제목) 구역 */
+.boardTable th{
+	background-color: #75C1CF; color: white;
+}
+	/* 1-4. 테이블 각 열 길이 */
+.boardTable th:nth-child(1){ width: 5%; }	/* 1번째 열  	= 1번째 th */
+.boardTable th:nth-child(2){ width: 10%; }	/* 2째 열  	= 2번째 th */
+.boardTable th:nth-child(3){ width: 60%; }	/* 3번째 열  	= 3번째 th */
+.boardTable th:nth-child(4){ width: 10%; }	/* 4번째 열  	= 4번째 th */
+.boardTable th:nth-child(5){ width: 5%; }	/* 5번째 열  	= 5번째 th */
+.boardTable th:nth-child(6){ width: 10%; }	/* 6번째 열  	= 6번째 th */
+	/* 1-5 홀수/짝수 행(tr) 마다 구역 */
+.boardTable tr:nth-child(odd){ background-color: #e8fdfd; }
+.boardTable tr:nth-child(even){ background-color: #ffffff; }
+	/* 1-6 행 호버(마우스 올렸을때)  */
+.boardTable tr:hover{ background-color: #75C1CF; }
+	/* 1-7 작성자 프로필  */
+.boardTable img{ width: 20px; vertical-align: middle; }
+ 
+/*
+	- 의사 클래스
+	하위 요소을 인덱스로 식별 하기 [ * 형제 목록 ]
+		- 인덱스 : 1번부터 시작 
+		- 목적 : 동일한 식별자가 여러개일때 사용 [ * 중복 식별자를 식별할때 ]
+		- 상위요소 하위요소:nth-child( 인덱스 )
+			form input:nth-child( 1 )	: form태그 하위요소의 첫번째 input 요소 식별
+			form input:nth-child( 3 )	: form태그 하위요소의 세번째 input 요소 식별
+		- 
+			상위요소 하위요소:nth-child( odd )	: 형제 목록중에 홀수 번째 요소 식별 
+			상위요소 하위요소:nth-child( even ) : 형제 목록중에 짝수 번째 요소 식별 \
+*/
+	
+
+
+
+
