@@ -58,12 +58,11 @@ public class BoardInfoController extends HttpServlet {
 			int totalpage = totalsize%listsize == 0 ? // 만약에 나머지가 없으면 
 							totalsize/listsize : 	  // 몫 
 							totalsize/listsize+1 ;	  // 몫 + 1( 나머지 페이지 수를 표시할 페이지1개 추가 )
-					// 게시물수 : 10 , 페이지별 2개씩 출력  => 총페이지수 5[몫]
-					// 게시물수 : 20 , 페이지별 3개씩 출력  => 총페이지수 6[몫] + 1 ( 나머지[2] )
-
+					// 게시물수 : 10 , 페이지별 2개씩 출력  => 총페이지수 5페이지[몫]
+					// 게시물수 : 20 , 페이지별 3개씩 출력  => 총페이지수 6페이지[몫] + 1 ( 나머지[2] ) => 7페이지
+			// ----------------------- 6. pageDto 구성  ---------------- // 
 			ArrayList<BoardDto> result = BoardDao.getInstance().getList( bcno , listsize , startrow );
 			
-			// ----------------------- 6. pageDto 구성  ---------------- // 
 			PageDto pageDto = new PageDto( page, listsize, startrow, 
 					totalsize, totalpage, result );
 			
