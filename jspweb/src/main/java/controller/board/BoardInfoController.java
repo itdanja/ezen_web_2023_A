@@ -40,8 +40,12 @@ public class BoardInfoController extends HttpServlet {
 		String json = "";
 
 		if( type.equals("1") ) { // 전체 조회 로직 
+			// ----------------------- 1. 카테고리 ---------------------- //
+			int bcno = Integer.parseInt( request.getParameter("bcno") );
+			// ----------------------- 2. 출력할 게시물수/하나의 페이지의 최대 게시물수 ---------//
+			int listsize = Integer.parseInt( request.getParameter("listsize") );
 			
-			ArrayList<BoardDto> result = BoardDao.getInstance().getList();
+			ArrayList<BoardDto> result = BoardDao.getInstance().getList( bcno , listsize );
 			json = objectMapper.writeValueAsString( result );
 
 		}else if( type.equals("2") ) {// 개별 조회 로직 

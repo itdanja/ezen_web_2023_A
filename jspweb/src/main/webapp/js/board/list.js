@@ -1,4 +1,5 @@
 
+
 // 1. 글쓰기 버튼을 클릭하면 
 function onWrite(){
 	if( loginState ){ 	// - 만약에 비 로그인이면 로그인 페이지로 이동
@@ -9,13 +10,29 @@ function onWrite(){
 	}
 }
 
+/* 게시물 조회 조건 객체 */
+let pageOject = { type : 1 , bcno : 0  , listsize : 10 }
+	// * type : 1:전체조회 , 2:개별조회
+	// * bcno : 조회할 카테고리 번호 [ 기본값은 전체보기 ]
+	// * listsize : 하나의 페이지에 최대표시할 게시물수 [ 기본값은 10개 ]
+// 3. 카테고리 버튼을 클릭했을때.
+function onCategory( bcno ){ 	console.log('클릭된 카테고리 : ' + bcno );
+	pageOject.bcno = bcno; // 조회 조건객체내 카테고리번호를 선택한 카테고리로 변경
+	getList(); // 조건이  변경되었기 때문에 다시 출력[ 재렌더링/새로고침 ]
+} // f end 
+// 4. 한페이지 최대 표시할 개수를 변경했을때.
+function onListSize(){
+	pageOject.listsize=document.querySelector('.listsize').value; // 선택된 게시물수를 조회조건객체 저장
+	getList(); // 조건이  변경되었기 때문에 다시 출력[ 재렌더링/새로고침 ]
+} 
+
 // 2. 모든 글 조회 [ js열렸을때 1회 자동실행 ]
 getList();
 function getList(){
 	$.ajax({
 		url : "/jspweb/BoardInfoController" , 
 		metdod : "get" ,
-		data : { type : 1 } , 
+		data : pageOject , 
 		success : r => { console.log( r ); 
 			// 1. 출력할 위치 
 			let boardTable = document.querySelector('.boardTable');
@@ -26,7 +43,6 @@ function getList(){
 				// * 서블릿으로부터 전달받은 내용[배열] 반복해서 html 구성
 				// 배열명.forEach( 반복변수명 => { 실행코드 } )			 // java ->  ,  js =>
 				r.forEach( b => {
-					console.log( b );
 					html += `<tr> 
 								<td> ${ b.bno } </td> 
 								<td> ${ b.bcname } </td>
