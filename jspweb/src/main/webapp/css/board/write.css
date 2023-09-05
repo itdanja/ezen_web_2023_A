@@ -1,1 +1,12 @@
 @charset "UTF-8";
+
+.titlebox{
+	display: flex;
+	margin: 20px 0px;
+}
+
+.btitle{
+	border: 1px solid #e8eded;
+    width: 100%;
+    padding: 9px 10px;
+}

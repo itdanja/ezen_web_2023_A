@@ -27,3 +27,12 @@ function bwrite(){
 		error : e => { } 
 	})
 }
+
+$(document).ready(function() {
+  // $('#summernote').summernote( {설정객체} );
+  $('#summernote').summernote( { 
+	lang : 'ko-KR', // 한글 적용 [ 한글.JS CDN 필요]  
+	height : 500 , 
+	placeholder : '여기에 내용작성'
+  });
+});
