@@ -16,8 +16,20 @@ function getBoard(){
 			// 응답 결과를 html 대입
 			document.querySelector('.bcno').value = `${r.bcno }`;
 			document.querySelector('.btitle').value = `${r.btitle}`;
-			document.querySelector('.bcontent').value = `${r.bcontent}`;
+			document.querySelector('.bcontent').innerHTML = `${r.bcontent}`;
 			document.querySelector('.oldfile').innerHTML = `${r.bfile}`;
+			
+					
+			/* 썸머노트 실행 */
+			$(document).ready(function() {
+				let option = { // 썸머노트 옵션관련 객체 만들기 
+					lang : 'ko-KR' , 
+					height : 500 , 
+					placeholder : '여기에 내용작성'
+				}
+				$('#summernote').summernote( option );
+			});
+
 		}
 	})
 } // f end 
