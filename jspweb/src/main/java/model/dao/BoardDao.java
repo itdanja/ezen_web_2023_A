@@ -27,7 +27,7 @@ public class BoardDao extends Dao {
 	// 2-2 게시물 수 출력 
 	public int getTotalSize( int bcno , String key , String keyword ) {
 		try {
-			String sql = "select count(*) from board b ";
+			String sql = "select count(*) from board b natural join member m ";
 			
 			// -만약에 전체보기 가 아니면 [ 카테고리별 개수 ]
 			if( bcno != 0 ) { sql += " where b.bcno = "+ bcno; }
