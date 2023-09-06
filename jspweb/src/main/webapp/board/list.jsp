@@ -51,13 +51,14 @@
 			<div class="pagebox"> </div>
 			
 			<!-- 6. 검색 구역 -->
-			<select class="bbtn">	<!-- 검색할 필드명 -->
-				<option>제목</option>
-				<option>내용</option>
-				<option>작성자</option>
+			<select class="bbtn key">	<!-- 검색할 필드명 -->
+				<!-- value="SQL에서 사용할 필드명 기준" -->
+				<option value="b.btitle" >제목</option>
+				<option value="b.bcontent" >내용</option>
+				<option value="m.mid">작성자</option>
 			</select>
 			<input class="keyword" type="text"> <!-- 검색 내용 -->
-			<button class="bbtn" type="button">검색</button>
+			<button onclick="onSearch()" class="bbtn" type="button">검색</button>
 			
 		</div>
 		

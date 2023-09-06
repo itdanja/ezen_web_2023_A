@@ -41,6 +41,11 @@ public class BoardInfoController extends HttpServlet {
 		String json = "";
 
 		if( type.equals("1") ) { // 전체 조회 로직 
+			
+			// ----------------------- 7. 검색처리 ----------------------- // 
+			String key = request.getParameter("key");
+			String keyword = request.getParameter("keyword");
+			
 			// ----------------------- 1. 카테고리 ---------------------- //
 			int bcno = Integer.parseInt( request.getParameter("bcno") );
 			// ----------------------- 2. 출력할 게시물수/하나의 페이지의 최대 게시물수 ---------//
@@ -53,7 +58,8 @@ public class BoardInfoController extends HttpServlet {
 			// ----------------------- 4. 마지막 페이지번호 ---------------- // 
 				// 1. 마지막페이지번호/총페이지수 = 전체게시물수 / 페이지별최대게시물수( listsize )
 				// 2. 전체 게시물수
-			int totalsize = BoardDao.getInstance().getTotalSize(bcno);
+			int totalsize = BoardDao.getInstance().getTotalSize( 
+											bcno , key , keyword );
 				// 3. 마지막페이지번호/총페이지수
 			int totalpage = totalsize%listsize == 0 ? // 만약에 나머지가 없으면 
 							totalsize/listsize : 	  // 몫 
@@ -93,10 +99,11 @@ public class BoardInfoController extends HttpServlet {
 			if( endbtn >= totalpage ) endbtn = totalpage;
 			
 			// ----------------------- 6. pageDto 구성  ---------------- // 
-			ArrayList<BoardDto> result = BoardDao.getInstance().getList( bcno , listsize , startrow );
+		
+			ArrayList<BoardDto> result = BoardDao.getInstance().getList(  
+							bcno , listsize , startrow , key , keyword );
 			
-			PageDto pageDto = new PageDto( page, listsize, startrow, 
-					totalsize, totalpage, startbtn , endbtn ,  result );
+			PageDto pageDto = new PageDto( page, listsize, startrow, totalsize, totalpage, startbtn , endbtn ,  result );
 			
 			json = objectMapper.writeValueAsString( pageDto );
 			
