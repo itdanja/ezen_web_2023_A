@@ -54,6 +54,7 @@ public class BoardDao extends Dao {
 			sql += " order by b.bdate desc limit ? , ?";
 					// order by b.bdate desc :  최신글부터 정렬/출력
 					// limit ? , ? : 시작번호 부터 최대게시물수 만큼 출력
+			
 			ps = conn.prepareStatement(sql);	ps.setInt( 1 , startrow); ps.setInt( 2 , listsize);
 			
 			rs = ps.executeQuery();
