@@ -17,6 +17,7 @@ import model.dao.BoardDao;
 import model.dto.BoardDto;
 import model.dto.MemberDto;
 import model.dto.PageDto;
+import service.FileService;
 
 /**
  * Servlet implementation class BoardInfoController
@@ -176,15 +177,23 @@ public class BoardInfoController extends HttpServlet {
 		int bno = Integer.parseInt( multi.getParameter("bno") );
 		BoardDto updateDto = 
 				new BoardDto(bno, btitle, bcontent, bfile, bcno); System.out.println("수정dto : " + updateDto );
+		
 		// * 만약에 수정할 첨부파일이 없으면 기존 첨부파일 그대로 사용
 		if( updateDto.getBfile() == null ) {
 			// 기존첨부파일 호출해서 수정dto에 저장하기.
 			updateDto.setBfile( 
 					BoardDao.getInstance().getBoard(bno).getBfile() 
 					) ;
+		}else { // 만약에 수정할 첨부파일 있으면 기존 첨부파일은 서버업로드폴더에서 삭제 
+			
+			String filename = BoardDao.getInstance().getBoard(bno).getBfile();
+			filename = request.getServletContext().getRealPath("/board/upload")+"/"+filename;
+			FileService.fileDelete(filename);
 		}
+		
 		// 3. DAO
 		boolean result = BoardDao.getInstance().onUpdate( updateDto );
+		
 		// 4. 응답 
 		response.setContentType("application/json; charset=UTF-8"); 
 		response.getWriter().print(result);
@@ -194,13 +203,22 @@ public class BoardInfoController extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 요청 
 		int bno = Integer.parseInt( request.getParameter("bno") );
+		
+			// - 레코드 삭제 전 에 파일이름 꺼내두기 [ 레코드 삭제후 파일이름 호출이 불가능 하니까 ]
+			String filename = BoardDao.getInstance().getBoard(bno).getBfile();
+			
 		// 2. DAO
 		boolean result = BoardDao.getInstance().ondelete(bno);
+			// 게시물 삭제시 삭제된 게시물의 업로드파일도 같이 삭제 
+			if( result ) { // 만약에 게시물 삭제 성공이면 
+				filename = request.getServletContext().getRealPath("/board/upload")+"/"+filename;
+				FileService.fileDelete(filename);
+			}
 		// 3. 응답 
 		response.setContentType("application/json; charset=UTF-8"); 
 		response.getWriter().print(result);
 	}
-
+	
 }
 
 
