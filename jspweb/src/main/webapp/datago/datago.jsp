@@ -14,8 +14,10 @@
 	
 		<div>
 			<h2> - 카카오지도  - </h2>
-			<div id="map" style="width:100%;height:500px;"></div>
+			<div class="detailbox">
 			
+			</div>
+			<div id="map" style="width:100%;height:500px;"></div>
 		</div>
 		
 		<div>
@@ -28,7 +30,7 @@
 	</div>
 	
 	<!-- 카카오js -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ac4a57d8a5927d34020a891fcdbbcbd"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1ac4a57d8a5927d34020a891fcdbbcbd&libraries=clusterer"></script>
 	
 	<script src="/jspweb/js/datago/datago.js" type="text/javascript"></script>
 
