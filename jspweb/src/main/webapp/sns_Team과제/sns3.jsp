@@ -93,6 +93,10 @@
 		    padding: 10px 5px;
 		    text-align: right;
 	    }
+	    .btnbox{
+	    	display: flex;
+    		justify-content: space-between;
+	    }
 		
 	</style>
 
@@ -119,10 +123,21 @@
 					방탄소년단이 'BTS 2019 SUMMER PACKAGE in KOREA' 촬영으로 다녀온✨ <br/>
 					전라북도 완주에 위치한 이곳은 작은 비밀공간을 지나면 볼 수 있는 갤러리부터 주변에 특색 있는 산책길까지 한 편의 수채화 같은 곳이기도 합니다. 주말 데이트로 #아원고택 어때요?
 				</div>
+				
 				<div class="btnbox">
-					<button onclick="onupdate()" type="button">수정</button>
-					<button onclick="ondelete()" type="button">삭제</button>
-					<button onclick="onreply()" type="button">답글</button>
+					
+					<div>
+						<button type="button">수정</button>
+						<button type="button">삭제</button>
+						<button onclick="onreply()" type="button">답글</button>
+						<button type="button">다운로드</button>
+					</div>
+					
+					<span style="font-size: 15px;">
+						<span> 👍 3 </span>
+						<span> 👎 10 </span>
+					</span>
+					
 				</div>
 				
 				<div class="replybox">
@@ -158,10 +173,21 @@
 				</div>
 				
 				<div class="btnbox">
-					<button type="button">수정</button>
-					<button type="button">삭제</button>
-					<button onclick="onreply()" type="button">답글</button>
+					
+					<div>
+						<button type="button">수정</button>
+						<button type="button">삭제</button>
+						<button onclick="onreply()" type="button">답글</button>
+						<button type="button">다운로드</button>
+					</div>
+					
+					<span style="font-size: 15px;">
+						<span> 👍 25 </span>
+						<span> 👎 7 </span>
+					</span>
+					
 				</div>
+				
 				
 				<div class="replybox">
 					<div class="reply"> 
@@ -187,9 +213,19 @@
 				</div>
 				
 				<div class="btnbox">
-					<button type="button">수정</button>
-					<button type="button">삭제</button>
-					<button onclick="onreply()" type="button">답글</button>
+					
+					<div>
+						<button type="button">수정</button>
+						<button type="button">삭제</button>
+						<button onclick="onreply()" type="button">답글</button>
+						<button type="button">다운로드</button>
+					</div>
+					
+					<span style="font-size: 15px;">
+						<span> 👍 1 </span>
+						<span> 👎 8 </span>
+					</span>
+					
 				</div>
 				
 				<div class="replybox">
