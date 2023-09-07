@@ -20,7 +20,7 @@
 			<li> <a href="/jspweb/visitlog/visitlog.jsp">방문록</a> </li>
 			<li> <a href="/jspweb/board/list.jsp">게시판</a> </li>
 			<li> <a href="/jspweb/datago/datago.jsp">공공데이터</a> </li>
-			<li> <a href="#">기능3</a> </li>
+			<li> <a href="/jspweb/chatting/chatting.jsp">채팅</a> </li>
 			<li> <a href="#">(과1)가계부</a> </li>
 			<li> <a href="#">(과2)열람실</a> </li>
 			<li> <a href="#">(과3)</a> </li>
