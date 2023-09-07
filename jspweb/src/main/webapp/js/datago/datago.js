@@ -49,7 +49,90 @@ function api1(){
 		} , 
 		error : e => {} 
 	})
-}
+} // f end 
+
+/*
+	카카오 개발자 센터
+		https://developers.kakao.com
+		1. 애플리케이션 추가 
+		2. 플랫폼 web -> 사이트 도메인 등록 
+		
+		https://apis.map.kakao.com/
+		
+*/
+
+// 1. 접속한 브라우저의 GPS 좌표 얻기  [ geolocation ] - 엣지브라우저
+navigator.geolocation.getCurrentPosition( pos => {  console.log( pos ); 
+	let lat = pos.coords.latitude;
+	let lng = pos.coords.longitude;
+	// 카카오지도 출력 
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng( lat , lng ), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+	
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
+	// 마커가 표시될 위치입니다 
+	var markerPosition  = new kakao.maps.LatLng( lat ,  lng); 
+	
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition
+	});
+	
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map);
+
+}) // f end 
+
+
+/*
+	// 카카오지도 출력 
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+	
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
