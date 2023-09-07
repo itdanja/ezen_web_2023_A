@@ -30,7 +30,7 @@ function onmsg(event){
 
 
 /*
-	1. AJAX
+	1. AJAX [ 단방향 ]
 		발신자(보내는사람) 	: AJAX		
 		수신자(받는사람) 	: 서블릿		
 	
@@ -41,7 +41,7 @@ function onmsg(event){
 							post	
 							put
 							delete
-	2. (웹)소켓
+	2. (웹)소켓 [ 양방향 ]
 		소켓 : 통신의 종착점[도착위치]
 		- 전체조건 : 서버가 클라이언트소켓의 정보를 가지고 있어야한다.
 		
