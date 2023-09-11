@@ -38,7 +38,7 @@
 					<div class="tocont">
 						<div class="name">강호동</div> <!-- 보낸 사람 -->
 						<div class="subcont">
-							<div class="content"> 그래 안녕~~~ </div>
+							<div class="content"> 그래 안녕 ~ </div>
 							<div class="date"> 오전 10:10 </div>
 						</div>
 					</div>
