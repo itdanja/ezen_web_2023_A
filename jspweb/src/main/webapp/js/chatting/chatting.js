@@ -9,7 +9,101 @@ console.log( '채팅방에 입장한 아이디 : ' + loginMid );
 let clientSocket = new WebSocket(`ws://localhost:80/jspweb/serversokcet/${loginMid}`);
 	// - 클라이언트소켓이 생성되었을때 자동으로 서버소켓에 접속 ----> 서버소켓의 @OnOpen 으로 이동
 	// - 서버소켓URL에 매개변수 전달하기 [- 주로 식별자 전달 ] 서버소켓URL/데이터1/데이터2/데이터3
+	// --- 메소드 4가지 메소드 자동으로 실행 
+		// 1. (자동실행) 클라이언트소켓이 정상적으로 서버소켓 접속했을때
+	clientSocket.onopen = e => { console.log('서버와 접속이 성공'); 	} ;
+		// 2. (자동실행) 클라이언트소켓이 서버소켓과 연결에서 오류가 발생했을때.
+	clientSocket.onerror = e => { console.log('서버와 오류발생:'+e ); };
+		// 3. (자동실행) 클라이언트소켓이 서버소켓과 연결이 끊겼을때.
+	clientSocket.onclose = e => { console.log('서버와 연결 끊김:'+e ); };
+		// 4. (자동실행) 클라이언트소켓이 메시지를 받았을때.
+	clientSocket.onmessage = e => onMsg( e ); 
+		// send 보내기는 없음.
+		
+// 3. 서버에게 메시지 전송 
+function onSend(){
+	// 3-1 textarea 입력값 호출 
+	let msg = document.querySelector('.msg').value;
+	if( msg == ''){ alert('내용을 입력해주세요.'); return; }	
+	// 3-2 메시지 전송 .. . 
+	clientSocket.send( msg ); 
+	// 클라이언트소켓과 연결된 서버소켓에게 메시지 전송 ----> 서버소켓의 @OnMessage 으로 이동 
+}
+// 4. 메시지를 받았을때 후추 행동(메소드) 선언 
+function onMsg( e ){
+	console.log( e ); // e : 메시지 받았을때 발생한 이벤트 정보가 들어있는 객체
+	console.log( e.data ); // .data 속성에 전달받은 메시지 내용 
 	
+	let msg = JSON.parse( e.data );
+		// JSON.parse( ) 		: 문자열타입의 JSON형식을 JSON타입으로 변환 
+		// JSON.stringify( ) 	: JSON타입 을 문자열 타입 (JSON형식 유지)으로 변환 
+	// 1. 어디에 출력할껀지 
+	let chatcont = document.querySelector('.chatcont')
+	// 2. 무엇을 
+	let html = ``;
+		// 2-2 만약에 내가 보냈으면. [ 보낸사람아이디와 로그인된사람의 아이디와 같으면 ]
+		if( msg.frommid == loginMid ){
+				html = `<div class="rcont"> 
+							<div class="subcont">
+								<div class="date"> 오전 10:02 </div>
+								<div class="content"> ${ msg.msg } </div>
+							</div>
+						</div>`;
+		}else{ // 2-2 내가 보낸 내용이 아니면
+			html = `
+					<div class="lcont"> 
+						<img class="pimg" src="/jspweb/member/img/default.webp" />
+						<div class="tocont">
+							<div class="name">${ msg.frommid }</div>
+							<div class="subcont">
+								<div class="content"> ${ msg.msg } </div>
+								<div class="date"> 오전 10:10 </div>
+							</div>
+						</div>
+					</div>`
+		}
+	// 3. 누적 대입 [ 기존 채팅목록 에 이어서 추가 += ]
+	chatcont.innerHTML += html;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 // ------------------------------------------------------------------------------ // 
@@ -36,8 +130,12 @@ let clientSocket = new WebSocket(`ws://localhost:80/jspweb/serversokcet/${loginM
 		
 	* WebSocket 클라이언트 웹 소켓 라이브러리 
 		- 소켓 관련된 함수들을 제공하는 클래스 
-		1. 웹소켓 객체 생성 
+		1. 클라이언트 웹소켓 객체 생성 
 			new WebSocket("ws://IP주소:PORT번호/프로젝트명/서버소켓경로");
+		
+		2. 메소드 제공 
+			.send( ) : 클라언트소켓이 연결된 서버소켓에게 메시지를 전송 메소드
+		
 			
 	* 동기화 vs 비동기화 
 	
