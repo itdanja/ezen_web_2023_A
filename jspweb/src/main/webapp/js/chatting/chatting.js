@@ -25,7 +25,10 @@ let clientSocket = new WebSocket(`ws://192.168.17.96:80/jspweb/serversokcet/${lo
 function onSend(){
 	// 3-1 textarea 입력값 호출 
 	let msaValue = document.querySelector('.msg').value;
-	if( msaValue == ''){ alert('내용을 입력해주세요.'); return; }	
+	if( msaValue == '' || msaValue == '\n' ){ 
+		document.querySelector('.msg').value = ``;
+		return; 
+	}	
 	// 3-2 메시지 전송 .. . 
 	
 	let msg = { type : 'message' , content : msaValue }
@@ -40,41 +43,42 @@ function onSend(){
 function onMsg( e ){
 	console.log( e ); // e : 메시지 받았을때 발생한 이벤트 정보가 들어있는 객체
 	console.log( e.data ); // .data 속성에 전달받은 메시지 내용 
-	
-	let msg = JSON.parse( e.data );
+	let msgBox = JSON.parse( e.data );	console.log( msgBox );
 		// JSON.parse( ) 		: 문자열타입의 JSON형식을 JSON타입으로 변환 
 		// JSON.stringify( ) 	: JSON타입 을 문자열 타입 (JSON형식 유지)으로 변환 
-		console.log( msg.msg ); // java,js console내 출력시 줄바꿈 \n 맞음.. html에서의 줄바꿈 <br>
+		console.log( msgBox.msg ); // java,js console내 출력시 줄바꿈 \n 맞음.. html에서의 줄바꿈 <br>
 		
 		// 1. 특정 문자열 찾아서 1개 치환/바꾸기/교체 
-		let content = msg.msg.replace( '\n' , '<br>' );	// replace( '변경할문자열|정규표현식' , '새로운문자' );
+		let content = msgBox.msg.replace( '\n' , '<br>' );	// replace( '변경할문자열|정규표현식' , '새로운문자' );
 		console.log( content );
 		// 2. 특정 문자열 찾아서 찾은 문자열 모두 치환/바꾸기/교체 => java : .replaceAll();   js : 정규표현식 
-		content  = msg.msg.replace( /\n/g , '<br>');	// /g : 동일한 패턴의 모든 문자찾기[전체]
-		
+		content  = msgBox.msg.replace( /\n/g , '<br>');	// /g : 동일한 패턴의 모든 문자찾기[전체]
 		console.log( content );
+		
+	msgBox.msg	= JSON.parse( content ); // 치환하고 대입.
+		console.log( msgBox );
 		
 	// 1. 어디에 출력할껀지 
 	let chatcont = document.querySelector('.chatcont')
 	// 2. 무엇을 
 	let html = ``;
 		// 2-2 만약에 내가 보냈으면. [ 보낸사람아이디와 로그인된사람의 아이디와 같으면 ]
-		if( msg.frommid == loginMid ){
+		if( msgBox.frommid == loginMid ){
 				html = `<div class="rcont"> 
 							<div class="subcont">
-								<div class="date"> ${ msg.date } </div>
-								<div class="content"> ${ content } </div>
+								<div class="date"> ${ msgBox.date } </div>
+								${ typeHTML( msgBox.msg ) }
 							</div>
 						</div>`;
 		}else{ // 2-2 내가 보낸 내용이 아니면
 			html = `
 					<div class="lcont"> 
-						<img class="pimg" src="/jspweb/member/img/${ msg.frommimg }" />
+						<img class="pimg" src="/jspweb/member/img/${ msgBox.frommimg }" />
 						<div class="tocont">
-							<div class="name">${ msg.frommid }</div>
+							<div class="name">${ msgBox.frommid }</div>
 							<div class="subcont">
-								<div class="content"> ${ content } </div>
-								<div class="date"> ${ msg.date } </div>
+								${ typeHTML( msgBox.msg ) }
+								<div class="date"> ${ msgBox.date } </div>
 							</div>
 						</div>
 					</div>`
@@ -123,6 +127,23 @@ function onEmoSend( i ){
 	// 2. 보내기 
 	clientSocket.send( JSON.stringify( msg ) );
 			// JSON타입을 String타입으로 변환해주는 함수. [ 모양/형식/포멧 : JSON ] 
+}
+
+// 8. msg 타입에 따른 HTML 반환 함수 
+function typeHTML( msg ){
+	
+	let html = ``;
+	
+	// 1. 메시지 타입 일때는 <div> 반환  
+	if( msg.type == 'message'){
+		html += `<div class="content"> ${ msg.content } </div>`;
+	}
+	// 2. 이모티콘 타입 일때는 <img> 반환 
+	else if( msg.type == 'emo' ){
+		html += `<img src="/jspweb/img/imoji/emo${msg.content}.gif" />`;
+	}
+	return html;
+	
 }
 
 

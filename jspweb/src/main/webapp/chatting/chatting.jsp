@@ -29,7 +29,7 @@
 			</div>
 			<!-- 채팅입력창 , 전송버튼 구역  -->
 			<div class="chatbottom"> 
-				<textarea onkeyup="onEnterKey()" class="msg"> </textarea>
+				<textarea onkeyup="onEnterKey()" class="msg"></textarea>
 				<button onclick="onSend()" type="button" >전송</button>
 			</div>
 			
