@@ -12,7 +12,18 @@ let clientSocket = new WebSocket(`ws://192.168.17.96:80/jspweb/serversokcet/${lo
 	// - 서버소켓URL에 매개변수 전달하기 [- 주로 식별자 전달 ] 서버소켓URL/데이터1/데이터2/데이터3
 	// --- 메소드 4가지 메소드 자동으로 실행 
 		// 1. (자동실행) 클라이언트소켓이 정상적으로 서버소켓 접속했을때
-	clientSocket.onopen = e => { console.log('서버와 접속이 성공'); 	} ;
+	clientSocket.onopen = e => { 
+			
+		// 1-2 : 만약에 접속을 성공하면 알림메시지 전송 
+		let msg = { 
+			type : 'alarm' , 
+			content : `${loginMid}님이 입장했습니다.` 
+		}
+		// clientSocket.send( msg ); // 문제발생 : 해당 메시지를 받는 JAVA는 JSON타입 몰라요.. 그래서 문자열 타입으로 전송.
+		clientSocket.send( JSON.stringify( msg ) );
+			
+			
+	};
 		// 2. (자동실행) 클라이언트소켓이 서버소켓과 연결에서 오류가 발생했을때.
 	clientSocket.onerror = e => { console.log('서버와 오류발생:'+e ); };
 		// 3. (자동실행) 클라이언트소켓이 서버소켓과 연결이 끊겼을때.
@@ -62,8 +73,13 @@ function onMsg( e ){
 	let chatcont = document.querySelector('.chatcont')
 	// 2. 무엇을 
 	let html = ``;
+		// 만약에 메시지 타입이 알림 이면 
+		if( msgBox.msg.type == 'alarm' ){
+			html = `${typeHTML( msgBox.msg )}`;
+		}
+		// 만약에 메시지 타입이 알림이 아니면 [ 메시지 , 이모티콘 ]
 		// 2-2 만약에 내가 보냈으면. [ 보낸사람아이디와 로그인된사람의 아이디와 같으면 ]
-		if( msgBox.frommid == loginMid ){
+		else if( msgBox.frommid == loginMid ){
 				html = `<div class="rcont"> 
 							<div class="subcont">
 								<div class="date"> ${ msgBox.date } </div>
@@ -133,7 +149,6 @@ function onEmoSend( i ){
 function typeHTML( msg ){
 	
 	let html = ``;
-	
 	// 1. 메시지 타입 일때는 <div> 반환  
 	if( msg.type == 'message'){
 		html += `<div class="content"> ${ msg.content } </div>`;
@@ -142,8 +157,11 @@ function typeHTML( msg ){
 	else if( msg.type == 'emo' ){
 		html += `<img src="/jspweb/img/imoji/emo${msg.content}.gif" />`;
 	}
+	// 3. 만약에 알림 타입 일때는 <div> 반환 
+	else if( msg.type == 'alarm' ){
+		html += `<div class="alarm"> ${ msg.content } </div>`;
+	}
 	return html;
-	
 }
 
 
