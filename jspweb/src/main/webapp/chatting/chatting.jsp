@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 
 	<link href="/jspweb/css/chatting/chatting.css" rel="stylesheet" >
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+	<!-- 폰트어썸 -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+	
 
 </head>
 <body>
@@ -26,9 +32,24 @@
 				<textarea class="msg"> </textarea>
 				<button onclick="onSend()" type="button" >전송</button>
 			</div>
+			
+			<button class="emobtn" type="button" data-bs-toggle="dropdown">
+					<i class="far fa-smile"></i>
+			</button>
+			
+			<!-- 드롭다운 버튼 클릭시 보이는 구역  -->
+			<div class="dropdown-menu enolist">
+				<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo1.gif" width="60px">
+				<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo2.gif" width="60px">
+				<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo3.gif" width="60px">
+				<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo4.gif" width="60px">
+				<img onclick="자료보내기( ${i} , 'emo' )" alt="" src="/jspweb/img/imoji/emo5.gif" width="60px">
+			</div>
 		</div>
-		
 	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	
 	
 	<script src="/jspweb/js/chatting/chatting.js" type="text/javascript"></script>
 

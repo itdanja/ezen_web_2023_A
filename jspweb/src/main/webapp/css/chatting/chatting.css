@@ -57,6 +57,19 @@
 	padding: 8px;
 }
 
+/* ------------------------------------------------------ */
+/* 이모티콘 버튼 */
+.emobtn{
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    margin: 5px 20px;
+}
+/* 드롭다운시 보이는 구역 */
+.enolist{
+	width: 300px;	height: 300px;
+	overflow-y:scroll; 
+}
 
 
 
