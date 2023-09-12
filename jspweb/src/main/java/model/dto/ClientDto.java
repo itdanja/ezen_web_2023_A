@@ -2,10 +2,10 @@ package model.dto;
 
 import javax.websocket.Session;
 
-public class ClientDto {
+public class ClientDto {	// 현재 서버소켓의 접속된 클라이언트들의 상태 정보를 설계한 클래스 
 
-	private Session session;
-	private String mid;
+	private Session session;	// 클라이언트소켓 
+	private String mid;			// 클라이언트소켓을 사용하는 회원아이디 
 	
 	public ClientDto() { }
 

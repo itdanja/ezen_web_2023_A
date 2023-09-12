@@ -6,7 +6,8 @@ if( loginState == false ){ alert('회원전용 페이지입니다.'); location.h
 
 // 2. JS 클라이언트[유저] 소켓 만들기 
 console.log( '채팅방에 입장한 아이디 : ' + loginMid );
-let clientSocket = new WebSocket(`ws://localhost:80/jspweb/serversokcet/${loginMid}`);
+//let clientSocket = new WebSocket(`ws://localhost:80/jspweb/serversokcet/${loginMid}`);
+let clientSocket = new WebSocket(`ws://192.168.17.96:80/jspweb/serversokcet/${loginMid}`);
 	// - 클라이언트소켓이 생성되었을때 자동으로 서버소켓에 접속 ----> 서버소켓의 @OnOpen 으로 이동
 	// - 서버소켓URL에 매개변수 전달하기 [- 주로 식별자 전달 ] 서버소켓URL/데이터1/데이터2/데이터3
 	// --- 메소드 4가지 메소드 자동으로 실행 
@@ -45,25 +46,36 @@ function onMsg( e ){
 		if( msg.frommid == loginMid ){
 				html = `<div class="rcont"> 
 							<div class="subcont">
-								<div class="date"> 오전 10:02 </div>
+								<div class="date"> ${ msg.date } </div>
 								<div class="content"> ${ msg.msg } </div>
 							</div>
 						</div>`;
 		}else{ // 2-2 내가 보낸 내용이 아니면
 			html = `
 					<div class="lcont"> 
-						<img class="pimg" src="/jspweb/member/img/default.webp" />
+						<img class="pimg" src="/jspweb/member/img/${ msg.frommimg }" />
 						<div class="tocont">
 							<div class="name">${ msg.frommid }</div>
 							<div class="subcont">
 								<div class="content"> ${ msg.msg } </div>
-								<div class="date"> 오전 10:10 </div>
+								<div class="date"> ${ msg.date } </div>
 							</div>
 						</div>
 					</div>`
 		}
 	// 3. 누적 대입 [ 기존 채팅목록 에 이어서 추가 += ]
 	chatcont.innerHTML += html;
+	
+	// ------------------- 스크롤 최하단으로 내리기 ( 스크롤 이벤트 ) --------------- // 
+	// 1. 현재 스크롤의 상단 위치 .
+	//let topHeight = chatcont.scrollTop;	// dom객체.scrollTop : 해당 div의 스크롤 상단위치
+	//	console.log( topHeight );	// 30px; 
+	// 2. 현재 dom객체의 전체 높이 
+	//let scrollHeight = chatcont.scrollHeight; // dom객체.scrollHeight : 해당 div의 스크롤 전체 높이 
+	//	console.log( scrollHeight )	// 600px;
+	// 3. 전체 높이 값을 현재 스크롤 상단 위치에 대입 
+	chatcont.scrollTop = chatcont.scrollHeight;
+	
 }
 
 
