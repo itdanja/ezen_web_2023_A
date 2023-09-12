@@ -29,7 +29,10 @@ function onSend(){
 	// 3-2 메시지 전송 .. . 
 	clientSocket.send( msg ); 
 	// 클라이언트소켓과 연결된 서버소켓에게 메시지 전송 ----> 서버소켓의 @OnMessage 으로 이동 
+	// 3-3 메시지 전송 성공시 입력상자 초기화
+	document.querySelector('.msg').value = ``;
 }
+
 // 4. 메시지를 받았을때 후추 행동(메소드) 선언 
 function onMsg( e ){
 	console.log( e ); // e : 메시지 받았을때 발생한 이벤트 정보가 들어있는 객체
@@ -76,9 +79,18 @@ function onMsg( e ){
 	// 3. 전체 높이 값을 현재 스크롤 상단 위치에 대입 
 	chatcont.scrollTop = chatcont.scrollHeight;
 	
+} // f end 
+
+// 5. textarea 입력창에서 입력할때마다 이벤트 발생 함수 
+function onEnterKey(){	
+	// 2. 만약에 ctrl + 엔터 이면 줄바꿈.
+	if( window.event.keyCode == 13 && window.event.ctrlKey ){ // 조합키 : 한번에 두개 이상 입력 가능한 키 [ ctrl.shift+alt 등]
+		document.querySelector('.msg').value += `\n`; return;
+	}
+	// 1. 만약에 입력한 키 가 [엔터] 이면 메시지 전송
+	if( window.event.keyCode == 13 ){ onSend(); return; }
+	
 }
-
-
 
 
 
