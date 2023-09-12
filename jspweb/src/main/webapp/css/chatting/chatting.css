@@ -56,6 +56,50 @@
 	border-radius: 10px;
 	padding: 8px;
 }
+/* ----------- 이모티콘 구역 ------------------------------ */
+/* 드롭다운 버튼 = 이모티콘 버튼 */
+.dropdown .emobtn{
+	font-size: 25px; /* 폰트어썸 아이콘 크기변경 */
+	background-color: transparent; /*투명색*/
+	border: none; margin: 5px 20px;
+}
+/* 드롭다운시 보이는 구역 */
+.dropdown .emolistbox{
+	width: 300px; height: 300px;	
+	overflow-y : scroll;
+}
+/* 이모티콘 이미지 크기 */ 
+.dropdown .emolistbox img{ width: 70px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

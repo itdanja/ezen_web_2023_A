@@ -24,10 +24,13 @@ let clientSocket = new WebSocket(`ws://192.168.17.96:80/jspweb/serversokcet/${lo
 // 3. 서버에게 메시지 전송 
 function onSend(){
 	// 3-1 textarea 입력값 호출 
-	let msg = document.querySelector('.msg').value;
-	if( msg == ''){ alert('내용을 입력해주세요.'); return; }	
+	let msaValue = document.querySelector('.msg').value;
+	if( msaValue == ''){ alert('내용을 입력해주세요.'); return; }	
 	// 3-2 메시지 전송 .. . 
-	clientSocket.send( msg ); 
+	
+	let msg = { type : 'message' , content : msaValue }
+	
+	clientSocket.send( JSON.stringify( msg ) ); 
 	// 클라이언트소켓과 연결된 서버소켓에게 메시지 전송 ----> 서버소켓의 @OnMessage 으로 이동 
 	// 3-3 메시지 전송 성공시 입력상자 초기화
 	document.querySelector('.msg').value = ``;
@@ -41,6 +44,16 @@ function onMsg( e ){
 	let msg = JSON.parse( e.data );
 		// JSON.parse( ) 		: 문자열타입의 JSON형식을 JSON타입으로 변환 
 		// JSON.stringify( ) 	: JSON타입 을 문자열 타입 (JSON형식 유지)으로 변환 
+		console.log( msg.msg ); // java,js console내 출력시 줄바꿈 \n 맞음.. html에서의 줄바꿈 <br>
+		
+		// 1. 특정 문자열 찾아서 1개 치환/바꾸기/교체 
+		let content = msg.msg.replace( '\n' , '<br>' );	// replace( '변경할문자열|정규표현식' , '새로운문자' );
+		console.log( content );
+		// 2. 특정 문자열 찾아서 찾은 문자열 모두 치환/바꾸기/교체 => java : .replaceAll();   js : 정규표현식 
+		content  = msg.msg.replace( /\n/g , '<br>');	// /g : 동일한 패턴의 모든 문자찾기[전체]
+		
+		console.log( content );
+		
 	// 1. 어디에 출력할껀지 
 	let chatcont = document.querySelector('.chatcont')
 	// 2. 무엇을 
@@ -50,7 +63,7 @@ function onMsg( e ){
 				html = `<div class="rcont"> 
 							<div class="subcont">
 								<div class="date"> ${ msg.date } </div>
-								<div class="content"> ${ msg.msg } </div>
+								<div class="content"> ${ content } </div>
 							</div>
 						</div>`;
 		}else{ // 2-2 내가 보낸 내용이 아니면
@@ -60,7 +73,7 @@ function onMsg( e ){
 						<div class="tocont">
 							<div class="name">${ msg.frommid }</div>
 							<div class="subcont">
-								<div class="content"> ${ msg.msg } </div>
+								<div class="content"> ${ content } </div>
 								<div class="date"> ${ msg.date } </div>
 							</div>
 						</div>
@@ -89,7 +102,27 @@ function onEnterKey(){
 	}
 	// 1. 만약에 입력한 키 가 [엔터] 이면 메시지 전송
 	if( window.event.keyCode == 13 ){ onSend(); return; }
-	
+}
+// 6. 이모티콘 출력하기 
+getEmo();
+function getEmo(){
+	// - 
+	for( let i = 1 ; i<=43 ; i++ ){
+		document.querySelector('.emolistbox').innerHTML 
+			+= `<img 	onclick="onEmoSend(${i})" 
+						src="/jspweb/img/imoji/emo${i}.gif" />`;
+	}
+}
+// 7. 클릭한 이모티콘 서버로 보내기.
+function onEmoSend( i ){
+	// 1. msg 구성 
+	let msg = { type : 'emo' , content : i  };
+		// type : msg[메시지] , emo[이모티콘] , img[사진]
+		// content : 내용물 
+		
+	// 2. 보내기 
+	clientSocket.send( JSON.stringify( msg ) );
+			// JSON타입을 String타입으로 변환해주는 함수. [ 모양/형식/포멧 : JSON ] 
 }
 
 
