@@ -31,6 +31,7 @@
 .content{  
 	padding: 10px; border-radius: 5px; 
 	max-width: 80%; /* 최대 가로사이즈 */
+	word-break: break-all; /* 내용일 넘쳤을때 자동줄바꿈 */
 }
 
 /* 보냈을때 = 오른쪽 배치 , 노랑색배경 */

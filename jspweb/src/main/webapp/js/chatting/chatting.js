@@ -52,23 +52,15 @@ function onSend(){
 
 // 4. 메시지를 받았을때 후추 행동(메소드) 선언 
 function onMsg( e ){
-	console.log( e ); // e : 메시지 받았을때 발생한 이벤트 정보가 들어있는 객체
-	console.log( e.data ); // .data 속성에 전달받은 메시지 내용 
-	let msgBox = JSON.parse( e.data );	console.log( msgBox );
-		// JSON.parse( ) 		: 문자열타입의 JSON형식을 JSON타입으로 변환 
-		// JSON.stringify( ) 	: JSON타입 을 문자열 타입 (JSON형식 유지)으로 변환 
-		console.log( msgBox.msg ); // java,js console내 출력시 줄바꿈 \n 맞음.. html에서의 줄바꿈 <br>
-		
-		// 1. 특정 문자열 찾아서 1개 치환/바꾸기/교체 
-		let content = msgBox.msg.replace( '\n' , '<br>' );	// replace( '변경할문자열|정규표현식' , '새로운문자' );
-		console.log( content );
-		// 2. 특정 문자열 찾아서 찾은 문자열 모두 치환/바꾸기/교체 => java : .replaceAll();   js : 정규표현식 
-		content  = msgBox.msg.replace( /\n/g , '<br>');	// /g : 동일한 패턴의 모든 문자찾기[전체]
-		console.log( content );
-		
-	msgBox.msg	= JSON.parse( content ); // 치환하고 대입.
-		console.log( msgBox );
-		
+	
+	// 1. 전달받은 내용물을 JSON타입으로 형변환 
+	let msgBox = JSON.parse( e.data );		//  e.data : 서버로 부터 전달받은 내용물 e.data 속성에 있는 상태 
+	msgBox.msg = JSON.parse( msgBox.msg );
+	
+	// 2. msg속성내 content 속성의  \n -> <br> 치환후 결과를 content속성에 대입
+		// - replace( ) 문자열 교체/치환/바꾸기 함수 
+	msgBox.msg.content = msgBox.msg.content.replace( /\n/g , '<br>' );
+	
 	// 1. 어디에 출력할껀지 
 	let chatcont = document.querySelector('.chatcont')
 	// 2. 무엇을 
@@ -136,7 +128,7 @@ function getEmo(){
 // 7. 클릭한 이모티콘 서버로 보내기.
 function onEmoSend( i ){
 	// 1. msg 구성 
-	let msg = { type : 'emo' , content : i  };
+	let msg = { type : 'emo' , content : i+""  }; // i+"" 하는 이유 가 replace는 문자열만 가능 
 		// type : msg[메시지] , emo[이모티콘] , img[사진]
 		// content : 내용물 
 		
@@ -374,7 +366,24 @@ function onmsg(event){
 		
 */
 
+/*
+	let msgBox = JSON.parse( e.data );	console.log( msgBox );
+		// JSON.parse( ) 		: 문자열타입의 JSON형식을 JSON타입으로 변환 
+		// JSON.stringify( ) 	: JSON타입 을 문자열 타입 (JSON형식 유지)으로 변환 
+		console.log( msgBox.msg ); // java,js console내 출력시 줄바꿈 \n 맞음.. html에서의 줄바꿈 <br>
+		
+		// 1. 특정 문자열 찾아서 1개 치환/바꾸기/교체 
+		let content = msgBox.msg.replace( '\n' , '<br>' );	// replace( '변경할문자열|정규표현식' , '새로운문자' );
+		console.log( content );
+		// 2. 특정 문자열 찾아서 찾은 문자열 모두 치환/바꾸기/교체 => java : .replaceAll();   js : 정규표현식 
+		content  = msgBox.msg.replace( /\n/g , '<br>');	// /g : 동일한 패턴의 모든 문자찾기[전체]
+		console.log( content );
+	
+	msgBox.msg	= JSON.parse( msgBox.msg ); // 치환하고 대입.
+		console.log( msgBox );
+		
 
+*/
 
 
 
