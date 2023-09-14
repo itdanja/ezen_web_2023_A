@@ -68,16 +68,27 @@ public class ProductInfoController extends HttpServlet {
 						System.out.println( "업로드경로와 파일명이 조합된 경로 : " + fileUploadPath );
 					item.write( fileUploadPath ); // .write("저장할경로[파일명포함]") 파일 업로드할 경로를 file타입으로 제공 
 					// 7. 업로드 된 파일명을 Map에 저장 [ -DB에 저장할려고  ]
-					i++;
+					i++;	// i는 임의의 값 
 					imgList.put( i , item.getName()  ); // 저장시 에는 이미지번호가 필요 없음
+					// MAP 컬렉션은 키 와 값으로 구성된 엔트리 [ * 키는 중복 불가능 ]
 				}
 			}
+			// ------------------------------------- 업로드 끝 --> DB처리 --------------------- //
+			
 			// FileItem 으로 가져온 데이터들을 각 필드에 맞춰서 제품Dto 에 저장하기 
 			ProductDto productDto = new ProductDto(
-					Integer.parseInt( fileList.get(0).getString() ), 
-					fileList.get(1).getString(),  fileList.get(2).getString(), 
-					Integer.parseInt( fileList.get(3).getString() ), 
-					null, null, 0, imgList );
+					// fileList.get(0) : name = pcno 호출 
+					Integer.parseInt( fileList.get(0).getString() ),
+					// fileList.get(1) : name = pname 값 호출 
+					fileList.get(1).getString(), 
+					// fileList.get(2) : pcontent 값 호출 
+					fileList.get(2).getString(), 
+					// fileList.get(3) : pprice 값 호출 
+					Integer.parseInt( fileList.get(3).getString() ),
+					null, null, 0, 
+					// 여러개 이미지는 위에서 리스트로 구성후 대입 
+					// 업로드한 파일명의 개수만큼 MAP 리스트 
+					imgList );
 			
 			System.out.println( productDto );
 		}catch (Exception e) { }
