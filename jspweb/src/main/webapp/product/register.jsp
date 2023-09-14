@@ -31,7 +31,7 @@
 				<!-- 해결방안 : 1. multiple="multiple" 사용하지 않고 input 여러개 사용 -->
 				<!-- 해결방안 : 2. multiple="multiple" 사용하고 cos.jar 대신 commons.jar 사용 -->
 			
-			<!-- 3. 드래그앤드랍.  -->
+			<!-- 3. 드래그앤드랍. cos.jar 와 commons.jar 가능 -->
 			<div class="fileDropBox" style="width: 300px; height: 100px; border: 1px solid red;" >
 				여기에 드래그 해서 파일을 올려주세요.
 			</div>

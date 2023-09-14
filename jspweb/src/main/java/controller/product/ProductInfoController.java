@@ -6,6 +6,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,12 +65,23 @@ public class ProductInfoController extends HttpServlet {
 					// 만약에 파일 필드이면 업로드 진행
 						System.out.println( "업로드할 파일명 : " + item.getName() ); // .getName()
 					// 6.업로드 경로 + 파일명 [ 조합 ] 
-					File fileUploadPath = new File( uploadPath +"/"+item.getName() ) ;
+					
+						// 파일명에 중복이 있을때 식별 생성 
+						UUID uuid = UUID.randomUUID();
+							// UUID 클래스 : 고유성을 보장하는 ID를 만들기 위한 식별자 표준 규약  [ - 하이픈 4개 구역 ]
+						String filename = uuid+"-"+ item.getName().replaceAll("-", "_");
+												// 만약에 파일명에 - 하이픈 존재하면 _언더바로 변경 
+												// 왜?? 파일명과 UUID 간의 식별하기 위해 구분 -하이픈 사용하기 때문에.
+												// 추후에 파일명만 추출시 사용자가 파일명에 - 이 있으면 파일명 추출시 쪼개기가 힘듬.
+						// UUID[ - - -  ] - 파일명 : 추후에 파일명만 추출시 -하이픈 기준으로 쪼개기 
+						
+					File fileUploadPath = new File( uploadPath +"/"+ filename ) ;
+					
 						System.out.println( "업로드경로와 파일명이 조합된 경로 : " + fileUploadPath );
 					item.write( fileUploadPath ); // .write("저장할경로[파일명포함]") 파일 업로드할 경로를 file타입으로 제공 
 					// 7. 업로드 된 파일명을 Map에 저장 [ -DB에 저장할려고  ]
 					i++;	// i는 임의의 값 
-					imgList.put( i , item.getName()  ); // 저장시 에는 이미지번호가 필요 없음
+					imgList.put( i , filename  ); // 저장시 에는 이미지번호가 필요 없음
 					// MAP 컬렉션은 키 와 값으로 구성된 엔트리 [ * 키는 중복 불가능 ]
 				}
 			}
