@@ -21,6 +21,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import model.dao.ProductDao;
+import model.dto.MemberDto;
 import model.dto.ProductDto;
 
 @WebServlet("/ProductInfoController")// 사용자 크롬에서 HTTP로 주소작성 그 주소와 일치한 서블릿 찾아서(핸들러)+매핑(연결)
@@ -88,22 +90,34 @@ public class ProductInfoController extends HttpServlet {
 			// ------------------------------------- 업로드 끝 --> DB처리 --------------------- //
 			
 			// FileItem 으로 가져온 데이터들을 각 필드에 맞춰서 제품Dto 에 저장하기 
+			
+			// 제품 등록한 회원번호 [ 서블릿 세션 ] 
+			Object object = request.getSession().getAttribute("loginDto");
+			MemberDto memberDto = (MemberDto)object;
+			int mno = memberDto.getMno();
+			
 			ProductDto productDto = new ProductDto(
-					// fileList.get(0) : name = pcno 호출 
-					Integer.parseInt( fileList.get(0).getString() ),
-					// fileList.get(1) : name = pname 값 호출 
-					fileList.get(1).getString(), 
-					// fileList.get(2) : pcontent 값 호출 
-					fileList.get(2).getString(), 
-					// fileList.get(3) : pprice 값 호출 
-					Integer.parseInt( fileList.get(3).getString() ),
-					null, null, 0, 
-					// 여러개 이미지는 위에서 리스트로 구성후 대입 
-					// 업로드한 파일명의 개수만큼 MAP 리스트 
-					imgList );
+					Integer.parseInt( fileList.get(0).getString() ), // fileList.get(0) : name = pcno 호출 
+					fileList.get(1).getString(),  // fileList.get(1) : name = pname 값 호출
+					fileList.get(2).getString(), // fileList.get(2) : pcontent 값 호출 
+					Integer.parseInt( fileList.get(3).getString() ), // fileList.get(3) : pprice 값 호출 
+					fileList.get(4).getString(),  // formData.set( 'plat' , plat );
+					fileList.get(5).getString(),  //formData.set( 'plng' , plng );
+					mno , // 현재 로그인된[제품등록한] 회원의 번호 호출 
+					imgList ); // 여러개 이미지는 위에서 리스트로 구성후 대입 	// 업로드한 파일명의 개수만큼 MAP 리스트 
 			
 			System.out.println( productDto );
+			
+			// Dto를 Dao처리 
+			boolean result = ProductDao.getInstance().register(productDto);
+			
+			//
+			response.setContentType("application/json;charset=utf-8");
+			response.getWriter().print(result);
+			
+			
 		}catch (Exception e) { }
+		
 	}
 	// 2. 제품 조회 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
