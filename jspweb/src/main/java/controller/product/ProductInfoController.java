@@ -2,6 +2,7 @@ package controller.product;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -121,12 +123,53 @@ public class ProductInfoController extends HttpServlet {
 	}
 	// 2. 제품 조회 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String type = request.getParameter("type");
+		String json = "";
+		
+		if( type.equals("fintByAll") ) { // fintByAll
+			
+			ArrayList<ProductDto> result = ProductDao.getInstance().findByAll();
+			json = new ObjectMapper().writeValueAsString(result);
+			
+		}else if( type.equals("fintByTop") ) { // fintByTop
+			
+			int count = Integer.parseInt( request.getParameter("count") );
+			
+			ArrayList<ProductDto> result = ProductDao.getInstance().findByTop( count );
+			json = new ObjectMapper().writeValueAsString(result);
+			
+		}else if( type.equals("fintByLatLng" ) ) { // fintByLatLng
+			
+			String 동 = request.getParameter("동");
+			String 서 = request.getParameter("서");
+			String 남 = request.getParameter("남");
+			String 북 = request.getParameter("북");
+			
+			ArrayList<ProductDto> result = ProductDao.getInstance().findByLatLng( 동 , 서 , 남 , 북 );
+			json = new ObjectMapper().writeValueAsString(result);
+			
+		}else if( type.equals("fintByPno" ) ) { // fintByPno
+			
+			Integer pno = Integer.parseInt( request.getParameter("pno") );
+			
+			ProductDto result = ProductDao.getInstance().findByPno( pno );
+			json = new ObjectMapper().writeValueAsString(result);
+			
+		}
+		
+		response.setContentType("application/json;charset=utf-8");
+		
+		response.getWriter().print( json  );
+		
 	}
 	// 3. 제품 수정 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 	// 4. 제품 삭제 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

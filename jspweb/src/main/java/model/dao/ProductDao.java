@@ -1,6 +1,10 @@
 package model.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import model.dto.ProductDto;
@@ -52,9 +56,84 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { System.out.println( e ); } return false;
 	}
 	
-	// 2. 제품 전체 출력 
 	
-	// 3. 제품 개별 조회 
+	public ArrayList<ProductDto> findByAll(){
+		ArrayList<ProductDto> list = new ArrayList<>();
+		try {
+			String sql  ="select * from product order by pdate desc";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) { 	list.add( findByPno(rs.getInt("pno")) ); }
+			return list;
+		}catch (Exception e) {System.out.println(e);	}
+		return null;
+	}
+	
+	// 
+	public Map<Integer, String > getProductImg( int pno ){
+		try {
+			Map<Integer, String > imglist = new HashMap<>();
+			String sql = "select * from productimg where pno="+rs.getInt("pno");
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while( resultSet.next() ) { imglist.put( resultSet.getInt("pimgno"), resultSet.getString("pimg") ); }
+			return imglist;
+		}catch (Exception e) {System.out.println(e);} return null;
+	}
+	
+	public ProductDto findByPno( int pno ){
+		try {
+			String sql = "select * from product p natural join pcategory pc natural join member m where p.pno = ? ";
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setInt( 1 , pno);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while( resultSet.next() ) { 
+				ProductDto productDto = new ProductDto(
+						resultSet.getInt("pcno") , 
+						resultSet.getString("pcname"), 
+						resultSet.getInt("pno"), 
+						resultSet.getString("pname"),
+						resultSet.getString("pcontent"), 
+						resultSet.getInt("pprice"),
+						resultSet.getInt("pstate"), 
+						resultSet.getString("pdate"),
+						resultSet.getString("plat"),
+						resultSet.getString("plng"),
+						resultSet.getInt("mno"),
+						getProductImg( rs.getInt("pno") ), 
+						resultSet.getString("mid")
+						);
+				return productDto;
+			}
+		}catch (Exception e) {System.out.println(e);} return null;
+	}
+	
+	public ArrayList<ProductDto> findByTop( int count ){
+		ArrayList<ProductDto> list = new ArrayList<>();
+		try {
+			String sql  ="select * from product order by pdate desc limit "+count;
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) { 	list.add( findByPno(rs.getInt("pno")) ); }
+			return list;
+		}catch (Exception e) {System.out.println(e);	}
+		return null;
+	}
+	
+	public ArrayList<ProductDto> findByLatLng( String 동 , String 서 , String 남 , String 북 ){
+		ArrayList<ProductDto> list = new ArrayList<>();
+		try {
+			String sql ="SELECT * FROM product where ? >= plng and ? <= plng and ? <= plat and ? >= plat order by pdate desc ";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , 동 );	ps.setString( 2 , 서 );	ps.setString( 3 , 남 );	ps.setString( 4 , 북 );
+			rs = ps.executeQuery();
+			while( rs.next() ) { 	list.add( findByPno(rs.getInt("pno")) ); }
+			return list;
+		}catch (Exception e) {System.out.println(e);	}
+		return null;
+	}
+	
+
 	
 	// 4. 제품 수정 
 	
