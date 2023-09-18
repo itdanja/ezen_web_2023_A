@@ -43,7 +43,7 @@ a{ color: black; text-decoration: none; }
 .mainlogo{ width: 5%; }			
 .mainlogo img{ width: 100%; }
 /* 본메뉴 구역 */
-.mainmenu{ display: flex; font-size: 20px; width: 50%; }		
+.mainmenu{ display: flex; font-size: 1.2rem; width: 60%; }		
 .mainmenu li{ margin-right: 20px; }
 /* 서브메뉴  구역 */
 .submenu{ display: flex;  font-size: 13px; align-items: center;}	
