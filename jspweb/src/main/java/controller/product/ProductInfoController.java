@@ -136,7 +136,7 @@ public class ProductInfoController extends HttpServlet {
 		else if( type.equals("findByLatLng") ) 	{ 
 			String east = request.getParameter("east");		String west = request.getParameter("west");
 			String south = request.getParameter("south");	String north = request.getParameter("north");
-			List<ProductDto> result = ProductDao.getInstance().findByLatLng(east, south, west, north);
+			List<ProductDto> result = ProductDao.getInstance().findByLatLng(east, west, south, north);
 			json = mapper.writeValueAsString(result);
 		}
 		else if( type.equals("findByPno") ) 	{ 
