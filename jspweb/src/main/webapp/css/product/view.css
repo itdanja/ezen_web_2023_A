@@ -1,0 +1,38 @@
+
+
+.productBox{
+	width: 50%;
+    margin: 0 auto;
+}
+.imgbox{
+	height: 350px;
+}
+.imgbox img{
+	object-fit : cover;
+}
+.etcbtnbox{
+	display: flex;
+	height: 50px;
+	margin: 10px 0px;
+}
+.etcbtnbox button{
+	width: 100%;
+	border: none;
+	font-weight: bold;
+}
+
+.etcbtnbox button:nth-child(1){
+	background-color: yellow;
+}
+.etcbtnbox button:nth-child(2){
+	background-color: black;
+	color: white;
+}
+
+.pname{
+	font-size: 25px;
+    font-weight: bold;
+}
+.pprice{
+	font-size: 20px;
+}

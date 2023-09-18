@@ -30,6 +30,7 @@ function getInfo() {
 }
 // 2. 현재카카오지도내 보고있는 동서남북 기준내 제품들을 출력 함수 
 function findByLatLng( east , west  ,  south  , north  ) {
+	clusterer.clear() // 클러스터 비우기 [ 기존 마커들 제거 ]
 	$.ajax({
 		url : "/jspweb/ProductInfoController" , method : "get" ,
 		async : false , /* ajax 동기화설정 [비동기통신 async : true] / [동기통신 async : false] */
@@ -41,6 +42,31 @@ function findByLatLng( east , west  ,  south  , north  ) {
 		        });
 		    });
 			clusterer.addMarkers(markers);
+			
+			let sidebar = document.querySelector('.sidebar')
+			
+			let html = ``;
+			jsonArray.forEach( ( p )=>{
+				html +=`
+					<div class="card mb-3" style="max-width: 540px; padding :5px;">
+						<div class="row g-0" style="height: 150px; display: flex;  align-items: center;">
+						    <div class="col-md-5">
+						      <a href="/jspweb/product/view.jsp?pno=${ p.pno }">
+						      	<img src="/jspweb/product/img/${ Object.values(p.imgList)[0] }" class="img-fluid rounded-start" alt="...">
+						      </a>
+						    </div>
+						    <div class="col-md-7">
+						      <div class="card-body">
+						        <h5 class="card-title">${ p.pname }</h5>
+						        <p class="card-text">${ p.pcontent }</p>
+						        <p class="card-text">${ p.pprice.toLocaleString() }원</p>
+						        
+						      </div>
+						    </div>
+					  </div></div>`
+			})
+			sidebar.innerHTML = html;
+			
 		}
 	})
 } // f end 
