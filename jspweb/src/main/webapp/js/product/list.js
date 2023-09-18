@@ -20,11 +20,12 @@ kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
 
 // 1. 현재 보고 있는 지도의 동서남북 좌표 얻기 
 getInfo();
-function getInfo() {
-    let 동 = map.getBounds().pa; console.log( "동:"+동 ) // 동
-    let 서 = map.getBounds().qa; console.log( "서:"+서 )// 서
-    let 남 = map.getBounds().ha; console.log( "남:"+남 )// 남 
-    let 북 = map.getBounds().oa; console.log( "북:"+북 )// 북 
+function getInfo() { 
+	// lat : 위도[ +-90 ] , lng : 경도[ +-180 ]  
+    let 북 = map.getBounds().pa; console.log( "북:"+북 ) // 동
+    let 남 = map.getBounds().qa; console.log( "남:"+남 )// 서
+    let 서 = map.getBounds().ha; console.log( "서:"+서 )// 남 
+    let 동 = map.getBounds().oa; console.log( "동:"+동 )// 북 
  	findByLatLng( 동 , 서 , 남 , 북 ); // 2번 실행 
 }
 // 2. 현재카카오지도내 보고있는 동서남북 기준내 제품들을 출력 함수 
