@@ -1,6 +1,8 @@
 package model.dao;
 
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import model.dto.ProductDto;
@@ -51,17 +53,14 @@ public class ProductDao extends Dao {
 			
 		}catch (Exception e) { System.out.println( e ); } return false;
 	}
-	
-	// 2. 제품 전체 출력 
-	
-	// 3. 제품 개별 조회 
-	
-	// 4. 제품 수정 
-	
-	// 5. 제품 삭제 
-	
-}
 
+	// 2. 
+	public List<ProductDto> findByTop( int count ){ return null; }
+	public List<ProductDto> findByLatLng( String east , String west , String south , String north ){ return null; }
+	public ProductDto findByPno( int pno ){ return null; }
+	public List<ProductDto> findByAll( ){ return null; }
+
+}
 
 /*
  * 						// 	Map<Integer, String>			: map객체명.keySet() : map객체내 모든 키 호출 
