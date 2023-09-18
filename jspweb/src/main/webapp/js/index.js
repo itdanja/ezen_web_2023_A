@@ -35,6 +35,3 @@ function findByAll(   ) {
 		success : jsonArray => { console.log( jsonArray ) }
 	})
 }
-
-
-
