@@ -20,16 +20,20 @@
 	    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 	    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
 	    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
 	  </div>
 	  <div class="carousel-inner">
 	    <div class="carousel-item active" data-bs-interval="10000" >
-	      <img src="/jspweb/img/main1.webp" class="d-block w-100" alt="..."  >
+	      <img src="/jspweb/img/main1.jpg" class="d-block w-100" alt="..."  >
 	    </div>
 	    <div class="carousel-item" data-bs-interval="10000" >
-	      <img src="/jspweb/img/main2.webp" class="d-block w-100" alt="...">
+	      <img src="/jspweb/img/main2.jpg" class="d-block w-100" alt="...">
 	    </div>
 	    <div class="carousel-item" data-bs-interval="10000" >
-	      <img src="/jspweb/img/main3.webp" class="d-block w-100" alt="...">
+	      <img src="/jspweb/img/main3.jpg" class="d-block w-100" alt="...">
+	    </div>
+	    <div class="carousel-item" data-bs-interval="10000" >
+	      <img src="/jspweb/img/main4.jpg" class="d-block w-100" alt="...">
 	    </div>
 	  </div>
 	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -43,52 +47,9 @@
 	</div>
 	
 	<!-- 카드(bs) : 다양한 컨텐츠를 표시하는 컨테이너[구역]  -->
-	<div class="container"> <!-- container(bs) : 컨테이너 구역  -->
-	
-		<div class="row row-cols-1 row-cols-md-4 g-4">
-		
-		  <div class="col">
-		    <div class="card">
-		      <img src="..." class="card-img-top" alt="...">
-		      <div class="card-body">
-		        <h5 class="card-title">Card title</h5>
-		        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		      </div>
-		    </div>
-		  </div>
-		  
-		  <div class="col">
-		    <div class="card">
-		      <img src="..." class="card-img-top" alt="...">
-		      <div class="card-body">
-		        <h5 class="card-title">Card title</h5>
-		        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		      </div>
-		    </div>
-		  </div>
-		  
-		  <div class="col">
-		    <div class="card">
-		      <img src="..." class="card-img-top" alt="...">
-		      <div class="card-body">
-		        <h5 class="card-title">Card title</h5>
-		        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-		      </div>
-		    </div>
-		  </div>
-		  
-		  <div class="col">
-		    <div class="card">
-		      <img src="..." class="card-img-top" alt="...">
-		      <div class="card-body">
-		        <h5 class="card-title">Card title</h5>
-		        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		      </div>
-		    </div>
-		  </div>
-		  
-		</div>
-		
+	<div class="container"> <!-- container(bs) : 컨테이너 구역  --> 
+		<!-- JS에서 HTML 넣어주는 위치 -->
+		<div class="productBox my-5 row row-cols-1 row-cols-md-4 g-4"> </div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 	
@@ -98,6 +59,18 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

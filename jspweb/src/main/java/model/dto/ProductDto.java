@@ -55,7 +55,7 @@ public class ProductDto {
 		this.mno = mno;
 		this.imgList = imgList;
 	}
-
+	
 	public int getPcno() {
 		return pcno;
 	}

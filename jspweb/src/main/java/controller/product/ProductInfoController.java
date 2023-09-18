@@ -148,8 +148,7 @@ public class ProductInfoController extends HttpServlet {
 			List<ProductDto> result = ProductDao.getInstance().findByAll();	
 			json = mapper.writeValueAsString(result);
 		}
-		
-		response.setCharacterEncoding("application/json;charset=UTF-8");
+		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().print( json );
 	}
 	// 3. 제품 수정 
