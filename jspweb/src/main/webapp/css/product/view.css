@@ -1,0 +1,3 @@
+.productBox{ width: 30%; margin:  0 auto; }
+.imgbox{ height: 400px;}
+.imgbox img{ object-fit : cover;}
