@@ -52,7 +52,7 @@
 				노트북 팝니다.노트북 팝니다.<br>노트북 팝니다.노트북 팝니다.노트북 팝니다.
 			</div>
 			<div class="etcbtnbox">
-				<button type="button">찜하기♡</button>
+				<button class="plikebtn"type="button" onclick="setplike()">찜하기♡</button>
 				<button type="button">바로구매</button>
 			</div>
 			

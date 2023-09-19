@@ -119,7 +119,7 @@ public class ProductDao extends Dao {
 			while( rs.next() ) {  list.add( findByPno( rs.getInt("pno") ) ); 	} return list;
 		} catch (Exception e) { System.out.println(e); } return null; 
 	}
-}
+
 
 /*
  * 						// 	Map<Integer, String>			: map객체명.keySet() : map객체내 모든 키 호출 
@@ -135,6 +135,35 @@ public class ProductDao extends Dao {
  */
 
 
+	//3. 찜하기 등록/취소 
+	public synchronized boolean setplike( int pno , int mno ) {
+		// 1. 등록할지 취소할지 검색 먼저하기 
+		String sql ="select * from plike where pno = "+pno+" and mno = "+mno;
+		try {
+			ps = conn.prepareStatement(sql);	rs = ps.executeQuery();
+			if( rs.next() ) { // 해당 회원이 이미 찜하기를 한 제품 ---> 취소하기 
+				sql = "delete from plike where pno = "+pno+" and mno = "+mno;
+				ps = conn.prepareStatement(sql);
+				ps.executeUpdate();
+				return false;	// 취소 되었을떄
+			}else {	// 해당 회원이 찜하기를 하지 않은 제품 ----> 등록하기 
+				sql = "insert into plike( pno , mno )values( "+pno+" , "+mno+" )";
+				ps = conn.prepareStatement(sql);
+				ps.executeUpdate();
+				return true;	// 등록 되었을때
+			}
+		}catch (Exception e) { 	System.out.println(e); 	}  return false;
+	}
+	// 4. 현재 회원이 해당 제품의 찜하기 상태 확인 
+	public synchronized boolean getplike( int pno , int mno ) {
+		String sql ="select * from plike where pno = "+pno+" and mno = "+mno;
+		try {
+			ps = conn.prepareStatement(sql);	rs = ps.executeQuery();
+			if( rs.next() ) { return true; }
+		}catch (Exception e) { 	System.out.println(e); 	}  return false;
+	}
+	
+}
 
 
 

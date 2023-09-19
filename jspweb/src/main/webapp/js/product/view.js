@@ -31,7 +31,48 @@ function findByPno( pno ){
 			document.querySelector('.pprice').innerHTML = `${ jsonObject.pprice.toLocaleString() }원`;
 			document.querySelector('.pcontent').innerHTML = `${ jsonObject.pcontent }`;
 			
+			getplike( pno )
+			
 		}
+	})
+}
+
+
+//7. 찜하기 버튼를 눌렀을때[ 첫 클릭시 찜하기등록 / 다음 클릭시 찜하기 취소 / 다음 클릭시 찜하기 등록 ]
+function setplike( ){
+	// alert(pno);
+	if( loginMid == '' ){ alert('회원기능입니다. 로그인후 사용해주세요'); return; 	}
+	
+	// 1. pot 방식 전송 
+	$.ajax({
+		url : "/jspweb/ProductLike",
+		method : "post" ,
+		data : { "pno" : pno } , 
+		success : (r)=>{ 
+			if( r == 'true'){
+				alert('찜하기 등록');
+				document.querySelector('.plikebtn').innerHTML = '찜하기♥';
+			}else{
+				alert("찜하기 취소")
+				document.querySelector('.plikebtn').innerHTML = '찜하기♡';
+			}
+		}
+	})
+}
+
+// 8. 현재 회원이 해당 제품의 찜하기 상태 호출 
+function getplike(  ){
+	if( loginMid == '' ){ document.querySelector('.plikebtn').innerHTML = '찜하기♡'; }
+	$.ajax({
+		url : "/jspweb/ProductLike",
+		method : "get",
+		async : 'false',
+		data : { "pno" : pno },
+		success : (r)=>{ 
+			console.log( r )
+			if( JSON.parse(r) == true){ document.querySelector('.plikebtn').innerHTML = '찜하기♥'; }
+			else{ document.querySelector('.plikebtn').innerHTML = '찜하기♡'; }
+		 }
 	})
 }
 
