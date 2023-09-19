@@ -40,19 +40,67 @@
 
 			</div>
 			<!-- 캐러셀 end  -->
-			<div>판매자 : 강호동</div>
-			<div>
-				카테고리 : <span> 노트북 </span> 등록일 : <span> 2023-09-19 11:47 </span>
+			
+			<div class="mid"></div>
+			<div class="categorydate">
+				<div class="pcname"> 카테고리 : 노트북 </div>
+				<div class="pdate"> 등록일 : 2023-09-19 11:47 </div>
 			</div>
-			<div>노트북 팝니다.</div>
-			<div>657,000원</div>
-			<div>
+			<div class="pname">노트북 팝니다.</div>
+			<div class="pprice">657,000원</div>
+			<div class="pcontent">
 				노트북 팝니다.노트북 팝니다.<br>노트북 팝니다.노트북 팝니다.노트북 팝니다.
 			</div>
-			<div>
+			<div class="etcbtnbox">
 				<button type="button">찜하기♡</button>
 				<button type="button">바로구매</button>
 			</div>
+			
+			<!-- 탭스start  -->
+				<!--1. 탭 목록 -->
+			<ul class="mt-5 nav nav-tabs nav-pills nav-fill" id="myTab" role="tablist">
+					<!-- 탭 1개 항목 data-bs-target : 탭버튼을 클릭했을때 활성화 되는 탭내용의 id -->
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#navTab1" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+			    	제품위치
+			    </button>
+			  </li>
+			  		<!-- 탭 1개 항목 -->
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#navTab2" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+			    	제품후기
+			    </button>
+			  </li>
+			  		<!-- 탭 1개 항목 -->
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#navTab3" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+			   	 	QnA
+			    </button>
+			  </li>
+			  		<!-- 탭 1개 항목 -->
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#navTab4" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">
+			    	구매 유의사항
+			    </button>
+			  </li>
+			</ul>
+				<!-- 2. 탭 내용 -->
+			<div class="mb-5 tab-content" id="myTabContent">
+			  <div class="tab-pane fade show active" id="navTab1" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+			  	제품위치 출력되는 구역
+			  </div>
+			  <div class="tab-pane fade" id="navTab2" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+			  	제품후기 출력되는 구역
+			  </div>
+			  <div class="tab-pane fade" id="navTab3" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+			  	QnA 출력되는 구역
+			  </div>
+			  <div class="tab-pane fade" id="navTab4" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+			  	구매 유의사항 출력되는 구역
+			  </div>
+			</div>
+			
+			<!-- 탭스end -->
 		</div>
 	</div>
 	<script

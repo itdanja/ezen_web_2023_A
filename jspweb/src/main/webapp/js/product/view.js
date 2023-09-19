@@ -22,6 +22,15 @@ function findByPno( pno ){
 						</div>`;
 			})
 			imgbox.innerHTML = html;
+			
+			// ---------- 각 위치에 데이터 넣어주기 
+			document.querySelector('.mid').innerHTML = `판매자 : ${ jsonObject.mid }`;
+			document.querySelector('.pcname').innerHTML = `카테고리 : ${ jsonObject.pcname }`;
+			document.querySelector('.pdate').innerHTML = `등록일 : ${ jsonObject.pdate }`;
+			document.querySelector('.pname').innerHTML = `${ jsonObject.pname }`;
+			document.querySelector('.pprice').innerHTML = `${ jsonObject.pprice.toLocaleString() }원`;
+			document.querySelector('.pcontent').innerHTML = `${ jsonObject.pcontent }`;
+			
 		}
 	})
 }
