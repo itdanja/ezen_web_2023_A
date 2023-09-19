@@ -51,7 +51,9 @@ function findByLatLng( east , west  ,  south  , north  ) {
 					html += `<div class="card mb-3" style="max-width: 540px;">	
 							  <div class="row g-0">	
 							    <div class="col-md-5">
-							      <img src="/jspweb/product/img/${ Object.values(p.imgList)[0] }" class="img-fluid rounded-start" alt="...">
+							    	<a href="/jspweb/product/view.jsp?pno=${ p.pno }" >
+							      		<img src="/jspweb/product/img/${ Object.values(p.imgList)[0] }" class="img-fluid rounded-start" alt="...">
+							    	</a>
 							    </div>
 							    <div class="col-md-7">
 							      <div class="card-body">

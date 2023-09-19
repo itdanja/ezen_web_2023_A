@@ -12,7 +12,15 @@ html , body{
 		1. html,body{ -ms-overflow-style : none; }
 		2. ::-webkit-scorllbar{ display: none; }
 */
+
 /* width , height : 고정크기( px ) , 상대=[부모크기]크기 ( % ) */
-.mapcontent{ display: flex; width: 100%; height: 85%; }
+.mapcontent{ display: flex; width: 100%; height: 800px; }
 #map{ width: 80%; }
-.sidebar{ width: 20%; }
+.sidebar{ width: 20%; height: 800px; overflow-y: scroll  }
+.card{ margin: 10px; height: 150px !important; } 
+/*부트스트랩[다른] css 충돌시 !important */
+
+.card img{
+	object-fit : cover; 
+	width: 100%;
+}
