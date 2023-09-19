@@ -65,7 +65,7 @@ public class ProductDao extends Dao {
 		try {
 			Map< Integer , String > imglist = new HashMap<>(); // 제품별 여러개 이미지 
 			String sql = "select * from productimg where pno = "+pno; 
-			PreparedStatement ps = conn.prepareStatement(sql);// * 다른 함수에서 먼저 사용중인 rs 인터페이스 객체 가 사용중 이므로 [ while ] 중복 사용불가능  // 해결방안 새로운 rs 만들기 ( PreparedStatement , ResultSet 2개 사용 )
+			ps = conn.prepareStatement(sql);// * 다른 함수에서 먼저 사용중인 rs 인터페이스 객체 가 사용중 이므로 [ while ] 중복 사용불가능  // 해결방안 새로운 rs 만들기 ( PreparedStatement , ResultSet 2개 사용 )
 			ResultSet rs =  ps.executeQuery();
 			while(rs.next() ) { imglist.put( rs.getInt("pimgno"), rs.getString("pimg") ); } return imglist;
 		}catch (Exception e) { System.out.println(e); } return null;
@@ -74,7 +74,7 @@ public class ProductDao extends Dao {
 	public ProductDto findByPno( int pno ){ 
 		try { 
 			String sql ="select * from product p natural join pcategory pc natural join member m where p.pno="+pno;
-			PreparedStatement ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if( rs.next() ) {
 				ProductDto productDto = new ProductDto(
