@@ -87,8 +87,6 @@ create table productimg(
 
 
 
-
-
 /* 제품 찜하기 테이블 */
 drop table if exists plike;
 create table plike(
@@ -96,17 +94,6 @@ create table plike(
     pno int , /* 제품번호 = 어떤제품 찜했는지 */
     foreign key (mno) references member(mno) on delete cascade ,
     foreign key (pno) references product(pno) on delete cascade 
-);
-
--- 포인트 테이블 
-drop table if exists mpoint;
-create table mpoint(
-	mpno		int 			auto_increment primary key ,	-- 포인트내역 식별번호 
-    mpcomment	varchar(1000) not null , 	-- 포인트내역 내용 
-    mpamount	int default 0,				-- 포인트 수량 
-    mpdate		datetime default now() ,	-- 포인트 내역 날짜 
-    mno			int ,						-- 포인트 변경된 회원번호 
-    foreign key ( mno ) 	references member ( mno ) on delete set null  -- 탈퇴하면 포인트 null
 );
 
 
