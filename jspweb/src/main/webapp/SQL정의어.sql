@@ -85,6 +85,68 @@ create table productimg(
     foreign key( pno ) references product( pno ) on delete cascade on update cascade
 );
 
+# 4. 제품 찜하기
+# - 1. 찜하기 테이블 [ pk 없는 경우 ]
+drop table if exists pwishlist;
+create table pwishlist(
+	mno int not null,
+    pno int  ,
+    foreign key(mno) references member(mno) on delete cascade on update cascade ,	-- 회원이 탈퇴하면 찜하기 목록 같이 삭제 
+    foreign key(pno) references product(pno) on delete set null on update cascade  	-- 제품이 삭제되면 찜하기 목록에서 없는 제품으로 표시하기 위한 null 대입 
+);
+/*
+# - 2. 찜하기 테이블 [ pk 있는 경우 ]
+
+drop table if exists pwishlist;
+create table pwishlist(
+	pwno int auto_increment ,
+	mno int not null,
+    pno int  ,
+    primary key (pwno) ,
+    foreign key(mno) references member(mno) on delete cascade on update cascade ,	-- 회원이 탈퇴하면 찜하기 목록 같이 삭제 
+    foreign key(pno) references product(pno) on delete set null on update cascade  -- 제품이 삭제되면 찜하기 목록에서 없는 제품으로 표시하기 위한 null 대입 
+);
+# - 3. 찜하기 테이블 [ auto_increment 사용했을때 최대치 대한 고민.. ]
+drop table if exists pwishlist;
+create table pwishlist(
+	pwno bigint unsigned auto_increment ,	# bigint[long]		unsigned[양수] vs signed[양수/음수]
+	mno int not null,
+    pno int  ,
+    primary key (pwno) ,
+    foreign key(mno) references member(mno) on delete cascade on update cascade ,	-- 회원이 탈퇴하면 찜하기 목록 같이 삭제 
+    foreign key(pno) references product(pno) on delete set null on update cascade  -- 제품이 삭제되면 찜하기 목록에서 없는 제품으로 표시하기 위한 null 대입 
+);
+# - 3. 찜하기 테이블 [ auto_increment 없을때 ]
+drop table if exists pwishlist;
+create table pwishlist(
+	pwno longtext , -- 직접 식별키 생성 [ 1. UUID 2. 커스텀생성 (데이터조합) ]
+	mno int not null,
+    pno int  ,
+    primary key (pwno) ,
+    foreign key(mno) references member(mno) on delete cascade on update cascade ,	-- 회원이 탈퇴하면 찜하기 목록 같이 삭제 
+    foreign key(pno) references product(pno) on delete set null on update cascade  -- 제품이 삭제되면 찜하기 목록에서 없는 제품으로 표시하기 위한 null 대입 
+);
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

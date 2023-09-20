@@ -119,8 +119,24 @@ public class ProductDao extends Dao {
 			while( rs.next() ) {  list.add( findByPno( rs.getInt("pno") ) ); 	} return list;
 		} catch (Exception e) { System.out.println(e); } return null; 
 	}
+	
+	
+	// 3. 제품 찜하기 등록 
+	public boolean setWish( int mno , int pno) {
+		try {
+			String sql = "insert into pwishlist values( ? , ? )";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , mno); ps.setInt( 2, pno);
+			int count = ps.executeUpdate();
+			if( count == 1 ) { return true; }
+		}catch (Exception e) { e.getStackTrace(); }
+		return false;
+	}
+	// 4. 제품 찜하기 취소 
+	
+	// 5. 제품 찜하기 상태 출력
+	
 }
-
 /*
  * 						// 	Map<Integer, String>			: map객체명.keySet() : map객체내 모든 키 호출 
 						//	Map<Integer, String>			: map객체명.values() : map객체내 모든 값 호출 
