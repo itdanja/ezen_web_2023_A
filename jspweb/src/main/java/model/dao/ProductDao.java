@@ -144,8 +144,17 @@ public class ProductDao extends Dao {
 		return false;
 	}
 	
-	// 5. 현재 로그인된 회원의 찜한 제품 정보를 출력하는
-	
+	// 5. 현재 로그인된 회원의 찜한 제품[여러개] 정보를 출력하는 함수 
+	public List<ProductDto> getWishProdutList( int mno ){
+		List<ProductDto> list = new ArrayList<>();
+		try { // 현재 회원이 찜한 제품번호 찾기 
+			String sql = "select pno from pwishlist where mno = "+ mno; // 현재 회원의 찜하기 제품번호 목록 찾기 
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			// 현재 회원이 찜한 제품번호의 레코드반환 // 찾은 제품번호 하나씩 findByPno() 함수에게 전달해서 제품정보를 list 담기
+			while( rs.next() ) { list.add( findByPno( rs.getInt("pno") ) ); }
+		}catch (Exception e) { e.getStackTrace();} return list;
+	}
 }
 /*
  * 						// 	Map<Integer, String>			: map객체명.keySet() : map객체내 모든 키 호출 

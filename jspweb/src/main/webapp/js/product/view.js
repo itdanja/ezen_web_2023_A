@@ -58,9 +58,10 @@ function getWish(){
 	if( localStorage == false ){ wish.innerHTML = '♡'; }
 	// 2. 
 	$.ajax({
-		url : "/jspweb/PwishListController", method : "get" , 
+		url : "/jspweb/PwishListController", 
+		method : "get" , 
 		async : false ,	// 동기화
-		data : { pno : pno } , 
+		data : { type : "findByWish" , pno : pno } , 
 		success : result => { 
 			if( result ){ wish.innerHTML = '♥'; }
 			else{ wish.innerHTML = '♡'; }
