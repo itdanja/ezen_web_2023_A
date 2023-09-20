@@ -1,0 +1,25 @@
+
+
+/* 1. input checkbox 크기 늘리기[ width 크기조절 불가능 -> zoom ] */
+.checkbox{
+	zoom : 1.5;	/* 배율 : 1->100% */
+}
+/* 2. 개별 삭제 버튼 */
+.table button {
+	border: none; font-size: 20px; font-weight : bold;
+	background-color: transparent;
+}
+/* 3. 선택 제품의 버튼들 */
+.selectbtn button{
+	width: 10%; margin-right: 5px;
+}
+/* 4. 구매 버튼 들 */
+.buybtn{
+	display: flex; justify-content: center;
+	margin: 50px 0px;
+}
+.buybtn button {
+	width: 20%; margin: 10px; height: 50px;
+	background-color: black; color: white; 
+	border: none;
+}

@@ -21,6 +21,7 @@ function getMemberInfo(){
 				loginState = true; loginMid = r.mid;
 				html += ` <li> ${ r.mid } 님 </li>
 						<li> <img class="hmimg" src="/jspweb/member/img/${ r.mimg }" /> </li>
+						<li> <a href="/jspweb/product/wishlist.jsp">찜목록</a> </li>
 						<li> <a href="/jspweb/member/info.jsp">마이페이지</a> </li>
 						<li> <a onclick="logout()" href="#">로그아웃</a> </li> `
 				if( r.mid == "admin"){ } // 로그인 했는데 관리자메뉴
