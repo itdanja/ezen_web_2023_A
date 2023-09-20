@@ -1,5 +1,6 @@
 
-getWishProdutList();
+getWishProdutList();	// 만약에 ajax가 비동기이면[async : true] 해당 함수를 실행하고 ajax결과가 오기전에 아래코드 실행
+						// 만약에 ajax가 동기[async : false]이면 해당 함수를 실행하고 ajax결과가 오기전까지 대기상태.
 /*
 	1. document.querySelector(선택자); 	: 해당 선택자의 dom객체로 1개 가져오기		[ 객체 ]
 	2. document.querySelectorAll(선택자);	: 해당 선택자의 dom객체를 여러개 가져오기 	[ 배열 ] 
