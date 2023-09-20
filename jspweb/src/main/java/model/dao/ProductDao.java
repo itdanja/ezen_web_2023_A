@@ -144,6 +144,8 @@ public class ProductDao extends Dao {
 		return false;
 	}
 	
+	// 5. 현재 로그인된 회원의 찜한 제품 정보를 출력하는
+	
 }
 /*
  * 						// 	Map<Integer, String>			: map객체명.keySet() : map객체내 모든 키 호출 

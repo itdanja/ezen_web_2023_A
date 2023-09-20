@@ -1,6 +1,6 @@
 package model.dto;
 
-public class MemberDto {
+public class MemberDto{
 	// 1. 필드 
 		// 1-1 DB 있는 필드
 	private int mno; 

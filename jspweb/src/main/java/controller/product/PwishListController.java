@@ -22,10 +22,6 @@ public class PwishListController extends HttpServlet {
         
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 찜하기로 등록할 제품번호 ajax에게 요청 
 		int pno = Integer.parseInt( request.getParameter("pno") );
@@ -37,6 +33,16 @@ public class PwishListController extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		response.getWriter().print(result);
 	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pno = Integer.parseInt( request.getParameter("pno" ) );
+		int mno = ( (MemberDto)request.getSession().getAttribute("loginDto") ).getMno() ;
+		boolean result = ProductDao.getInstance().getWish(mno, pno);
+		response.setContentType("application/json;charset=utf-8");
+		response.getWriter().print(result);
+	}
+
+
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
