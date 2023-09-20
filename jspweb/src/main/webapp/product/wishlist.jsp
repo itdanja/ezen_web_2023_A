@@ -15,25 +15,9 @@
 	<%@include file = "../header.jsp" %>
 	
 	<div class="container"> <!-- bs : container 디바이스 크기에 따른 반응형 구역 -->
- 		<h3> 찜 목록 현황 </h3>
+ 		<h3 class="my-5"> 찜 목록 현황 </h3>
  		<table class="table table-hover text-center align-middle"> <!-- bs : table 기본css 적용된 테이블 / text-center : 수평정렬  / align-middle : 수직정렬 -->
- 			
- 			<tr>
- 				<th width="5%"> <input class="checkbox" type="checkbox"> </th>
- 				<th width="5%"> 이미지 </th>
- 				<th width="40%"> 제품 정보 </th>
- 				<th width="10%"> 가격 </th>
- 				<th width="10%"> 비고 </th>
- 			</tr>
- 			
- 			<tr>
-				<td><input class="checkbox" type="checkbox"></td>
-				<td> <img src="/jspweb/product/img/1667290461000_태블릿_삼성.png" width="100%" /> </td>
-				<td  style="text-align: left; padding-left: 20px;" > 노트북 팝니다. </td>
-				<td> 373,354원</td>
-				<td> <button type="button"> X </button> </td>
-			</tr>
-			
+ 			<!-- JS에서 출력되는 구역  -->
  		</table>
  		<div class="selectbtn">
  			<button type="button">선택 삭제</button>
