@@ -27,7 +27,6 @@ public class PwishListController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// 1. 찜하기로 등록할 제품번호 ajax에게 요청 
 		int pno = Integer.parseInt( request.getParameter("pno") );
 		// 2. 찜하기를 등록한 회원번호 ajax에게 요청x [ 서블릿은 로그인한 회원 정보를 알고있다.->서블릿 세션 ]
