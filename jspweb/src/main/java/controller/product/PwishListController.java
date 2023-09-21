@@ -38,7 +38,6 @@ public class PwishListController extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		response.getWriter().print(result);
 	}
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("type");
 		if( type.equals("findByWish") ) {
@@ -56,8 +55,6 @@ public class PwishListController extends HttpServlet {
 			response.getWriter().print( jsonArray );
 		}
 	}
-
-
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

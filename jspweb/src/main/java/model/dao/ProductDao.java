@@ -134,6 +134,7 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { e.getStackTrace(); }
 		return false;
 	}
+	
 	// 4. 제품 찜하기 상태 출력
 	public boolean getWish( int mno , int pno ) {
 		try { String sql ="select * from pwishlist where mno = ? and pno = ?";
@@ -155,6 +156,7 @@ public class ProductDao extends Dao {
 			while( rs.next() ) { list.add( findByPno( rs.getInt("pno") ) ); }
 		}catch (Exception e) { e.getStackTrace();} return list;
 	}
+	
 }
 /*
  * 						// 	Map<Integer, String>			: map객체명.keySet() : map객체내 모든 키 호출 
