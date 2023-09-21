@@ -127,7 +127,7 @@ public class MemberDao extends Dao {
 	public List< mpointDto > getPointList(  int mno  ){
 		List< mpointDto > list = new ArrayList<>();
 		try {
-			String sql = "select * from mpoint where mno = ? ";
+			String sql = "select * from mpoint where mno = ? order by mpdate desc";
 			ps = conn.prepareStatement(sql);
 			ps.setInt( 1 , mno );
 			rs = ps.executeQuery();
