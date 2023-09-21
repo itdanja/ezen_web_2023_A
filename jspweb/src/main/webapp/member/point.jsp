@@ -27,7 +27,7 @@
 		    width: 300px;
 		}
 		.paymoney{
-			display: flex; margin-top: 50px;
+			display: flex; margin-top: 50px;     flex-wrap: wrap;
 		}
 		.paymoney div{
 			width: 30%; margin:1%;  
@@ -60,13 +60,15 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 				<div class="paymoney" style="">
-					<div style=""><img src="/jspweb/img/1000.png" width="100%"/></div>
-					<div style=""><img src="/jspweb/img/5000.png" width="100%"/></div>
-					<div style="box-shadow: 0px 0px 35px blue;"><img src="/jspweb/img/10000.png" width="100%"/></div>
+					<div onclick="selectpay(event,1000)" class="selectpay" style=""><img src="/jspweb/img/1000.png" width="100%"/></div>
+					<div onclick="selectpay(event,5000)"class="selectpay" style=""><img src="/jspweb/img/5000.png" width="100%"/></div>
+					<div onclick="selectpay(event,10000)"class="selectpay" style=""><img src="/jspweb/img/10000.png" width="100%"/></div>
+					<div onclick="selectpay(event,50000)"class="selectpay" style=""><img src="/jspweb/img/1000.png" width="100%"/></div>
+					<div onclick="selectpay(event,100000)"class="selectpay" style=""><img src="/jspweb/img/5000.png" width="100%"/></div>
 				</div>
 				<div class="paybottom" >
-					<div> 결제금액 : 10,000원 </div>
-					<button type="button" >결제하기</button>
+					<div> 결제금액 : <span class="pay"> 10,000원 </span> </div>
+					<button type="button" onclick="payment()" >결제하기</button>
 				</div>
 			</div>
 			<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
@@ -77,6 +79,7 @@
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	
 	<script src="/jspweb/js/point.js" type="text/javascript"></script>
 	
