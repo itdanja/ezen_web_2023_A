@@ -29,8 +29,6 @@ public class PointController extends HttpServlet {
 		// 1. UUID 만들어서 포인트내역 식별자로 사용 
 		String mpno  = UUID.randomUUID().toString() ; // 포인트내역 식별번호 구성 [ UUID ] 
 			// UUID.randomUUID() : (s) UUID 고유성을 보장하는 ID[식별자] 만들기 위한 표준규약
-			System.out.println( mpno );
-			
 		// 2. 로그인된[세션에저장된] 회원정보에서 회원번호만 출력 
 		int mno = ( (MemberDto)request.getSession().getAttribute("loginDto") ).getMno() ;
 		
@@ -49,7 +47,6 @@ public class PointController extends HttpServlet {
 	
     // 10. 11.   -- 하나의 함수에서 2개이상의 기능 처리 type 분류 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// 1. 서로 다른 함수/기능 를 실행 하기 위한 분류 
 		int type = Integer.parseInt( request.getParameter("type") );
 		
@@ -67,9 +64,8 @@ public class PointController extends HttpServlet {
 			List< mpointDto > result =  MemberDao.getInstance().getPointList( mno );
 			json  = mapper.writeValueAsString(result);
 		}
-		
 		// 3.응답
-		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json;charset=utf-8");
 		response.getWriter().print(json);
 	}
 	
