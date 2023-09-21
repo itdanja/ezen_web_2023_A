@@ -129,6 +129,17 @@ create table pwishlist(
 
 */
 
+# 포인트내역 테이블 
+drop table if exists mponint;
+create table mpoint( 
+	mpno varchar(40),						-- 포인트내역 식별번호 [ UUID ]
+	mno int ,								-- 지급대상 [ 회원번호 fk ]
+    mpamount bigint signed default 0 , 		-- 대락 +-21억이상[ signed 기본값/생략시 , unsigned ]
+	mpcomment varchar(100) , 				-- 지급내역 
+    mpdate datetime default now() , 		-- 지급날짜 
+    primary key( mpno ) , 
+    foreign key( mno ) references member(mno) on delete set null on update cascade 
+);
 
 
 
