@@ -77,28 +77,62 @@ payImgList.forEach( (p , i )=>{
 		payImgList.forEach( (p)=>{
 			p.style = `box-shadow:`;
 		});
-		e.currentTarget.style =  `box-shadow: 0px 0px 20px #4d07ff`;
+		e.currentTarget.style =  `box-shadow: 0px 0px 10px #4d07ff`;
 		document.querySelector('.point')
 			.innerHTML = `${ i == 0 ? '1000' : i == 1 ? '5000' : i == 2 ? '10000' : ''   }`;
 	})
 })
 
 
+let payMethodbtns = document.querySelectorAll('.payMethodbtns button');
+
+payMethodbtns.forEach( (p , i )=>{
+	
+	p.addEventListener( 'click' , (e)=>{
+		console.log(e);
+		payMethodbtns.forEach( (p)=>{
+			p.style = `
+								background-color: transparent ;
+    							color: black;
+								`;
+		});
+		e.currentTarget.style =  `
+								background-color: black;
+    							color: white;
+								`;
+		
+    
+	})
+})
+
+
+
+var IMP = window.IMP;
+IMP.init("imp35631338");
+
+let pay_method  = '';
+let amount = 0;
+let pg = ''
+
+function onAmount( value ){ amount = value;  document.querySelector('.point').innerHTML = value; }
+function onPayMethod( method ){ 
+	pay_method = method; 
+}	
 
 function payment() {
-
-	var IMP = window.IMP;
-	IMP.init("imp35631338");
+	
+	if( pay_method == '' ){ alert('결제방식을 선택해주세요.'); return; }
+	if( amount == 0 ){ alert('충전금액을 선택해주세요.'); return; }
 
 	IMP.request_pay(
 		{
-			pg: "kcp.INIpayTest",
-			pay_method: "card",
+			pg: 'html5_inicis.INIBillTst' ,
+			pay_method: pay_method ,
 			merchant_uid: "57008833-33004",
 			name: "포인트결제",
-			amount: document.querySelector('.point').innerHTML,
+			amount: amount,
 			buyer_email: "Iamport@chai.finance",
-			buyer_name: "포트원 기술지원팀",
+			buyer_name: "이젠 웹개발팀 ",
 			buyer_tel: "010-1234-5678",
 			buyer_addr: "서울특별시 강남구 삼성동",
 			buyer_postcode: "123-456",
